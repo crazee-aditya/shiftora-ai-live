@@ -1,0 +1,39 @@
+html {
+  filter: grayscale(100%) contrast(1.4) !important;
+  -webkit-filter: grayscale(100%) contrast(1.4) !important;
+}
+
+/* Remove the small original Varick badge mark everywhere while keeping adjacent Shiftora text. */
+[data-framer-name="V"] {
+  display: none !important;
+}
+
+#hero-section canvas,
+#hero-section div:has(> canvas),
+#hero-section div:has(canvas) {
+  opacity: 1 !important;
+}
+
+#hero-section canvas {
+  mix-blend-mode: normal !important;
+  filter:
+    grayscale(1)
+    contrast(1.7)
+    brightness(1.08)
+    drop-shadow(0.35px 0 0 rgba(120, 120, 120, 0.55))
+    drop-shadow(-0.35px 0 0 rgba(120, 120, 120, 0.45))
+    drop-shadow(0 0.35px 0 rgba(120, 120, 120, 0.45)) !important;
+  -webkit-filter:
+    grayscale(1)
+    contrast(1.7)
+    brightness(1.08)
+    drop-shadow(0.35px 0 0 rgba(120, 120, 120, 0.55))
+    drop-shadow(-0.35px 0 0 rgba(120, 120, 120, 0.45))
+    drop-shadow(0 0.35px 0 rgba(120, 120, 120, 0.45)) !important;
+}
+
+/* Careers only: prevent dashboard replacement art from becoming a page-wide background. */
+.framer-wqCVF [data-framer-background-image-wrapper="true"]:has(> img[src*="shiftora-dashboard-overview.png"]),
+.framer-wqCVF [data-framer-background-image-wrapper="true"]:has(> img[src*="shiftora-dashboard-operations.png"]) {
+  display: none !important;
+}

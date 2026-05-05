@@ -1,0 +1,205 @@
+{
+  "savedAt": "2026-05-04T18:06:25.570Z",
+  "edits": [
+    {
+      "from": "Process Architecture & Redesign",
+      "to": "System Architecture & Build"
+    },
+    {
+      "from": "Varick designs and builds the AI agent system that will execute the workflow — integrating it with the enterprise tools, data, and operational logic that power the process. You're kept in the loop the entire time.",
+      "to": "Designed against your real data, engineered into your real tools, wired to your real systems of record. We instrument from day one, keep your team in the room, and put working code in front of operators inside the first sprint."
+    },
+    {
+      "from": "Production Deployment",
+      "to": "Production Deployment & Enablement"
+    },
+    {
+      "from": "Varick deploys the AI agent system into the enterprise stack, connecting it to live systems and workflows so it can begin executing operational work in production. Agents are built on top of your existing software, meaning no migrations are required. If you have BAAs with AI Labs we'll use their models, and we deploy on your cloud.",
+      "to": "The work nobody else does. We deploy into your Enterprise stack, rewrite the SOPs the system replaces, train the operators who run it, and install the dashboards your leadership uses to govern it. Adoption is engineered, not hoped for. Your team owns the system before we step back."
+    },
+    {
+      "from": "We conduct a structured audit of how work moves through your organization across teams, systems, and decision points.",
+      "to": "We sit with your operators and your leadership and trace the work; how it moves, where it stalls, which handoffs cost you, which decisions still wait on a human who shouldn't be in the loop. We pressure-test the data, the systems, and the Legacy process underneath them."
+    },
+    {
+      "from": "The goal is to identify where AI can reduce operational overhead, accelerate execution, or replace manual coordination entirely.",
+      "to": "You leave with a ranked build plan: the workflows worth automating first, the ones AI shouldn't touch yet, and the systems we ship in the first 21 days."
+    },
+    {
+      "from": "AUTONOMOUS SYSTEM",
+      "to": "LIVING SYSTEM"
+    },
+    {
+      "from": "Agent System Optimization",
+      "to": "System Maturity & Expansion"
+    },
+    {
+      "from": "After deployment, Varick improves how the agent operates over time - strengthening its decision logic, increasing reliability, and extending it into new operational responsibilities.",
+      "to": "Most Enterprise software peaks the day it ships. Ours doesn't. After go-live, Shiftora keeps the system in tune; refining its decision logic, raising its accuracy floor, retiring rules it no longer needs, and extending it into adjacent workflows as the Enterprise demands more. One system at go-live becomes the operating layer across departments."
+    },
+    {
+      "from": "AI agents don’t just automate tasks - they remove operational bottlenecks that slow organizations down.",
+      "to": "The next decade splits the Enterprise world in two. On one side, organizations that bolted AI onto a Legacy operating model. On the other, organizations rebuilt around it. Only the second kind compounds. We build for the second kind."
+    },
+    {
+      "from": "Reduce Operational Overhead",
+      "to": "The headcount equation breaks."
+    },
+    {
+      "from": "AI agents remove manual coordination, approvals, and repetitive operational work across systems.",
+      "to": "Work that used to need a team now needs a system and an owner. Finance closes faster with fewer people. Ops ships without the backlog forming. Revenue scales without the linear hiring curve. The cost-per-output line bends."
+    },
+    {
+      "from": "Processes that once required multiple team handoffs can now execute continuously.",
+      "to": "Operators stop processing and start supervising. Managers stop reporting and start steering. Leadership stops asking for the dashboard and starts living inside it. Every role gets pushed one level up the value chain."
+    },
+    {
+      "from": "Scale Without Hiring",
+      "to": "The System becomes the Moat."
+    },
+    {
+      "from": "Operational output increases without adding headcount or new coordination layers.",
+      "to": "What used to be tribal knowledge, scattered SOPs, and senior-operator memory becomes encoded, in the workflows, in the data, in the dashboards. The Enterprise that captures its own operating logic owns it. The one that doesn't, leaks it."
+    },
+    {
+      "from": "\"Enterprise operations were designed for human coordination. The next generation will be designed for intelligent execution.\"",
+      "to": "\"For three decades, Enterprises rented their software. For the next, they will own their intelligence.\""
+    },
+    {
+      "from": "— Varick Agents",
+      "to": "— Shiftora"
+    },
+    {
+      "from": "Explore what AI agents could look like inside your company",
+      "to": "See what True Intelligence looks like inside your Enterprise."
+    },
+    {
+      "from": "A short conversation with the Varick team to identify operational workflows where our agents could deliver immediate impact.",
+      "to": "A call with the Shiftora team. Tell us where the drag is, where the headcount keeps growing, where the Legacy process is bleeding hours. We come back with a diagnostic, a roadmap, and the first system worth building."
+    },
+    {
+      "from": "Common questions from enterprise teams exploring AI agent deployment.",
+      "to": "The questions Enterprise leadership actually asks before bringing us in."
+    },
+    {
+      "from": "How long does it take to deploy an AI agent?",
+      "to": "How long does a first system take to ship?"
+    },
+    {
+      "from": "Most deployments move from discovery to a production agent in 6–12 weeks, depending on the complexity of the workflow and the systems involved.",
+      "to": "Most first deliveries land in 7 to 21 days. We work in senior pods, against your real data, integrated into your real systems. The first build is scoped tightly on purpose — one workflow, end to end, in production — so the Enterprise sees the system working before the budget conversation gets harder."
+    },
+    {
+      "from": "What kinds of tasks can AI agents actually perform?",
+      "to": "What kinds of work do you actually build?"
+    },
+    {
+      "from": "Agents typically monitor operational systems, analyze incoming data, trigger actions, route approvals, generate internal reports, and coordinate work across tools that previously required manual oversight.",
+      "to": "Custom AI systems for the work your Enterprise runs on — document pipelines that read and validate at scale, voice and chat agents trained on your domain, vision systems for quality and compliance, predictive scoring on every lead, ticket, claim or case. Plus the enablement layer that makes operators use them, and the software platforms to host it all when off-the-shelf doesn't fit."
+    },
+    {
+      "from": "Can agents work with our existing enterprise tools?",
+      "to": "Will this work with our existing stack?"
+    },
+    {
+      "from": "Yes. Agents integrate with the systems already running your operations — such as ERPs, CRMs, internal databases, and data platforms — through APIs and automation layers.",
+      "to": "Yes — that's the point. We engineer inside Salesforce, HubSpot, SAP, NetSuite, Workday, your data warehouse, your in-house tools. No proprietary platform. No migration. No rip-and-replace. Your IP, your stack, your ownership from day one."
+    },
+    {
+      "from": "How much involvement is required from our internal org?",
+      "to": "How much involvement do we need from our internal team?"
+    },
+    {
+      "from": "Your team provides context on the workflow and systems involved (<20 hours across all employees). Varick handles the design and deployment of the agent system while coordinating with the appropriate technical or operational stakeholders.",
+      "to": "Less than a transformation program, more than a SaaS subscription. We need access to the operators who actually run the workflow, your data, and a single owner on your side to clear blockers. Leadership stays in the loop on weekly review cadence. We do not need a project office, a steering committee, or a six-month onboarding."
+    },
+    {
+      "from": "How do you ensure security and governance?",
+      "to": "How do you handle security, governance, and compliance?"
+    },
+    {
+      "from": "Agents operate within existing system permissions and enterprise security policies. Access is controlled through integrations, and all agent actions are logged so activity can be monitored and audited.",
+      "to": "We deploy on your cloud, on your contracts, with your model agreements. Where you have BAAs or licensing in place with AI labs, we run on those. Data stays inside your environment. Every system ships with audit trails, role-based access, and the dashboards your governance team needs to sign off. Enterprise-grade is the floor, not an upsell."
+    },
+    {
+      "from": "Can agents be fully customized for our workflows?",
+      "to": "Can the system be customized to how we actually operate?"
+    },
+    {
+      "from": "Yes. Every deployment is designed around the specific workflows, systems, and operational rules inside your organization.",
+      "to": "Every Shiftora build is custom by definition. We do not deploy templates. We build against your edge cases, your terminology, your decision logic, your exceptions. The reason engagements compound is that the second system inherits the data, the integrations, and the operating logic the first one captured."
+    },
+    {
+      "from": "Engagements are structured based on the complexity of the workflow, the systems involved, and the scope of the deployment. Pricing is typically discussed after the discovery call once we understand the operational requirements. Tends to be 90% cheaper than your otherwise FTE cost.",
+      "to": "Engagements are scoped per build, not per seat. You pay for the system, the integration, and the enablement that goes with it — fixed scope, fixed timeline, fixed deliverable. Ongoing optimization is a separate retainer, optional, and only kicks in once the first system is live and your team is running on it. We send a written proposal after the discovery call, never before."
+    },
+    {
+      "from": "The discovery call is a working session where we review how operational workflows currently run inside your organization. From there we identify areas where an AI agent could realistically execute work, what systems it would need to interact with, and what a deployment timeline would look like.",
+      "to": "You walk us through the workflow that's costing you the most. We come back with a diagnostic — where AI compounds, where Legacy process is the real blocker, and whether there's a system worth building. If there isn't one, we say that."
+    },
+    {
+      "from": "A single automation that answers emails isn't transformation. We architect agent systems that handle end-to-end workflows — from intake to execution to reporting — replacing entire process chains, not individual steps.",
+      "to": "Task-level automation gets you minutes back. Department-level transformation rewrites the cost structure. We build the full system, intake to execution to reporting, and stay in the room until your team runs on it."
+    },
+    {
+      "from": "The result: your finance team operates like it's 3x the size. Your ops team ships without the backlog. Your revenue team closes faster.",
+      "to": "The result: Finance, 3x leverage. Ops, no backlog. Revenue, faster cycles. Same headcount."
+    },
+    {
+      "from": "Rebuild Your Enterprise Around AI",
+      "to": "Integrate Your Enterrpise With AI"
+    },
+    {
+      "from": "Transform Your Enterprise With AI",
+      "to": "Integrate Your Enterrpise With AI"
+    },
+    {
+      "from": "Varick Agents are changing how companies operate.",
+      "to": "We are changing how companies operate."
+    },
+    {
+      "from": "Varick is an applied AI company that replaces the manual work employees do between systems at enterprise companies. We build AI agents that handle exception routing, cross-system coordination, data reconciliation, and the hundreds of operational tasks that are too complex for traditional automation but too repetitive for your best people.",
+      "to": "Shiftora is an applied AI company that replaces the manual work employees do between systems at enterprise companies. We build AI agents that handle exception routing, cross-system coordination, data reconciliation, and the hundreds of operational tasks that are too complex for traditional automation but too repetitive for your best people."
+    },
+    {
+      "from": "We embed engineers directly inside client organizations — Fortune 5000 companies generating billions in revenue — and deploy production AI systems that run inside their existing tools. No rip-and-replace. No demos that never ship. 100% of our clients deploy to production. 100% come back for more.",
+      "to": "We embed agentic systtems directly inside client organizations — Fortune 5000 companies generating billions in revenue — and deploy production AI systems that run inside their existing tools. No rip-and-replace. No demos that never ship. 100% of our clients deploy to production. 100% come back for more."
+    },
+    {
+      "from": "Varick Agents",
+      "to": "Shiftora.ai"
+    },
+    {
+      "from": "Forward Deployed Engineer",
+      "to": "Frontend Engineer"
+    },
+    {
+      "from": "SAN FRANCISCO, CA",
+      "to": "Dubai, UAE"
+    },
+    {
+      "from": "San Francisco, CA",
+      "to": "Dubai, UAE"
+    },
+    {
+      "from": "San Francisco, CA.",
+      "to": "Dubai, UAE."
+    },
+    {
+      "from": "$140,000 – $180,000",
+      "to": "$100,000 – $140,000"
+    },
+    {
+      "from": "Full Stack Engineer",
+      "to": "Backend Engineer"
+    },
+    {
+      "from": "$175,000 - $225,000",
+      "to": "$105,000 - $135,000"
+    },
+    {
+      "from": "V",
+      "to": "S"
+    }
+  ]
+}

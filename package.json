@@ -1,0 +1,10 @@
+{
+  "name": "shiftora-ai-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tools/editable-proxy.mjs",
+    "dev": "node tools/editable-proxy.mjs",
+    "check": "node --check tools/editable-proxy.mjs && node --check tools/page-snapshot-replay.js && node --check tools/text-editor-overlay.js"
+  }
+}
