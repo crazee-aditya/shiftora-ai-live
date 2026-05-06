@@ -1,5 +1,7 @@
 (() => {
   const BOOKING_URL = 'https://cal.com/shreshth-daga-rxfhkj/30min';
+  const AUDIT_URL = 'https://form.typeform.com/to/B30PNGww';
+  const AUDIT_CTA_TEXT = 'Audit your Enterprise';
   const replacements = [
     ['Varick Agents', 'shiftora.ai'],
     ['HOW IT WORKS', 'CAPABILITIES'],
@@ -96,7 +98,7 @@
       'Workflow orchestration, document automation pipelines, exception management, and real-time operating dashboards across geographies.'
     ],
 
-    ['Case Studies', 'Selected work'],
+    ['Case Studies', AUDIT_CTA_TEXT],
     ['Case Study', 'Selected work'],
     ['Watch Varick Agents in Action', 'The work, in the open.'],
     ['Finance Operations', 'Global Travel & Visa Services'],
@@ -226,6 +228,32 @@
       const key = normalize(element.textContent);
       if (!replacementMap.has(key)) return;
       element.textContent = replacementMap.get(key);
+    });
+
+    document.querySelectorAll('a').forEach((link) => {
+      if (link.closest('nav')) return;
+
+      const text = normalize(link.textContent);
+      const href = link.getAttribute('href') || '';
+      const isAuditCta = text === 'Case Studies' ||
+        text === 'Selected work' ||
+        text === AUDIT_CTA_TEXT ||
+        href.endsWith('#case-studies') ||
+        href.includes('/#case-studies') ||
+        href.includes('./#case-studies');
+
+      if (!isAuditCta) return;
+      link.setAttribute('href', AUDIT_URL);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
+
+      const label = Array.from(link.querySelectorAll('h1,h2,h3,h4,h5,h6,p,button'))
+        .find((element) => {
+          const value = normalize(element.textContent);
+          return value === 'Case Studies' || value === 'Selected work' || value === AUDIT_CTA_TEXT;
+        });
+
+      if (label) label.textContent = AUDIT_CTA_TEXT;
     });
   }
 
