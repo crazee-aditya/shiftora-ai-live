@@ -74,33 +74,33 @@
     },
     {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(1)>p",
-      "text": "Product",
-      "normalizedText": "PRODUCT"
-    },
-    {
-      "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(2)>h6",
-      "text": "Frontend Engineer",
-      "normalizedText": "Frontend Engineer"
-    },
-    {
-      "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(3)>p",
-      "text": "Dubai, UAE",
-      "normalizedText": "DUBAI, UAE"
-    },
-    {
-      "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(4)>p",
-      "text": "$100,000 – $140,000",
-      "normalizedText": "$100,000 – $140,000"
-    },
-    {
-      "selector": "div#\\31 ix9hvx>div:nth-of-type(2)>a>div:nth-of-type(1)>p",
       "text": "Engineering",
       "normalizedText": "ENGINEERING"
     },
     {
+      "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(2)>h6",
+      "text": "AI Engineer",
+      "normalizedText": "AI Engineer"
+    },
+    {
+      "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(3)>p",
+      "text": "San Francisco, USA",
+      "normalizedText": "SAN FRANCISCO, USA"
+    },
+    {
+      "selector": "div#\\31 ix9hvx>div:nth-of-type(1)>a>div:nth-of-type(4)>p",
+      "text": "$105,000 - $135,000",
+      "normalizedText": "$105,000 - $135,000"
+    },
+    {
+      "selector": "div#\\31 ix9hvx>div:nth-of-type(2)>a>div:nth-of-type(1)>p",
+      "text": "Product",
+      "normalizedText": "PRODUCT"
+    },
+    {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(2)>a>div:nth-of-type(2)>h6",
-      "text": "Backend Engineer",
-      "normalizedText": "Backend Engineer"
+      "text": "Frontend Engineer",
+      "normalizedText": "Frontend Engineer"
     },
     {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(2)>a>div:nth-of-type(3)>p",
@@ -109,8 +109,8 @@
     },
     {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(2)>a>div:nth-of-type(4)>p",
-      "text": "$105,000 - $135,000",
-      "normalizedText": "$105,000 - $135,000"
+      "text": "$100,000 – $140,000",
+      "normalizedText": "$100,000 – $140,000"
     },
     {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(3)>a>div:nth-of-type(1)>p",
@@ -119,8 +119,8 @@
     },
     {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(3)>a>div:nth-of-type(2)>h6",
-      "text": "AI Engineer",
-      "normalizedText": "AI Engineer"
+      "text": "Backend Engineer",
+      "normalizedText": "Backend Engineer"
     },
     {
       "selector": "div#\\31 ix9hvx>div:nth-of-type(3)>a>div:nth-of-type(3)>p",
