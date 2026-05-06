@@ -59,7 +59,7 @@ http://localhost:8012/careers?localReload=host-hardened
 
 Expected:
 
-- Home hero shows `Integrate Your Enterrpise With AI`.
+- Home hero shows `Integrate Your Enterprise With AI`.
 - Careers page shows `Frontend Engineer`, `Backend Engineer`, and `Dubai, UAE`.
 - Old careers strings like `Forward Deployed Engineer`, `Full Stack Engineer`, and `San Francisco, CA` must not come back after hydration.
 - Animations and buttons should remain Framer-native.

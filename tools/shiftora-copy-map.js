@@ -1,4 +1,5 @@
 (() => {
+  const BOOKING_URL = 'https://cal.com/shreshth-daga-rxfhkj/30min';
   const replacements = [
     ['Varick Agents', 'shiftora.ai'],
     ['HOW IT WORKS', 'CAPABILITIES'],
@@ -6,7 +7,6 @@
     ['CASE STUDIES', 'ENGAGEMENTS'],
     ['CAREERS', 'APPROACH'],
     ['FAQ', 'ABOUT'],
-    ['Book a Call', 'Book a Discovery Call'],
     ['SCHEDULE DISCOVERY', 'BOOK A DISCOVERY CALL'],
     ['View Deployments', 'See our work'],
     ['Partnering with the Industry\'s Best', 'Trusted by operators of high-growth and Legacy Enterprises'],
@@ -198,12 +198,21 @@
       meta.setAttribute('content', document.title);
     });
 
-    document.querySelectorAll('[data-framer-name="V"] p').forEach((node) => {
-      node.textContent = 'S';
+    document.querySelectorAll('[data-framer-name="Group 6"]:has([data-framer-name="V"]), [data-framer-name="V"]').forEach((node) => {
+      node.style.setProperty('display', 'none', 'important');
     });
 
-    document.querySelectorAll('a[href*="cal.com/team/varick-agents/discovery-call"]').forEach((link) => {
-      link.setAttribute('href', 'mailto:info@shiftora.ai');
+    document.querySelectorAll('a').forEach((link) => {
+      const text = normalize(link.textContent);
+      const href = link.getAttribute('href') || '';
+      const isBookingLink = text.includes('Book a Call') ||
+        text.includes('Book a Discovery Call') ||
+        href.includes('cal.com/team/varick-agents/discovery-call');
+
+      if (!isBookingLink) return;
+      link.setAttribute('href', BOOKING_URL);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
     });
     document.querySelectorAll('a[href="https://x.com/varickai"]').forEach((link) => {
       link.setAttribute('href', 'mailto:info@shiftora.ai');

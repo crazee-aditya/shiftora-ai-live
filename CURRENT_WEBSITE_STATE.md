@@ -32,7 +32,7 @@ Last updated: 2026-05-04
 
 ## Verified Copy Anchors
 
-- Home hero: `Integrate Your Enterrpise With AI`
+- Home hero: `Integrate Your Enterprise With AI`
 - Careers roles: `Frontend Engineer`, `Backend Engineer`
 - Careers location: `Dubai, UAE`
 - Old hydrated strings blocked: `Varick Agents`, `Forward Deployed Engineer`, `Full Stack Engineer`, `San Francisco, CA`

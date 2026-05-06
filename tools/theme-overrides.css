@@ -4,6 +4,7 @@ html {
 }
 
 /* Remove the small original Varick badge mark everywhere while keeping adjacent Shiftora text. */
+[data-framer-name="Group 6"]:has([data-framer-name="V"]),
 [data-framer-name="V"] {
   display: none !important;
 }
