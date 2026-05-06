@@ -29,6 +29,8 @@ const FRAMER_SITE_ID = '74Opxp7nGUyRPUIiPRjwJO';
 const FRAMER_SITE_ORIGIN = `https://framerusercontent.com/sites/${FRAMER_SITE_ID}/`;
 const FRAMER_SITE_PROXY_PREFIX = '/__framer-site/';
 const FRAMER_CONTENT_PROXY_PREFIX = '/__framer-content/';
+const BLANK_FAVICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"></svg>';
+const BLANK_FAVICON_DATA_URI = `data:image/svg+xml,${encodeURIComponent(BLANK_FAVICON_SVG)}`;
 
 const imageUrlReplacements = new Map([
   ['24uuubkDpHGDAQkwT4YWMcNbCs', 'dubai-burj-khalifa-unsplash.jpg'],
@@ -218,6 +220,14 @@ function rewriteBody(
   rewritten = applyImageUrlReplacements(rewritten);
   rewritten = applySavedTextReplacements(rewritten);
 
+  if (rewritten.includes('</head>')) {
+    rewritten = rewritten.replace(/<link\b[^>]*rel=["'][^"']*(?:shortcut\s+icon|icon|apple-touch-icon|mask-icon)[^"']*["'][^>]*>/gi, '');
+    rewritten = rewritten.replace(
+      '</head>',
+      `<link rel="icon" href="${BLANK_FAVICON_DATA_URI}" type="image/svg+xml"><link rel="apple-touch-icon" href="${BLANK_FAVICON_DATA_URI}"></head>`
+    );
+  }
+
   if (shouldInjectTheme && rewritten.includes('</head>')) {
     rewritten = rewritten.replace(
       '</head>',
@@ -263,6 +273,15 @@ function rewriteBody(
 
 const server = http.createServer((clientReq, clientRes) => {
   const localUrl = new URL(clientReq.url || '/', LOCAL_ORIGIN);
+
+  if (localUrl.pathname === '/favicon.ico' || localUrl.pathname === '/apple-touch-icon.png') {
+    clientRes.writeHead(200, {
+      'content-type': 'image/svg+xml; charset=utf-8',
+      'cache-control': 'no-store'
+    });
+    clientRes.end(BLANK_FAVICON_SVG);
+    return;
+  }
 
   if (localUrl.pathname === '/__saved-text-edits.json') {
     clientRes.writeHead(200, {
