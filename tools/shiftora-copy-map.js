@@ -202,6 +202,11 @@
     if (link.getAttribute('rel') !== 'noopener') link.setAttribute('rel', 'noopener');
   }
 
+  function openExternal(url) {
+    const next = window.open(url, '_blank', 'noopener');
+    if (!next) window.location.href = url;
+  }
+
   function updateAuditLabel(link) {
     const auditLabels = ['Case Studies', 'Case Study', 'Selected work', AUDIT_CTA_TEXT];
     const label = Array.from(link.querySelectorAll('h1,h2,h3,h4,h5,h6,p,button,span'))
@@ -244,6 +249,41 @@
     });
   }
 
+  function classifyClick(event) {
+    const path = event.composedPath ? event.composedPath() : [];
+    const elements = path
+      .filter((node) => node && node.nodeType === Node.ELEMENT_NODE)
+      .slice(0, 10);
+
+    const actionable = elements.find((element) => {
+      const tag = element.tagName;
+      return tag === 'A' || tag === 'BUTTON' || element.getAttribute('role') === 'button';
+    });
+    if (!actionable) return null;
+
+    const text = normalize(actionable.textContent || elements.map((element) => element.textContent || '').join(' '));
+    const href = actionable.getAttribute('href') || '';
+    const lowerText = text.toLowerCase();
+    const lowerHref = href.toLowerCase();
+
+    const isAudit = textMatches(text, ['Case Studies', 'Case Study', 'Selected work', AUDIT_CTA_TEXT]) ||
+      lowerHref.includes('case-stud') ||
+      lowerHref.includes('typeform.com/to/b30pngww') ||
+      href.endsWith('#case-studies') ||
+      href.includes('/#case-studies') ||
+      href.includes('./#case-studies');
+
+    if (isAudit) return AUDIT_URL;
+
+    const isBooking = lowerText.includes('book a call') ||
+      lowerText.includes('book a discovery call') ||
+      lowerText.includes('learn more') ||
+      lowerHref.includes('cal.com') ||
+      lowerHref.includes('discovery-call');
+
+    return isBooking ? BOOKING_URL : null;
+  }
+
   function replaceVisibleCopy() {
     document.title = 'Shiftora.ai | Custom AI, Enablement & Enterprise Software for Large Legacy Enterprises';
     document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach((meta) => {
@@ -277,6 +317,14 @@
 
   window.__shiftoraCopyMap = replacements.map(([from, to]) => ({ from, to }));
   replaceVisibleCopy();
+  document.addEventListener('click', (event) => {
+    const destination = classifyClick(event);
+    if (!destination) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    openExternal(destination);
+  }, true);
   window.addEventListener('load', () => {
     setTimeout(replaceVisibleCopy, 100);
     setTimeout(replaceVisibleCopy, 500);
