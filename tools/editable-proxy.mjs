@@ -220,6 +220,8 @@ function rewriteBody(
   rewritten = rewriteFramerContentUrls(rewritten, publicOrigin);
   rewritten = applyImageUrlReplacements(rewritten);
   rewritten = applySavedTextReplacements(rewritten);
+  rewritten = rewritten.replace(/\s*href=["']https?:\/\/jobs\.ashbyhq\.com[^"']*["']/gi, '');
+  rewritten = rewritten.replace(/https?:\/\/jobs\.ashbyhq\.com\/Varick-Agents\/[A-Za-z0-9-]+/g, '#');
 
   if (rewritten.includes('</head>')) {
     rewritten = rewritten.replace(
