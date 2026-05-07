@@ -119,8 +119,16 @@
   let suppressDestination = '';
 
   function openExternal(url) {
-    const next = window.open(url, '_blank', 'noopener');
-    if (!next) window.location.href = url;
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    anchor.style.position = 'fixed';
+    anchor.style.left = '-9999px';
+    anchor.style.top = '-9999px';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
   }
 
   function routeEvent(event) {
