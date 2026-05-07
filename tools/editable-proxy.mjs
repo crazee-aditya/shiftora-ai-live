@@ -14,6 +14,7 @@ const IMAGE_REPLACER_SCRIPT = path.join(TOOL_DIR, 'image-replacer-overlay.js');
 const SCRIBBLE_MODE_SCRIPT = path.join(TOOL_DIR, 'scribble-mode.js');
 const PAGE_SNAPSHOT_REPLAY_SCRIPT = path.join(TOOL_DIR, 'page-snapshot-replay.js');
 const SHIFTORA_COPY_SCRIPT = path.join(TOOL_DIR, 'shiftora-copy-map.js');
+const CTA_LINK_ROUTER_SCRIPT = path.join(TOOL_DIR, 'cta-link-router.js');
 const SECTION_VISIBILITY_SCRIPT = path.join(TOOL_DIR, 'section-visibility-overrides.js');
 const THEME_OVERRIDES_CSS = path.join(TOOL_DIR, 'theme-overrides.css');
 const SCRIBBLE_MODE_CSS = path.join(TOOL_DIR, 'scribble-mode.css');
@@ -259,6 +260,7 @@ function rewriteBody(
   if (rewritten.includes('</body>')) {
     const scripts = [
       `<script src="/__section-visibility-overrides.js?v=${ASSET_VERSION}"></script>`,
+      `<script src="/__cta-link-router.js?v=${ASSET_VERSION}"></script>`,
       shouldInjectShiftoraCopy ? `<script src="/__shiftora-copy-map.js?v=${ASSET_VERSION}"></script>` : '',
       shouldInjectSnapshotReplay ? `<script src="/__page-snapshot-replay.js?v=${ASSET_VERSION}"></script>` : '',
       shouldInjectImageReplacer ? `<script src="/__image-replacer-overlay.js?v=${ASSET_VERSION}"></script>` : '',
@@ -737,6 +739,15 @@ const server = http.createServer((clientReq, clientRes) => {
       'cache-control': 'no-store'
     });
     pipeline(fs.createReadStream(SHIFTORA_COPY_SCRIPT), clientRes, () => {});
+    return;
+  }
+
+  if (localUrl.pathname === '/__cta-link-router.js') {
+    clientRes.writeHead(200, {
+      'content-type': 'application/javascript; charset=utf-8',
+      'cache-control': 'no-store'
+    });
+    pipeline(fs.createReadStream(CTA_LINK_ROUTER_SCRIPT), clientRes, () => {});
     return;
   }
 
