@@ -50,22 +50,4 @@ html {
     text-overflow: clip !important;
   }
 
-  /* Mobile feature card: prevent the step pill and audit CTA from clipping out of the card. */
-  [data-framer-name="Feature Card 1"] {
-    min-height: 488px !important;
-    height: auto !important;
-  }
-
-  [data-framer-name="Feature Card 1"] [data-framer-name="Container"] {
-    margin-top: 24px !important;
-    margin-bottom: 28px !important;
-  }
-
-  [data-framer-name="Feature Card 1"] [data-framer-name="pill-container"] {
-    margin-top: 0 !important;
-  }
-
-  [data-framer-name="Feature Card 1"] a[data-shiftora-destination="https://form.typeform.com/to/B30PNGww"] {
-    margin-bottom: 24px !important;
-  }
 }
