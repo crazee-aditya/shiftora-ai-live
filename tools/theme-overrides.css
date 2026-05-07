@@ -47,6 +47,8 @@ section#open-roles::after {
   margin: 36px auto 24px !important;
   padding: 0 24px !important;
   text-align: center !important;
+  align-self: center !important;
+  justify-self: center !important;
   font-family: "Chivo Mono", ui-monospace, monospace !important;
   font-size: 13px !important;
   font-weight: 400 !important;
