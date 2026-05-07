@@ -139,10 +139,19 @@
   let suppressDestination = '';
 
   function openExternal(url) {
+    const popup = window.open(url, '_blank');
+    if (popup) {
+      try {
+        popup.opener = null;
+      } catch (_) {}
+      return;
+    }
+
     const anchor = document.createElement('a');
     anchor.href = url;
     anchor.target = '_blank';
     anchor.rel = 'noopener noreferrer';
+    anchor.setAttribute('data-shiftora-router-open', 'true');
     anchor.style.position = 'fixed';
     anchor.style.left = '-9999px';
     anchor.style.top = '-9999px';
@@ -152,6 +161,7 @@
   }
 
   function routeEvent(event) {
+    if (event.isTrusted === false) return;
     const destination = classifyEvent(event);
     if (!destination) return;
 
@@ -172,7 +182,7 @@
   }
 
   rewriteDestinations();
-  ['pointerdown', 'mousedown', 'touchstart', 'click', 'auxclick'].forEach((type) => {
+  ['click', 'auxclick'].forEach((type) => {
     window.addEventListener(type, routeEvent, true);
     document.addEventListener(type, routeEvent, true);
   });
