@@ -222,6 +222,40 @@ function rewriteBody(
   rewritten = applySavedTextReplacements(rewritten);
 
   if (rewritten.includes('</head>')) {
+    rewritten = rewritten.replace(
+      '</head>',
+      `<script>
+        (() => {
+          const root = document.documentElement;
+          root.setAttribute('data-shiftora-booting', '1');
+          let revealed = false;
+          function reveal() {
+            if (revealed) return;
+            revealed = true;
+            root.removeAttribute('data-shiftora-booting');
+            document.getElementById('shiftora-first-paint-guard')?.remove();
+          }
+          function revealAfterPaint(delay) {
+            window.setTimeout(() => {
+              window.requestAnimationFrame(() => window.requestAnimationFrame(reveal));
+            }, delay);
+          }
+          window.addEventListener('load', () => revealAfterPaint(120), { once: true });
+          document.addEventListener('DOMContentLoaded', () => revealAfterPaint(900), { once: true });
+          window.setTimeout(reveal, 3200);
+        })();
+      </script>
+      <style id="shiftora-first-paint-guard">
+        html[data-shiftora-booting="1"],
+        html[data-shiftora-booting="1"] body {
+          background: #fff !important;
+        }
+        html[data-shiftora-booting="1"] body {
+          opacity: 0 !important;
+        }
+      </style></head>`
+    );
+
     rewritten = rewritten.replace(/<link\b[^>]*rel=["'][^"']*(?:shortcut\s+icon|icon|apple-touch-icon|mask-icon)[^"']*["'][^>]*>/gi, '');
     rewritten = rewritten.replace(
       '</head>',
