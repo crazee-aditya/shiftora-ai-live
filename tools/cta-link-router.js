@@ -43,6 +43,15 @@
       signal.includes('discovery-call');
   }
 
+  function isInternalNavigationSignal(signal) {
+    return signal.includes('/careers') ||
+      signal === 'careers' ||
+      signal.includes('#features') ||
+      signal.includes('#faq') ||
+      signal.includes('#hero-section') ||
+      signal.includes('how it works');
+  }
+
   function isSafeCandidate(element) {
     if (!element || element.nodeType !== Node.ELEMENT_NODE) return false;
     if (['HTML', 'BODY'].includes(element.tagName)) return false;
@@ -67,6 +76,15 @@
     }
   }
 
+  function restoreInternalNavigation(element, signal) {
+    element.removeAttribute('data-shiftora-destination');
+    if (element.tagName !== 'A') return;
+    element.removeAttribute('target');
+    element.removeAttribute('rel');
+    if (signal === 'careers' || signal.includes('/careers')) element.setAttribute('href', '/careers');
+    if (signal.includes('how it works') || signal.includes('#features')) element.setAttribute('href', '/#features');
+  }
+
   function updateAuditLabel(root) {
     const labels = root.matches?.('h1,h2,h3,h4,h5,h6,p,a,button,span') ? [root] : [];
     labels.push(...root.querySelectorAll?.('h1,h2,h3,h4,h5,h6,p,a,button,span') || []);
@@ -83,6 +101,11 @@
     document.querySelectorAll('a,button,[role="button"],[tabindex],[data-framer-name]').forEach((element) => {
       if (!isSafeCandidate(element)) return;
       const signal = elementSignal(element);
+      if (isInternalNavigationSignal(signal)) {
+        restoreInternalNavigation(element, signal);
+        return;
+      }
+      if (!element.hasAttribute('href') && !element.hasAttribute('data-shiftora-destination') && signal.length > 120) return;
       if (isAuditSignal(signal)) {
         forceDestination(element, AUDIT_URL);
         updateAuditLabel(element);
@@ -99,19 +122,16 @@
       .filter((element) => !['HTML', 'BODY'].includes(element.tagName))
       .slice(0, 16);
 
-    for (const element of elements) {
-      const destination = element.getAttribute('data-shiftora-destination');
-      if (destination === AUDIT_URL || destination === BOOKING_URL) return destination;
-    }
+    const candidate = elements.find((element) => isSafeCandidate(element));
+    if (!candidate) return null;
+    const signal = elementSignal(candidate);
+    if (isInternalNavigationSignal(signal)) return null;
 
-    const candidates = elements.filter((element) => {
-      if (element.closest('#shiftora-text-editor-panel, #shiftora-image-replacer-panel')) return false;
-      const signal = elementSignal(element);
-      return isSafeCandidate(element) || signal.length <= 260;
-    });
+    const destination = candidate.getAttribute('data-shiftora-destination');
+    if (destination === AUDIT_URL || destination === BOOKING_URL) return destination;
 
-    if (candidates.some((element) => isAuditSignal(elementSignal(element)))) return AUDIT_URL;
-    if (candidates.some((element) => isBookingSignal(elementSignal(element)))) return BOOKING_URL;
+    if (isAuditSignal(signal)) return AUDIT_URL;
+    if (isBookingSignal(signal)) return BOOKING_URL;
     return null;
   }
 
