@@ -99,7 +99,7 @@
     ],
 
     ['Case Studies', AUDIT_CTA_TEXT],
-    ['Case Study', 'Selected work'],
+    ['Case Study', AUDIT_CTA_TEXT],
     ['Watch Varick Agents in Action', 'The work, in the open.'],
     ['Finance Operations', 'Global Travel & Visa Services'],
     ['Compliance & Risk', 'LegalMatch'],
@@ -191,6 +191,59 @@
     return ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'A', 'BUTTON'].includes(tag);
   }
 
+  function textMatches(value, options) {
+    const normalized = normalize(value);
+    return options.some((option) => normalized === option || normalized.includes(option));
+  }
+
+  function forceLink(link, url) {
+    if (link.getAttribute('href') !== url) link.setAttribute('href', url);
+    if (link.getAttribute('target') !== '_blank') link.setAttribute('target', '_blank');
+    if (link.getAttribute('rel') !== 'noopener') link.setAttribute('rel', 'noopener');
+  }
+
+  function updateAuditLabel(link) {
+    const auditLabels = ['Case Studies', 'Case Study', 'Selected work', AUDIT_CTA_TEXT];
+    const label = Array.from(link.querySelectorAll('h1,h2,h3,h4,h5,h6,p,button,span'))
+      .find((element) => auditLabels.includes(normalize(element.textContent)));
+
+    if (label && normalize(label.textContent) !== AUDIT_CTA_TEXT) {
+      label.textContent = AUDIT_CTA_TEXT;
+    }
+  }
+
+  function rewriteLinks() {
+    document.querySelectorAll('a').forEach((link) => {
+      const text = normalize(link.textContent);
+      const href = link.getAttribute('href') || '';
+      const isBookingLink = text.includes('Book a Call') ||
+        text.includes('Book a Discovery Call') ||
+        href.includes('cal.com/team/varick-agents/discovery-call');
+
+      if (isBookingLink) forceLink(link, BOOKING_URL);
+    });
+
+    document.querySelectorAll('a').forEach((link) => {
+      if (normalize(link.textContent).toLowerCase().includes('learn more')) {
+        forceLink(link, BOOKING_URL);
+      }
+    });
+
+    document.querySelectorAll('a').forEach((link) => {
+      const text = normalize(link.textContent);
+      const href = link.getAttribute('href') || '';
+      const isAuditCta = textMatches(text, ['Case Studies', 'Case Study', 'Selected work', AUDIT_CTA_TEXT]) ||
+        href.endsWith('#case-studies') ||
+        href.includes('/#case-studies') ||
+        href.includes('./#case-studies') ||
+        href.toLowerCase().includes('case-stud');
+
+      if (!isAuditCta) return;
+      forceLink(link, AUDIT_URL);
+      updateAuditLabel(link);
+    });
+  }
+
   function replaceVisibleCopy() {
     document.title = 'Shiftora.ai | Custom AI, Enablement & Enterprise Software for Large Legacy Enterprises';
     document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach((meta) => {
@@ -204,18 +257,7 @@
       node.style.setProperty('display', 'none', 'important');
     });
 
-    document.querySelectorAll('a').forEach((link) => {
-      const text = normalize(link.textContent);
-      const href = link.getAttribute('href') || '';
-      const isBookingLink = text.includes('Book a Call') ||
-        text.includes('Book a Discovery Call') ||
-        href.includes('cal.com/team/varick-agents/discovery-call');
-
-      if (!isBookingLink) return;
-      link.setAttribute('href', BOOKING_URL);
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener');
-    });
+    rewriteLinks();
     document.querySelectorAll('a[href="https://x.com/varickai"]').forEach((link) => {
       link.setAttribute('href', 'mailto:info@shiftora.ai');
     });
@@ -230,36 +272,29 @@
       element.textContent = replacementMap.get(key);
     });
 
-    document.querySelectorAll('a').forEach((link) => {
-      if (link.closest('nav')) return;
-
-      const text = normalize(link.textContent);
-      const href = link.getAttribute('href') || '';
-      const isAuditCta = text === 'Case Studies' ||
-        text === 'Selected work' ||
-        text === AUDIT_CTA_TEXT ||
-        href.endsWith('#case-studies') ||
-        href.includes('/#case-studies') ||
-        href.includes('./#case-studies');
-
-      if (!isAuditCta) return;
-      link.setAttribute('href', AUDIT_URL);
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener');
-
-      const label = Array.from(link.querySelectorAll('h1,h2,h3,h4,h5,h6,p,button'))
-        .find((element) => {
-          const value = normalize(element.textContent);
-          return value === 'Case Studies' || value === 'Selected work' || value === AUDIT_CTA_TEXT;
-        });
-
-      if (label) label.textContent = AUDIT_CTA_TEXT;
-    });
+    rewriteLinks();
   }
 
   window.__shiftoraCopyMap = replacements.map(([from, to]) => ({ from, to }));
+  replaceVisibleCopy();
   window.addEventListener('load', () => {
+    setTimeout(replaceVisibleCopy, 100);
+    setTimeout(replaceVisibleCopy, 500);
     setTimeout(replaceVisibleCopy, 1600);
     setTimeout(replaceVisibleCopy, 3200);
+    setTimeout(replaceVisibleCopy, 6000);
+  });
+
+  let rewriteTimer = null;
+  const observer = new MutationObserver(() => {
+    window.clearTimeout(rewriteTimer);
+    rewriteTimer = window.setTimeout(replaceVisibleCopy, 120);
+  });
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ['href']
   });
 })();
