@@ -19,7 +19,11 @@
     },
     {
       "from": "We conduct a structured audit of how work moves through your organization across teams, systems, and decision points.",
-      "to": "We sit with your operators and your leadership and trace the work; how it moves, where it stalls, which handoffs cost you, which decisions still wait on a human who shouldn't be in the loop. We pressure-test the data, the systems, and the Legacy process underneath them."
+      "to": "We sit with your operators and your leadership and trace the work; how it moves, where it stalls, which handoffs cost you, which decisions still wait on a human who shouldn't be in the loop."
+    },
+    {
+      "from": "We sit with your operators and your leadership and trace the work; how it moves, where it stalls, which handoffs cost you, which decisions still wait on a human who shouldn't be in the loop. We pressure-test the data, the systems, and the Legacy process underneath them.",
+      "to": "We sit with your operators and your leadership and trace the work; how it moves, where it stalls, which handoffs cost you, which decisions still wait on a human who shouldn't be in the loop."
     },
     {
       "from": "The goal is to identify where AI can reduce operational overhead, accelerate execution, or replace manual coordination entirely.",
