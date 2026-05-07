@@ -1,5 +1,5 @@
 (() => {
-  const BOOKING_URL = 'https://cal.com/shreshth-daga-rxfhkj/30min';
+  const BOOKING_URL = 'https://cal.com/aditya-sinha-2bryjz/15min';
   const AUDIT_URL = 'https://form.typeform.com/to/B30PNGww';
   const AUDIT_CTA_TEXT = 'Audit your Enterprise';
   const replacements = [
@@ -196,10 +196,63 @@
     return options.some((option) => normalized === option || normalized.includes(option));
   }
 
+  function lowerNormalize(value = '') {
+    return normalize(value).toLowerCase();
+  }
+
+  function signalFor(element) {
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return '';
+    return lowerNormalize([
+      element.textContent || '',
+      element.getAttribute('href') || '',
+      element.getAttribute('aria-label') || '',
+      element.getAttribute('title') || '',
+      element.getAttribute('data-framer-name') || '',
+      element.getAttribute('data-shiftora-destination') || ''
+    ].join(' '));
+  }
+
+  function isAuditSignal(signal) {
+    return signal.includes('audit your enterprise') ||
+      signal.includes('case study') ||
+      signal.includes('case studies') ||
+      signal.includes('selected work') ||
+      signal.includes('case-stud') ||
+      signal.includes('#case-studies') ||
+      signal.includes('form.typeform.com') ||
+      signal.includes('typeform.com/to/b30pngww');
+  }
+
+  function isBookingSignal(signal) {
+    return signal.includes('book a call') ||
+      signal.includes('book a discovery call') ||
+      signal.includes('learn more') ||
+      signal.includes('cal.com') ||
+      signal.includes('discovery-call');
+  }
+
+  function isClickableCandidate(element) {
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return false;
+    if (['HTML', 'BODY'].includes(element.tagName)) return false;
+    if (element.closest('#shiftora-text-editor-panel, #shiftora-image-replacer-panel')) return false;
+    const tag = element.tagName;
+    if (tag === 'A' || tag === 'BUTTON') return true;
+    if (element.getAttribute('role') === 'button') return true;
+    if (element.hasAttribute('href') || element.hasAttribute('onclick')) return true;
+    if (element.hasAttribute('data-shiftora-destination')) return true;
+    if (element.hasAttribute('data-framer-name') && signalFor(element).length < 220) return true;
+    const tabIndex = element.getAttribute('tabindex');
+    if (tabIndex !== null && tabIndex !== '-1') return true;
+    return window.getComputedStyle(element).cursor === 'pointer';
+  }
+
   function forceLink(link, url) {
-    if (link.getAttribute('href') !== url) link.setAttribute('href', url);
-    if (link.getAttribute('target') !== '_blank') link.setAttribute('target', '_blank');
-    if (link.getAttribute('rel') !== 'noopener') link.setAttribute('rel', 'noopener');
+    link.setAttribute('data-shiftora-destination', url);
+    if (link.tagName === 'A') {
+      if (link.getAttribute('href') !== url) link.setAttribute('href', url);
+      if (link.getAttribute('target') !== '_blank') link.setAttribute('target', '_blank');
+      if (link.getAttribute('rel') !== 'noopener') link.setAttribute('rel', 'noopener');
+    }
   }
 
   function openExternal(url) {
@@ -247,41 +300,51 @@
       forceLink(link, AUDIT_URL);
       updateAuditLabel(link);
     });
+
+    document.querySelectorAll('button,[role="button"],[tabindex],[data-framer-name]').forEach((element) => {
+      if (!isClickableCandidate(element)) return;
+      const signal = signalFor(element);
+      if (isAuditSignal(signal)) {
+        forceLink(element, AUDIT_URL);
+        updateAuditLabel(element);
+        return;
+      }
+      if (isBookingSignal(signal)) forceLink(element, BOOKING_URL);
+    });
   }
 
   function classifyClick(event) {
     const path = event.composedPath ? event.composedPath() : [];
     const elements = path
       .filter((node) => node && node.nodeType === Node.ELEMENT_NODE)
-      .slice(0, 10);
+      .filter((element) => !['HTML', 'BODY'].includes(element.tagName))
+      .slice(0, 14);
 
-    const actionable = elements.find((element) => {
-      const tag = element.tagName;
-      return tag === 'A' || tag === 'BUTTON' || element.getAttribute('role') === 'button';
+    for (const element of elements) {
+      const destination = element.getAttribute('data-shiftora-destination');
+      if (destination === AUDIT_URL || destination === BOOKING_URL) return destination;
+    }
+
+    const candidates = elements.filter((element) => {
+      if (element.closest('#shiftora-text-editor-panel, #shiftora-image-replacer-panel')) return false;
+      const signal = signalFor(element);
+      return isClickableCandidate(element) || signal.length <= 220;
     });
-    if (!actionable) return null;
 
-    const text = normalize(actionable.textContent || elements.map((element) => element.textContent || '').join(' '));
-    const href = actionable.getAttribute('href') || '';
-    const lowerText = text.toLowerCase();
-    const lowerHref = href.toLowerCase();
+    if (candidates.some((element) => isAuditSignal(signalFor(element)))) return AUDIT_URL;
+    if (candidates.some((element) => isBookingSignal(signalFor(element)))) return BOOKING_URL;
+    return null;
+  }
 
-    const isAudit = textMatches(text, ['Case Studies', 'Case Study', 'Selected work', AUDIT_CTA_TEXT]) ||
-      lowerHref.includes('case-stud') ||
-      lowerHref.includes('typeform.com/to/b30pngww') ||
-      href.endsWith('#case-studies') ||
-      href.includes('/#case-studies') ||
-      href.includes('./#case-studies');
-
-    if (isAudit) return AUDIT_URL;
-
-    const isBooking = lowerText.includes('book a call') ||
-      lowerText.includes('book a discovery call') ||
-      lowerText.includes('learn more') ||
-      lowerHref.includes('cal.com') ||
-      lowerHref.includes('discovery-call');
-
-    return isBooking ? BOOKING_URL : null;
+  function routeClick(event) {
+    if (event.__shiftoraRouted) return;
+    const destination = classifyClick(event);
+    if (!destination) return;
+    event.__shiftoraRouted = true;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    openExternal(destination);
   }
 
   function replaceVisibleCopy() {
@@ -317,14 +380,8 @@
 
   window.__shiftoraCopyMap = replacements.map(([from, to]) => ({ from, to }));
   replaceVisibleCopy();
-  document.addEventListener('click', (event) => {
-    const destination = classifyClick(event);
-    if (!destination) return;
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-    openExternal(destination);
-  }, true);
+  window.addEventListener('click', routeClick, true);
+  document.addEventListener('click', routeClick, true);
   window.addEventListener('load', () => {
     setTimeout(replaceVisibleCopy, 100);
     setTimeout(replaceVisibleCopy, 500);
