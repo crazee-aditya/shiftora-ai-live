@@ -227,6 +227,9 @@ function rewriteBody(
       '</head>',
       `<link rel="icon" href="${BLANK_FAVICON_DATA_URI}" type="image/svg+xml"><link rel="apple-touch-icon" href="${BLANK_FAVICON_DATA_URI}"></head>`
     );
+    rewritten = rewritten.replace(/<meta\b[^>]*property=["']og:image(?::[a-z]+)?["'][^>]*>/gi, '');
+    rewritten = rewritten.replace(/<meta\b[^>]*name=["']twitter:image(?::[a-z]+)?["'][^>]*>/gi, '');
+    rewritten = rewritten.replace(/(<meta\b[^>]*name=["']twitter:card["'][^>]*content=["'])summary_large_image(["'][^>]*>)/gi, '$1summary$2');
   }
 
   if (shouldInjectTheme && rewritten.includes('</head>')) {
