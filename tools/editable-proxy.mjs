@@ -147,7 +147,10 @@ function applySavedTextReplacements(body) {
     }
 
     // Framer sometimes serializes text with flexible whitespace after hydration.
-    if (from.includes(' ')) {
+    // Skip when `to` contains `from` — otherwise the regex matches inside its
+    // own replacement and we double-apply (e.g. "Foo" -> "Foo & Bar" becomes
+    // "Foo & Bar & Bar").
+    if (from.includes(' ') && !to.includes(from)) {
       const flexibleWhitespacePattern = new RegExp(escapeRegExp(from).replace(/\\ /g, '\\s+'), 'g');
       rewritten = rewritten.replace(flexibleWhitespacePattern, to);
     }
