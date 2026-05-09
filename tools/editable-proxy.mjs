@@ -26,6 +26,10 @@ const SAVED_IMAGE_EDITS = path.join(TOOL_DIR, 'saved-image-edits.json');
 const SAVED_PAGE_SNAPSHOT = path.join(TOOL_DIR, 'saved-page-snapshot.json');
 const CLEAN_PAGE_SNAPSHOT = path.join(TOOL_DIR, 'clean-page-snapshot.json');
 const ASSET_VERSION = Date.now();
+// All proxied static assets carry a `?v=ASSET_VERSION` query string in the HTML they're
+// referenced from, so a 1y immutable cache is safe — every proxy restart bumps the version
+// and the browser fetches the new file.
+const STATIC_CACHE = 'public, max-age=31536000, immutable';
 const FRAMER_SITE_ID = '74Opxp7nGUyRPUIiPRjwJO';
 const FRAMER_SITE_ORIGIN = `https://framerusercontent.com/sites/${FRAMER_SITE_ID}/`;
 const FRAMER_SITE_PROXY_PREFIX = '/__framer-site/';
@@ -90,7 +94,7 @@ function serveAssetFromDirectory(clientRes, baseDir, relativePath, missingLabel)
 
   clientRes.writeHead(200, {
     'content-type': contentTypeForPath(assetPath),
-    'cache-control': 'no-store'
+    'cache-control': STATIC_CACHE
   });
   fs.createReadStream(assetPath)
     .on('error', () => {
@@ -561,7 +565,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__text-editor-overlay.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(EDITOR_SCRIPT), clientRes, () => {});
     return;
@@ -570,7 +574,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__image-replacer-overlay.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(IMAGE_REPLACER_SCRIPT), clientRes, () => {});
     return;
@@ -579,7 +583,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__page-snapshot-replay.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(PAGE_SNAPSHOT_REPLAY_SCRIPT), clientRes, () => {});
     return;
@@ -588,7 +592,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__section-visibility-overrides.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(SECTION_VISIBILITY_SCRIPT), clientRes, () => {});
     return;
@@ -597,7 +601,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__theme-overrides.css') {
     clientRes.writeHead(200, {
       'content-type': 'text/css; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(THEME_OVERRIDES_CSS), clientRes, () => {});
     return;
@@ -606,7 +610,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__scribble-mode.css') {
     clientRes.writeHead(200, {
       'content-type': 'text/css; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(SCRIBBLE_MODE_CSS), clientRes, () => {});
     return;
@@ -615,7 +619,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__scribble-mode.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(SCRIBBLE_MODE_SCRIPT), clientRes, () => {});
     return;
@@ -778,7 +782,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__shiftora-copy-map.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(SHIFTORA_COPY_SCRIPT), clientRes, () => {});
     return;
@@ -787,7 +791,7 @@ const server = http.createServer((clientReq, clientRes) => {
   if (localUrl.pathname === '/__cta-link-router.js') {
     clientRes.writeHead(200, {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': STATIC_CACHE
     });
     pipeline(fs.createReadStream(CTA_LINK_ROUTER_SCRIPT), clientRes, () => {});
     return;
