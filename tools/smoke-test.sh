@@ -124,6 +124,16 @@ contains "dns-prefetch: cal.com"          "$HOME_HTML" 'rel="dns-prefetch" href=
 contains "dns-prefetch: form.typeform.com" "$HOME_HTML" 'rel="dns-prefetch" href="https://form.typeform.com"'
 
 echo
+echo "== Favicon (animated GIF, not the blank SVG) =="
+fav_headers=$(curl "${CURL_OPTS[@]}" -I "$BASE_URL/__favicon.gif")
+contains "Favicon served as image/gif" "$fav_headers" "content-type: image/gif"
+contains "Favicon long-cached" "$fav_headers" "cache-control: public, max-age=31536000, immutable"
+fav_size=$(curl "${CURL_OPTS[@]}" -o /dev/null -w '%{size_download}' "$BASE_URL/__favicon.gif")
+ge "Favicon size > 5 KB (sanity it's a real GIF, not blank SVG)" "$fav_size" "5000"
+le "Favicon size ≤ 200 KB (kept lean)" "$fav_size" "200000"
+contains "Favicon link tag points to GIF" "$HOME_HTML" 'href="/__favicon.gif'
+
+echo
 echo "== First-paint guard removed (no body opacity:0 trick) =="
 case "$HOME_HTML" in
   *'data-shiftora-booting'*) bad "first-paint guard still injected (will hide page on slow mobile)" ;;
