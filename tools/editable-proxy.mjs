@@ -30,6 +30,14 @@ const ASSET_VERSION = Date.now();
 // referenced from, so a 1y immutable cache is safe — every proxy restart bumps the version
 // and the browser fetches the new file.
 const STATIC_CACHE = 'public, max-age=31536000, immutable';
+
+// In-memory cache of upstream Varick HTML responses. We cache the raw upstream body for
+// 60s to skip the network roundtrip; rewriteBody (text edits, image replacements, script
+// injection) still runs fresh on every request, so changes in saved-text-edits.json take
+// effect immediately. Bypassed for editor mode.
+const UPSTREAM_CACHE_TTL_MS = 60_000;
+const UPSTREAM_CACHE_MAX_ENTRIES = 30;
+const upstreamCache = new Map();
 const FRAMER_SITE_ID = '74Opxp7nGUyRPUIiPRjwJO';
 const FRAMER_SITE_ORIGIN = `https://framerusercontent.com/sites/${FRAMER_SITE_ID}/`;
 const FRAMER_SITE_PROXY_PREFIX = '/__framer-site/';
@@ -204,6 +212,52 @@ function rewriteFramerContentUrls(body, origin) {
   return body
     .replaceAll('https://framerusercontent.com/modules/', `${origin}${FRAMER_CONTENT_PROXY_PREFIX}modules/`)
     .replaceAll('https://framerusercontent.com/cms/', `${origin}${FRAMER_CONTENT_PROXY_PREFIX}cms/`);
+}
+
+function isUpstreamRequestCacheable(localUrl, method) {
+  if (method !== 'GET') return false;
+  if (localUrl.searchParams.has('edit')) return false;
+  if (localUrl.searchParams.has('imageEdit')) return false;
+  if (localUrl.searchParams.has('capture')) return false;
+  return true;
+}
+
+function renderRewrittenUpstreamHtml(clientReq, clientRes, localUrl, rawBuffer, statusCode, sourceHeaders) {
+  const publicOrigin = publicOriginFor(clientReq);
+  const headers = { ...sourceHeaders };
+
+  if (headers.location) {
+    headers.location = String(headers.location)
+      .replaceAll('https://www.varickagents.com', publicOrigin)
+      .replaceAll('https://varickagents.com', publicOrigin);
+  }
+
+  const contentType = String(headers['content-type'] || '');
+  const isHtml = contentType.includes('text/html');
+  const shouldInjectTextEditor = isHtml && localUrl.searchParams.has('edit');
+  const shouldInjectImageReplacer = isHtml && localUrl.searchParams.has('imageEdit');
+  const shouldInjectShiftoraCopy = isHtml && localUrl.searchParams.has('shiftora');
+  const shouldInjectTheme = isHtml && !localUrl.searchParams.has('noTheme');
+  const shouldInjectScribble = isHtml && localUrl.searchParams.has('scribble');
+  const shouldInjectSnapshotReplay = isHtml && !localUrl.searchParams.has('clean');
+  const shouldHideTools = isHtml && localUrl.searchParams.has('capture');
+
+  const body = rewriteBody(
+    rawBuffer.toString('utf8'),
+    publicOrigin,
+    shouldInjectTextEditor,
+    shouldInjectImageReplacer,
+    shouldInjectShiftoraCopy,
+    shouldInjectTheme,
+    shouldInjectScribble,
+    shouldInjectSnapshotReplay,
+    shouldHideTools
+  );
+
+  headers['cache-control'] = 'no-store';
+  headers['content-length'] = Buffer.byteLength(body);
+  clientRes.writeHead(statusCode, headers);
+  clientRes.end(body);
 }
 
 function rewriteBody(
@@ -804,6 +858,18 @@ const server = http.createServer((clientReq, clientRes) => {
     }
   }
 
+  const cacheKey = `${upstreamUrl.pathname}${upstreamUrl.search}`;
+  const isCacheableRequest = isUpstreamRequestCacheable(localUrl, clientReq.method);
+
+  if (isCacheableRequest) {
+    const cached = upstreamCache.get(cacheKey);
+    if (cached && cached.expires > Date.now()) {
+      renderRewrittenUpstreamHtml(clientReq, clientRes, localUrl, cached.body, cached.statusCode, cached.headers);
+      return;
+    }
+    if (cached) upstreamCache.delete(cacheKey);
+  }
+
   const upstreamReq = https.request(
     {
       protocol: 'https:',
@@ -820,18 +886,16 @@ const server = http.createServer((clientReq, clientRes) => {
     },
     (upstreamRes) => {
       const headers = { ...upstreamRes.headers };
-      const publicOrigin = publicOriginFor(clientReq);
-
-      if (headers.location) {
-        headers.location = String(headers.location)
-          .replaceAll('https://www.varickagents.com', publicOrigin)
-          .replaceAll('https://varickagents.com', publicOrigin);
-      }
-
       const contentType = String(headers['content-type'] || '');
       const statusCode = upstreamRes.statusCode || 502;
 
       if (!isTextResponse(contentType)) {
+        const publicOrigin = publicOriginFor(clientReq);
+        if (headers.location) {
+          headers.location = String(headers.location)
+            .replaceAll('https://www.varickagents.com', publicOrigin)
+            .replaceAll('https://varickagents.com', publicOrigin);
+        }
         clientRes.writeHead(statusCode, headers);
         pipeline(upstreamRes, clientRes, () => {});
         return;
@@ -840,29 +904,21 @@ const server = http.createServer((clientReq, clientRes) => {
       const chunks = [];
       upstreamRes.on('data', (chunk) => chunks.push(chunk));
       upstreamRes.on('end', () => {
-        const isHtml = contentType.includes('text/html');
-        const shouldInjectTextEditor = isHtml && localUrl.searchParams.has('edit');
-        const shouldInjectImageReplacer = isHtml && localUrl.searchParams.has('imageEdit');
-        const shouldInjectShiftoraCopy = isHtml && localUrl.searchParams.has('shiftora');
-        const shouldInjectTheme = isHtml && !localUrl.searchParams.has('noTheme');
-        const shouldInjectScribble = isHtml && localUrl.searchParams.has('scribble');
-        const shouldInjectSnapshotReplay = isHtml && !localUrl.searchParams.has('clean');
-        const shouldHideTools = isHtml && localUrl.searchParams.has('capture');
-        const body = rewriteBody(
-          Buffer.concat(chunks).toString('utf8'),
-          publicOrigin,
-          shouldInjectTextEditor,
-          shouldInjectImageReplacer,
-          shouldInjectShiftoraCopy,
-          shouldInjectTheme,
-          shouldInjectScribble,
-          shouldInjectSnapshotReplay,
-          shouldHideTools
-        );
-        headers['cache-control'] = 'no-store';
-        headers['content-length'] = Buffer.byteLength(body);
-        clientRes.writeHead(statusCode, headers);
-        clientRes.end(body);
+        const rawBody = Buffer.concat(chunks);
+
+        if (isCacheableRequest && statusCode === 200 && contentType.includes('text/html')) {
+          upstreamCache.set(cacheKey, {
+            body: rawBody,
+            headers: { ...upstreamRes.headers },
+            statusCode,
+            expires: Date.now() + UPSTREAM_CACHE_TTL_MS
+          });
+          if (upstreamCache.size > UPSTREAM_CACHE_MAX_ENTRIES) {
+            upstreamCache.delete(upstreamCache.keys().next().value);
+          }
+        }
+
+        renderRewrittenUpstreamHtml(clientReq, clientRes, localUrl, rawBody, statusCode, upstreamRes.headers);
       });
     }
   );
