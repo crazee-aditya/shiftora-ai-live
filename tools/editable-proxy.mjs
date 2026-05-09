@@ -4,6 +4,7 @@ import https from 'node:https';
 import path from 'node:path';
 import { pipeline } from 'node:stream';
 import { fileURLToPath } from 'node:url';
+import zlib from 'node:zlib';
 
 const PORT = Number(process.env.PORT || 8012);
 const UPSTREAM_HOST = 'www.varickagents.com';
@@ -214,6 +215,27 @@ function rewriteFramerContentUrls(body, origin) {
     .replaceAll('https://framerusercontent.com/cms/', `${origin}${FRAMER_CONTENT_PROXY_PREFIX}cms/`);
 }
 
+function compressForClient(buffer, acceptEncoding) {
+  const enc = String(acceptEncoding || '');
+  if (/\bgzip\b/.test(enc)) {
+    return { encoding: 'gzip', body: zlib.gzipSync(buffer, { level: 6 }) };
+  }
+  return { encoding: null, body: buffer };
+}
+
+function sendCompressed(clientReq, clientRes, statusCode, headers, body) {
+  const buffer = Buffer.isBuffer(body) ? body : Buffer.from(body);
+  const { encoding, body: outBody } = compressForClient(buffer, clientReq.headers['accept-encoding']);
+  const responseHeaders = { ...headers };
+  if (encoding) responseHeaders['content-encoding'] = encoding;
+  responseHeaders['vary'] = responseHeaders['vary']
+    ? `${responseHeaders['vary']}, Accept-Encoding`
+    : 'Accept-Encoding';
+  responseHeaders['content-length'] = outBody.length;
+  clientRes.writeHead(statusCode, responseHeaders);
+  clientRes.end(outBody);
+}
+
 function isUpstreamRequestCacheable(localUrl, method) {
   if (method !== 'GET') return false;
   if (localUrl.searchParams.has('edit')) return false;
@@ -255,9 +277,9 @@ function renderRewrittenUpstreamHtml(clientReq, clientRes, localUrl, rawBuffer, 
   );
 
   headers['cache-control'] = 'no-store';
-  headers['content-length'] = Buffer.byteLength(body);
-  clientRes.writeHead(statusCode, headers);
-  clientRes.end(body);
+  delete headers['content-length'];
+  delete headers['content-encoding'];
+  sendCompressed(clientReq, clientRes, statusCode, headers, body);
 }
 
 function rewriteBody(
