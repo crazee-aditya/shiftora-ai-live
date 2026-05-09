@@ -45,6 +45,10 @@ const FRAMER_SITE_PROXY_PREFIX = '/__framer-site/';
 const FRAMER_CONTENT_PROXY_PREFIX = '/__framer-content/';
 const FAVICON_GIF_PATH = path.resolve(TOOL_DIR, '..', 'assets', 'favicon.gif');
 const FAVICON_URL = `/__favicon.gif?v=${ASSET_VERSION}`;
+const FAVICON_SPRITE_PATH = path.resolve(TOOL_DIR, '..', 'assets', 'favicon-sprite.png');
+const FAVICON_SPRITE_URL = `/__favicon-sprite.png?v=${ASSET_VERSION}`;
+const FAVICON_FRAME_COUNT = 30;
+const FAVICON_FRAME_FPS = 10;
 
 const imageUrlReplacements = new Map([
   ['24uuubkDpHGDAQkwT4YWMcNbCs', 'dubai-burj-khalifa-unsplash.jpg'],
@@ -327,7 +331,7 @@ function rewriteBody(
     rewritten = rewritten.replace(/<link\b[^>]*rel=["'][^"']*(?:shortcut\s+icon|icon|apple-touch-icon|mask-icon)[^"']*["'][^>]*>/gi, '');
     rewritten = rewritten.replace(
       '</head>',
-      `<link rel="icon" id="shiftora-favicon" href="${FAVICON_URL}" type="image/gif"><link rel="apple-touch-icon" href="${FAVICON_URL}"><link rel="preconnect" href="https://framerusercontent.com" crossorigin><link rel="dns-prefetch" href="https://cal.com"><link rel="dns-prefetch" href="https://form.typeform.com"><script>(()=>{function start(){const img=document.createElement("img");img.src="${FAVICON_URL}";img.style.cssText="position:fixed;left:-9999px;top:-9999px;width:32px;height:32px;pointer-events:none;opacity:0";document.body.appendChild(img);const cv=document.createElement("canvas");cv.width=cv.height=32;const cx=cv.getContext("2d");function tick(){if(!img.complete||!img.naturalWidth)return;const link=document.getElementById("shiftora-favicon")||document.querySelector('link[rel*="icon"]');if(!link)return;try{cx.clearRect(0,0,32,32);cx.drawImage(img,0,0,32,32);link.type="image/png";link.href=cv.toDataURL("image/png");}catch(e){}}img.addEventListener("load",()=>{tick();setInterval(tick,80);},{once:true})}if(document.body)start();else addEventListener("DOMContentLoaded",start,{once:true})})();</script></head>`
+      `<link rel="icon" id="shiftora-favicon" href="${FAVICON_URL}" type="image/gif"><link rel="apple-touch-icon" href="${FAVICON_URL}"><link rel="preconnect" href="https://framerusercontent.com" crossorigin><link rel="dns-prefetch" href="https://cal.com"><link rel="dns-prefetch" href="https://form.typeform.com"><script>(()=>{const N=${FAVICON_FRAME_COUNT},FPS=${FAVICON_FRAME_FPS},S=32;const sheet=new Image();sheet.src=${JSON.stringify(FAVICON_SPRITE_URL)};const cv=document.createElement("canvas");cv.width=cv.height=S;const cx=cv.getContext("2d");let f=0;function tick(){const link=document.getElementById("shiftora-favicon")||document.querySelector('link[rel*="icon"]');if(!link)return;try{cx.clearRect(0,0,S,S);cx.drawImage(sheet,0,f*S,S,S,0,0,S,S);link.type="image/png";link.href=cv.toDataURL("image/png");f=(f+1)%N;}catch(e){}}sheet.addEventListener("load",()=>{tick();setInterval(tick,Math.round(1000/FPS));},{once:true});})();</script></head>`
     );
     rewritten = rewritten.replace(/<meta\b[^>]*property=["']og:image(?::[a-z]+)?["'][^>]*>/gi, '');
     rewritten = rewritten.replace(/<meta\b[^>]*name=["']twitter:image(?::[a-z]+)?["'][^>]*>/gi, '');
@@ -395,6 +399,23 @@ const server = http.createServer((clientReq, clientRes) => {
       }
       clientRes.writeHead(200, {
         'content-type': 'image/gif',
+        'cache-control': STATIC_CACHE,
+        'content-length': data.length
+      });
+      clientRes.end(data);
+    });
+    return;
+  }
+
+  if (localUrl.pathname === '/__favicon-sprite.png') {
+    fs.readFile(FAVICON_SPRITE_PATH, (err, data) => {
+      if (err) {
+        clientRes.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
+        clientRes.end('Missing favicon sprite');
+        return;
+      }
+      clientRes.writeHead(200, {
+        'content-type': 'image/png',
         'cache-control': STATIC_CACHE,
         'content-length': data.length
       });
