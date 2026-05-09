@@ -227,6 +227,9 @@ function sendCompressed(clientReq, clientRes, statusCode, headers, body) {
   const buffer = Buffer.isBuffer(body) ? body : Buffer.from(body);
   const { encoding, body: outBody } = compressForClient(buffer, clientReq.headers['accept-encoding']);
   const responseHeaders = { ...headers };
+  // Always recompute encoding/length so we never pass through stale upstream values.
+  delete responseHeaders['content-encoding'];
+  delete responseHeaders['content-length'];
   if (encoding) responseHeaders['content-encoding'] = encoding;
   responseHeaders['vary'] = responseHeaders['vary']
     ? `${responseHeaders['vary']}, Accept-Encoding`
@@ -234,6 +237,20 @@ function sendCompressed(clientReq, clientRes, statusCode, headers, body) {
   responseHeaders['content-length'] = outBody.length;
   clientRes.writeHead(statusCode, responseHeaders);
   clientRes.end(outBody);
+}
+
+function serveStaticTextAsset(clientReq, clientRes, filePath, contentType) {
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      clientRes.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
+      clientRes.end('Missing static asset');
+      return;
+    }
+    sendCompressed(clientReq, clientRes, 200, {
+      'content-type': contentType,
+      'cache-control': STATIC_CACHE
+    }, data);
+  });
 }
 
 function isUpstreamRequestCacheable(localUrl, method) {
@@ -277,8 +294,6 @@ function renderRewrittenUpstreamHtml(clientReq, clientRes, localUrl, rawBuffer, 
   );
 
   headers['cache-control'] = 'no-store';
-  delete headers['content-length'];
-  delete headers['content-encoding'];
   sendCompressed(clientReq, clientRes, statusCode, headers, body);
 }
 
@@ -305,12 +320,14 @@ function rewriteBody(
   rewritten = applySavedTextReplacements(rewritten);
   rewritten = rewritten.replace(/\s*href=["']https?:\/\/jobs\.ashbyhq\.com[^"']*["']/gi, '');
   rewritten = rewritten.replace(/https?:\/\/jobs\.ashbyhq\.com\/Varick-Agents\/[A-Za-z0-9-]+/g, '#');
+  // Strip Varick's reb2b visitor-tracking inline script — it pings b2bjsstore on every load.
+  rewritten = rewritten.replace(/<script\b[^>]*>[\s\S]*?reb2b[\s\S]*?<\/script>/gi, '');
 
   if (rewritten.includes('</head>')) {
     rewritten = rewritten.replace(/<link\b[^>]*rel=["'][^"']*(?:shortcut\s+icon|icon|apple-touch-icon|mask-icon)[^"']*["'][^>]*>/gi, '');
     rewritten = rewritten.replace(
       '</head>',
-      `<link rel="icon" href="${BLANK_FAVICON_DATA_URI}" type="image/svg+xml"><link rel="apple-touch-icon" href="${BLANK_FAVICON_DATA_URI}"></head>`
+      `<link rel="icon" href="${BLANK_FAVICON_DATA_URI}" type="image/svg+xml"><link rel="apple-touch-icon" href="${BLANK_FAVICON_DATA_URI}"><link rel="preconnect" href="https://framerusercontent.com" crossorigin><link rel="dns-prefetch" href="https://cal.com"><link rel="dns-prefetch" href="https://form.typeform.com"></head>`
     );
     rewritten = rewritten.replace(/<meta\b[^>]*property=["']og:image(?::[a-z]+)?["'][^>]*>/gi, '');
     rewritten = rewritten.replace(/<meta\b[^>]*name=["']twitter:image(?::[a-z]+)?["'][^>]*>/gi, '');
@@ -605,65 +622,37 @@ const server = http.createServer((clientReq, clientRes) => {
   }
 
   if (localUrl.pathname === '/__text-editor-overlay.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(EDITOR_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, EDITOR_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__image-replacer-overlay.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(IMAGE_REPLACER_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, IMAGE_REPLACER_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__page-snapshot-replay.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(PAGE_SNAPSHOT_REPLAY_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, PAGE_SNAPSHOT_REPLAY_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__section-visibility-overrides.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(SECTION_VISIBILITY_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, SECTION_VISIBILITY_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__theme-overrides.css') {
-    clientRes.writeHead(200, {
-      'content-type': 'text/css; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(THEME_OVERRIDES_CSS), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, THEME_OVERRIDES_CSS, 'text/css; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__scribble-mode.css') {
-    clientRes.writeHead(200, {
-      'content-type': 'text/css; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(SCRIBBLE_MODE_CSS), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, SCRIBBLE_MODE_CSS, 'text/css; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__scribble-mode.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(SCRIBBLE_MODE_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, SCRIBBLE_MODE_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
@@ -750,9 +739,7 @@ const server = http.createServer((clientReq, clientRes) => {
             )
           );
           headers['cache-control'] = 'no-store';
-          headers['content-length'] = Buffer.byteLength(body);
-          clientRes.writeHead(statusCode, headers);
-          clientRes.end(body);
+          sendCompressed(clientReq, clientRes, statusCode, headers, body);
         });
       }
     );
@@ -807,9 +794,7 @@ const server = http.createServer((clientReq, clientRes) => {
             )
           );
           headers['cache-control'] = 'no-store';
-          headers['content-length'] = Buffer.byteLength(body);
-          clientRes.writeHead(statusCode, headers);
-          clientRes.end(body);
+          sendCompressed(clientReq, clientRes, statusCode, headers, body);
         });
       }
     );
@@ -822,20 +807,12 @@ const server = http.createServer((clientReq, clientRes) => {
   }
 
   if (localUrl.pathname === '/__shiftora-copy-map.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(SHIFTORA_COPY_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, SHIFTORA_COPY_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
   if (localUrl.pathname === '/__cta-link-router.js') {
-    clientRes.writeHead(200, {
-      'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': STATIC_CACHE
-    });
-    pipeline(fs.createReadStream(CTA_LINK_ROUTER_SCRIPT), clientRes, () => {});
+    serveStaticTextAsset(clientReq, clientRes, CTA_LINK_ROUTER_SCRIPT, 'application/javascript; charset=utf-8');
     return;
   }
 
