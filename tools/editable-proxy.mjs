@@ -298,14 +298,18 @@ function rewriteBody(
             root.removeAttribute('data-shiftora-booting');
             document.getElementById('shiftora-first-paint-guard')?.remove();
           }
-          function revealAfterPaint(delay) {
-            window.setTimeout(() => {
-              window.requestAnimationFrame(() => window.requestAnimationFrame(reveal));
-            }, delay);
+          // Reveal as soon as the HTML is parsed + 1 paint frame. Don't wait for
+          // window.load — that fires only after every image downloads, which on
+          // slow mobile keeps the page blank for many seconds.
+          if (document.readyState !== 'loading') {
+            window.requestAnimationFrame(reveal);
+          } else {
+            document.addEventListener('DOMContentLoaded', () => {
+              window.requestAnimationFrame(reveal);
+            }, { once: true });
           }
-          window.addEventListener('load', () => revealAfterPaint(120), { once: true });
-          document.addEventListener('DOMContentLoaded', () => revealAfterPaint(900), { once: true });
-          window.setTimeout(reveal, 3200);
+          // Absolute safety net so a stuck DCL never leaves the screen blank.
+          window.setTimeout(reveal, 800);
         })();
       </script>
       <style id="shiftora-first-paint-guard">
