@@ -36,3 +36,6 @@ deep-research-report.md
 # Keep production image replacement assets.
 !assets/replacements/
 !assets/replacements/**
+
+# Keep production favicon assets.
+!assets/favicon*
