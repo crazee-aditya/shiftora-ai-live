@@ -285,44 +285,6 @@ function rewriteBody(
   rewritten = rewritten.replace(/https?:\/\/jobs\.ashbyhq\.com\/Varick-Agents\/[A-Za-z0-9-]+/g, '#');
 
   if (rewritten.includes('</head>')) {
-    rewritten = rewritten.replace(
-      '</head>',
-      `<script>
-        (() => {
-          const root = document.documentElement;
-          root.setAttribute('data-shiftora-booting', '1');
-          let revealed = false;
-          function reveal() {
-            if (revealed) return;
-            revealed = true;
-            root.removeAttribute('data-shiftora-booting');
-            document.getElementById('shiftora-first-paint-guard')?.remove();
-          }
-          // Reveal as soon as the HTML is parsed + 1 paint frame. Don't wait for
-          // window.load — that fires only after every image downloads, which on
-          // slow mobile keeps the page blank for many seconds.
-          if (document.readyState !== 'loading') {
-            window.requestAnimationFrame(reveal);
-          } else {
-            document.addEventListener('DOMContentLoaded', () => {
-              window.requestAnimationFrame(reveal);
-            }, { once: true });
-          }
-          // Absolute safety net so a stuck DCL never leaves the screen blank.
-          window.setTimeout(reveal, 800);
-        })();
-      </script>
-      <style id="shiftora-first-paint-guard">
-        html[data-shiftora-booting="1"],
-        html[data-shiftora-booting="1"] body {
-          background: #fff !important;
-        }
-        html[data-shiftora-booting="1"] body {
-          opacity: 0 !important;
-        }
-      </style></head>`
-    );
-
     rewritten = rewritten.replace(/<link\b[^>]*rel=["'][^"']*(?:shortcut\s+icon|icon|apple-touch-icon|mask-icon)[^"']*["'][^>]*>/gi, '');
     rewritten = rewritten.replace(
       '</head>',
