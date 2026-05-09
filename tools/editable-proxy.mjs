@@ -327,7 +327,7 @@ function rewriteBody(
     rewritten = rewritten.replace(/<link\b[^>]*rel=["'][^"']*(?:shortcut\s+icon|icon|apple-touch-icon|mask-icon)[^"']*["'][^>]*>/gi, '');
     rewritten = rewritten.replace(
       '</head>',
-      `<link rel="icon" href="${FAVICON_URL}" type="image/gif"><link rel="apple-touch-icon" href="${FAVICON_URL}"><link rel="preconnect" href="https://framerusercontent.com" crossorigin><link rel="dns-prefetch" href="https://cal.com"><link rel="dns-prefetch" href="https://form.typeform.com"></head>`
+      `<link rel="icon" id="shiftora-favicon" href="${FAVICON_URL}" type="image/gif"><link rel="apple-touch-icon" href="${FAVICON_URL}"><link rel="preconnect" href="https://framerusercontent.com" crossorigin><link rel="dns-prefetch" href="https://cal.com"><link rel="dns-prefetch" href="https://form.typeform.com"><script>(()=>{const u="${FAVICON_URL}";const img=new Image();img.decoding="async";img.src=u;const cv=document.createElement("canvas");cv.width=cv.height=32;const cx=cv.getContext("2d");function tick(){const link=document.getElementById("shiftora-favicon")||document.querySelector('link[rel*="icon"]');if(!link||!img.complete||!img.naturalWidth)return;try{cx.clearRect(0,0,32,32);cx.drawImage(img,0,0,32,32);link.type="image/png";link.href=cv.toDataURL("image/png");}catch(e){}}img.addEventListener("load",()=>{tick();setInterval(tick,100);},{once:true});})();</script></head>`
     );
     rewritten = rewritten.replace(/<meta\b[^>]*property=["']og:image(?::[a-z]+)?["'][^>]*>/gi, '');
     rewritten = rewritten.replace(/<meta\b[^>]*name=["']twitter:image(?::[a-z]+)?["'][^>]*>/gi, '');
