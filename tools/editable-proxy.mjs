@@ -47,8 +47,8 @@ const FAVICON_GIF_PATH = path.resolve(TOOL_DIR, '..', 'assets', 'favicon.gif');
 const FAVICON_URL = `/__favicon.gif?v=${ASSET_VERSION}`;
 const FAVICON_SPRITE_PATH = path.resolve(TOOL_DIR, '..', 'assets', 'favicon-sprite.png');
 const FAVICON_SPRITE_URL = `/__favicon-sprite.png?v=${ASSET_VERSION}`;
-const FAVICON_FRAME_COUNT = 30;
-const FAVICON_FRAME_FPS = 10;
+const FAVICON_FRAME_COUNT = 10;
+const FAVICON_FRAME_FPS = 8;
 
 const imageUrlReplacements = new Map([
   ['24uuubkDpHGDAQkwT4YWMcNbCs', 'dubai-burj-khalifa-unsplash.jpg'],
