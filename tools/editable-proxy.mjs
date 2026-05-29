@@ -382,7 +382,22 @@ function rewriteBody(
   return rewritten;
 }
 
+// Maintenance kill-switch: when true, every request returns plain text and the proxy
+// does not hit upstream Framer, serve assets, or inject scripts. To bring the site back
+// up, set MAINTENANCE_MODE = false and redeploy.
+const MAINTENANCE_MODE = true;
+const MAINTENANCE_TEXT = 'new website in progress';
+
 const server = http.createServer((clientReq, clientRes) => {
+  if (MAINTENANCE_MODE) {
+    clientRes.writeHead(200, {
+      'content-type': 'text/plain; charset=utf-8',
+      'cache-control': 'no-store'
+    });
+    clientRes.end(MAINTENANCE_TEXT);
+    return;
+  }
+
   const localUrl = new URL(clientReq.url || '/', LOCAL_ORIGIN);
 
   if (
