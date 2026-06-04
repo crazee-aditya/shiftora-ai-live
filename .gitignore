@@ -1,41 +1,27 @@
-# OS / editor
-.DS_Store
-.idea/
-.vscode/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Dependencies / runtime output
-node_modules/
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.env
-.env.*
 
-# Local reference / experiment files not needed for production deploy
-reference/
-scripts/
-assets/scribble/
-tools/claude-*
-tools/scribble-*
-tools/README.md
-tools/apply-saved-page-snapshot.js
-tools/build-text-edits-from-snapshots.mjs
-tools/capture-clean-page-snapshot.js
-tools/image-url-replacement-runtime.js
-tools/rescue-current-page-snapshot.js
-tools/theme-overrides.js
-claude-live-proxy.mjs
-live-proxy.mjs
-deep-research-report.md
-*.pdf
-*.jpeg
-*.jpg
-*.png
-*.webp
+# local env files
+.env*.local
 
-# Keep production image replacement assets.
-!assets/replacements/
-!assets/replacements/**
-
-# Keep production favicon assets.
-!assets/favicon*
+# typescript
+*.tsbuildinfo
+next-env.d.ts
