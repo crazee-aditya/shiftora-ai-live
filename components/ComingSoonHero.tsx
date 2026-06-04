@@ -16,7 +16,7 @@ const CELLS = Array.from({ length: COLS * ROWS });
 export function ComingSoonHero() {
   return (
     <section aria-label="Status" className="pt-8 md:pt-12">
-      <div className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden rounded-t-2xl bg-black">
+      <div className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden bg-black">
         {/* Blocky module grid. Gaps form the grid lines; inner cells pulse. */}
         <div
           aria-hidden="true"
