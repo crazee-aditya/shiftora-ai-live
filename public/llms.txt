@@ -1,0 +1,18 @@
+# Shiftora
+
+> Shiftora builds custom enterprise AI systems, software, and intelligent automations that make large enterprises AI-native. Senior-led engineering, delivered to production in weeks, not quarters. Operating from Dubai and Mumbai, serving enterprises worldwide.
+
+Shiftora is a B2B custom AI engineering firm. We audit how work moves through an organization, rebuild core workflows as production AI systems, and operate them as a long-term partner. Capabilities span predictive lead scoring and sales intelligence, custom CRMs and high-volume outbound, LLM applications (RAG and agents), predictive forecasting and ML, computer vision, document automation, and full-platform rebuilds.
+
+## Pages
+
+- [Home](https://www.shiftora.ai/): Positioning, selected (anonymized) client engagements, how we work, and contact.
+- [Careers](https://www.shiftora.ai/careers): Open engineering roles in Mumbai and Dubai.
+- [Blog](https://www.shiftora.ai/blog): Articles on building AI-native enterprises, custom AI systems, and intelligent automation.
+
+## Contact
+
+- Email: info@shiftora.ai / hello@shiftora.ai
+- Phone: +971 55 606 5297
+- Founder: Shreshth Daga
+- Locations: Dubai (UAE), Mumbai (India)

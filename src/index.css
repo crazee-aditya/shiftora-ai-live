@@ -81,3 +81,75 @@ html {
   -webkit-backdrop-filter: blur(50px);
   box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
 }
+
+/* --- Blog article prose (matches the site's minimalist black/white type) --- */
+.blog-prose {
+  color: #4b5563; /* gray-600 */
+  font-size: 16px;
+  line-height: 1.75;
+}
+.blog-prose > * + * {
+  margin-top: 1.25em;
+}
+.blog-prose h2 {
+  color: #111827; /* gray-900 */
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: 2.25em;
+  margin-bottom: 0.2em;
+}
+.blog-prose h3 {
+  color: #111827;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 1.8em;
+  margin-bottom: 0.1em;
+}
+.blog-prose p {
+  color: #4b5563;
+}
+.blog-prose strong {
+  color: #111827;
+  font-weight: 600;
+}
+.blog-prose a {
+  color: #111827;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-prose ul,
+.blog-prose ol {
+  padding-left: 1.3em;
+}
+.blog-prose ul {
+  list-style: disc;
+}
+.blog-prose ol {
+  list-style: decimal;
+}
+.blog-prose li {
+  margin-top: 0.5em;
+}
+.blog-prose li::marker {
+  color: #9ca3af; /* gray-400 */
+}
+.blog-prose blockquote {
+  border-left: 2px solid #111827;
+  padding-left: 1.1em;
+  color: #374151;
+  font-style: normal;
+}
+.blog-prose code {
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: 0.12em 0.4em;
+  font-size: 0.9em;
+}
+.blog-prose hr {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 2.5em 0;
+}

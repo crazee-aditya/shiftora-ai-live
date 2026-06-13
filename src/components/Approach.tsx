@@ -1,6 +1,11 @@
+import { lazy } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import CoreVisual from './CoreVisual';
+import ClientOnly from './ClientOnly';
+
+// Browser-only (three.js / WebGL); lazy + ClientOnly keeps it out of the
+// build-time render with no hydration mismatch.
+const CoreVisual = lazy(() => import('./CoreVisual'));
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -174,7 +179,9 @@ export default function Approach() {
             viewport={VIEWPORT}
             className="mt-12 lg:mt-0"
           >
-            <CoreVisual />
+            <ClientOnly fallback={<div className="h-[340px] w-full md:h-[460px]" />}>
+              <CoreVisual />
+            </ClientOnly>
           </motion.div>
         </div>
 

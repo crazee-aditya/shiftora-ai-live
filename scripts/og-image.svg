@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0A0A0B"/>
+  <!-- subtle top-left light wash -->
+  <defs>
+    <radialGradient id="wash" cx="22%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#wash)"/>
+
+  <!-- eyebrow -->
+  <text x="80" y="150" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="6" fill="#9CA3AF">CUSTOM ENTERPRISE AI SYSTEMS</text>
+
+  <!-- wordmark -->
+  <text x="76" y="330" font-family="Helvetica, Arial, sans-serif" font-size="170" font-weight="700" letter-spacing="-6" fill="#FFFFFF">SHIFTORA</text>
+
+  <!-- tagline -->
+  <text x="80" y="430" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="500" fill="#E5E7EB">Tailored AI systems that make large</text>
+  <text x="80" y="484" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="500" fill="#E5E7EB">enterprises AI-native.</text>
+
+  <!-- footer -->
+  <text x="80" y="566" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="600" fill="#9CA3AF">shiftora.ai</text>
+  <text x="1120" y="566" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="500" fill="#6B7280">Dubai · Mumbai</text>
+</svg>

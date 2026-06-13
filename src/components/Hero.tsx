@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import ShaderBackground from './ShaderBackground';
 import RollButton from './RollButton';
+import ClientOnly from './ClientOnly';
 import { CAL_BOOKING_URL } from '../constants';
+
+// Browser-only (WebGPU); lazy + ClientOnly so it never loads during the
+// build-time render and produces no hydration mismatch.
+const ShaderBackground = lazy(() => import('./ShaderBackground'));
 
 const NAV_LINKS = ['Approach', 'Work', 'Systems', 'Contact'];
 
@@ -18,7 +22,9 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#EFEFEF]">
-      <ShaderBackground />
+      <ClientOnly>
+        <ShaderBackground />
+      </ClientOnly>
 
       {/* ---------------- Navigation ---------------- */}
       <header className="relative z-20">
@@ -49,7 +55,7 @@ export default function Hero() {
             {/* Right: availability, clock, CTA */}
             <div className="hidden items-center gap-5 md:flex">
               <a
-                href="#/careers"
+                href="/careers"
                 className="text-[14px] text-gray-900 transition-colors duration-300 hover:text-gray-500"
               >
                 Careers
@@ -107,7 +113,7 @@ export default function Hero() {
         >
           <div className="mb-8 flex items-center justify-between">
             <a
-              href="#/careers"
+              href="/careers"
               onClick={() => setMenuOpen(false)}
               className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-[12px] text-gray-600"
             >

@@ -1,40 +1,28 @@
-import { useEffect, useState } from 'react';
-import Hero from './components/Hero';
-import Approach from './components/Approach';
-import CaseStudies from './components/CaseStudies';
-import AiNative from './components/AiNative';
-import Faq from './components/Faq';
 import Careers from './components/Careers';
+import HomePage from './pages/HomePage';
+import BlogIndex from './pages/BlogIndex';
+import BlogPost from './pages/BlogPost';
 
-function useHashRoute() {
-  const [hash, setHash] = useState(() => window.location.hash);
-  useEffect(() => {
-    const onHashChange = () => setHash(window.location.hash);
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
-  return hash;
+/**
+ * Route-driven so the same component tree can be prerendered to static HTML at
+ * build time (server passes `route`) and hydrated in the browser (reads the
+ * current pathname). Navigation between routes is plain anchors → each route is
+ * its own prerendered HTML file, so a full page load lands on real content.
+ */
+function resolvePath(route?: string): string {
+  const raw = route ?? (typeof window !== 'undefined' ? window.location.pathname : '/');
+  // strip trailing slash except root
+  const path = raw.length > 1 ? raw.replace(/\/+$/, '') : raw;
+  return path || '/';
 }
 
-export default function App() {
-  const hash = useHashRoute();
-  const isCareers = hash.startsWith('#/careers');
+export default function App({ route }: { route?: string }) {
+  const path = resolvePath(route);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [isCareers]);
-
-  if (isCareers) {
-    return <Careers />;
+  if (path === '/careers') return <Careers />;
+  if (path === '/blog') return <BlogIndex />;
+  if (path.startsWith('/blog/')) {
+    return <BlogPost slug={path.slice('/blog/'.length)} />;
   }
-
-  return (
-    <main className="min-h-screen bg-white antialiased">
-      <Hero />
-      <Approach />
-      <CaseStudies />
-      <AiNative />
-      <Faq />
-    </main>
-  );
+  return <HomePage />;
 }
