@@ -28,8 +28,8 @@ export default function Hero() {
             <div className="flex items-center gap-6">
               <a href="#" className="flex items-center gap-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-900 sm:h-10 sm:w-10">
-                  <span className="text-[10px] font-bold tracking-tight text-white sm:text-[11px]">
-                    SH
+                  <span className="text-[9px] font-bold tracking-tight text-white sm:text-[10px]">
+                    S.AI
                   </span>
                 </span>
               </a>
