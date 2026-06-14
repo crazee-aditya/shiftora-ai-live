@@ -4,7 +4,8 @@ export interface PostMeta {
   slug: string;
   title: string;
   description: string;
-  date: string; // ISO yyyy-mm-dd
+  date: string; // ISO yyyy-mm-dd (published)
+  updated?: string; // ISO yyyy-mm-dd (last meaningful edit), optional
   readingTime: string;
 }
 
@@ -56,6 +57,7 @@ const ALL: Post[] = Object.entries(files)
       title: data.title ?? slug,
       description: data.description ?? '',
       date: data.date ?? '',
+      updated: data.updated || undefined,
       readingTime: estimateReadingTime(body),
       html: marked.parse(body) as string,
     };
@@ -70,6 +72,7 @@ export function getAllPosts(): PostMeta[] {
     title: p.title,
     description: p.description,
     date: p.date,
+    updated: p.updated,
     readingTime: p.readingTime,
   }));
 }

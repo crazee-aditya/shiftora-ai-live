@@ -19,6 +19,7 @@ export interface RouteMeta {
   canonical: string;
   ogType: string;
   jsonLd: object[];
+  robots?: string;
 }
 
 function escapeHtml(s: string): string {
@@ -29,21 +30,60 @@ function escapeHtml(s: string): string {
     .replace(/"/g, '&quot;');
 }
 
-/** The persistent Organization + WebSite + Service + FAQ entity graph. */
+// Verified external profiles. ONLY add URLs that resolve (HTTP 200) and belong
+// to Shiftora; a dead or wrong sameAs hurts entity resolution. Once filled,
+// these auto-populate Organization.sameAs / the founder Person.sameAs and the
+// "Profiles" section of llms.txt is maintained separately.
+const ORG_SAME_AS: string[] = [];
+const FOUNDER_SAME_AS: string[] = [];
+
+const LOGO_NODE = {
+  '@type': 'ImageObject',
+  '@id': `${SITE.origin}/#logo`,
+  url: SITE.logo,
+  contentUrl: SITE.logo,
+  width: 512,
+  height: 512,
+  caption: 'Shiftora',
+};
+
+const OG_IMAGE_NODE = {
+  '@type': 'ImageObject',
+  '@id': `${SITE.origin}/#og-image`,
+  url: SITE.ogImage,
+  contentUrl: SITE.ogImage,
+  width: 1200,
+  height: 630,
+};
+
+const FOUNDER_NODE = {
+  '@type': 'Person',
+  '@id': `${SITE.origin}/#shreshth-daga`,
+  name: SITE.founder,
+  jobTitle: 'Founder',
+  worksFor: { '@id': `${SITE.origin}/#organization` },
+  ...(FOUNDER_SAME_AS.length ? { sameAs: FOUNDER_SAME_AS } : {}),
+};
+
+/** The persistent entity graph: images, founder, Organization, WebSite, Service. */
 function organizationGraph(): object[] {
   return [
+    LOGO_NODE,
+    OG_IMAGE_NODE,
+    FOUNDER_NODE,
     {
       '@type': 'Organization',
       '@id': `${SITE.origin}/#organization`,
       name: 'Shiftora',
       url: `${SITE.origin}/`,
-      logo: SITE.logo,
-      image: SITE.ogImage,
+      logo: { '@id': `${SITE.origin}/#logo` },
+      image: { '@id': `${SITE.origin}/#og-image` },
       description: SITE.defaultDescription,
       slogan: 'Tailored AI systems that make large enterprises AI-native.',
       email: SITE.email,
       telephone: '+971 55 606 5297',
-      founder: { '@type': 'Person', name: SITE.founder },
+      founder: { '@id': `${SITE.origin}/#shreshth-daga` },
+      ...(ORG_SAME_AS.length ? { sameAs: ORG_SAME_AS } : {}),
       areaServed: [
         { '@type': 'Country', name: 'United Arab Emirates' },
         { '@type': 'Country', name: 'India' },
@@ -151,6 +191,17 @@ function faqGraph(): object {
 export function getRouteMeta(route: string): RouteMeta {
   const path = route.length > 1 ? route.replace(/\/+$/, '') : route;
 
+  if (path === '/404') {
+    return {
+      title: 'Page not found · Shiftora',
+      description: 'The page you are looking for does not exist or has moved.',
+      canonical: `${SITE.origin}/404`,
+      ogType: 'website',
+      jsonLd: [],
+      robots: 'noindex, follow',
+    };
+  }
+
   if (path === '/careers') {
     return {
       title: 'Careers · Shiftora',
@@ -208,18 +259,22 @@ export function getRouteMeta(route: string): RouteMeta {
         canonical: `${SITE.origin}/blog/${post.slug}`,
         ogType: 'article',
         jsonLd: [
+          LOGO_NODE,
+          OG_IMAGE_NODE,
+          FOUNDER_NODE,
+          { '@type': 'Organization', '@id': `${SITE.origin}/#organization`, name: 'Shiftora', url: `${SITE.origin}/`, logo: { '@id': `${SITE.origin}/#logo` } },
           {
             '@type': 'BlogPosting',
             '@id': `${SITE.origin}/blog/${post.slug}#article`,
             headline: post.title,
             description: post.description,
             datePublished: post.date,
-            dateModified: post.date,
+            dateModified: post.updated || post.date,
             url: `${SITE.origin}/blog/${post.slug}`,
-            author: { '@id': `${SITE.origin}/#organization` },
+            author: { '@id': `${SITE.origin}/#shreshth-daga` },
             publisher: { '@id': `${SITE.origin}/#organization` },
             mainEntityOfPage: `${SITE.origin}/blog/${post.slug}`,
-            image: SITE.ogImage,
+            image: { '@id': `${SITE.origin}/#og-image` },
             inLanguage: 'en',
           },
           {
@@ -245,15 +300,12 @@ export function getRouteMeta(route: string): RouteMeta {
   };
 }
 
-/** Serialize a RouteMeta into the <head> HTML injected at the {{SSG_HEAD}} slot. */
+/** Serialize a RouteMeta into the <head> HTML injected by the prerender step. */
 export function renderHead(meta: RouteMeta): string {
-  const graph = {
-    '@context': 'https://schema.org',
-    '@graph': meta.jsonLd,
-  };
-  return [
+  const tags = [
     `<title>${escapeHtml(meta.title)}</title>`,
     `<meta name="description" content="${escapeHtml(meta.description)}" />`,
+    meta.robots ? `<meta name="robots" content="${meta.robots}" />` : '',
     `<link rel="canonical" href="${meta.canonical}" />`,
     `<meta property="og:type" content="${meta.ogType}" />`,
     `<meta property="og:site_name" content="Shiftora" />`,
@@ -267,11 +319,41 @@ export function renderHead(meta: RouteMeta): string {
     `<meta name="twitter:title" content="${escapeHtml(meta.title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(meta.description)}" />`,
     `<meta name="twitter:image" content="${SITE.ogImage}" />`,
-    `<script type="application/ld+json">${JSON.stringify(graph)}</script>`,
-  ].join('\n    ');
+  ];
+  if (meta.jsonLd.length > 0) {
+    const graph = { '@context': 'https://schema.org', '@graph': meta.jsonLd };
+    tags.push(`<script type="application/ld+json">${JSON.stringify(graph)}</script>`);
+  }
+  return tags.filter(Boolean).join('\n    ');
 }
 
 /** All routes to prerender (static ones + every blog post). */
 export function allRoutes(): string[] {
   return ['/', '/careers', '/blog', ...getAllPosts().map((p) => `/blog/${p.slug}`)];
+}
+
+/**
+ * Sitemap entries with accurate per-URL lastmod. Posts use their own
+ * published/updated date; the blog index uses the newest post date; static
+ * pages use the build date (they did change on this deploy). Google ignores
+ * <priority>, but it is harmless and kept for clarity.
+ */
+export function sitemapEntries(
+  buildDate: string
+): Array<{ loc: string; lastmod: string; priority: string }> {
+  const posts = getAllPosts();
+  const newest = posts.reduce((m, p) => {
+    const d = p.updated || p.date;
+    return d > m ? d : m;
+  }, '');
+  return [
+    { loc: `${SITE.origin}/`, lastmod: buildDate, priority: '1.0' },
+    { loc: `${SITE.origin}/careers`, lastmod: buildDate, priority: '0.8' },
+    { loc: `${SITE.origin}/blog`, lastmod: newest || buildDate, priority: '0.8' },
+    ...posts.map((p) => ({
+      loc: `${SITE.origin}/blog/${p.slug}`,
+      lastmod: p.updated || p.date || buildDate,
+      priority: '0.6',
+    })),
+  ];
 }

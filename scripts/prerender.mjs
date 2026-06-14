@@ -9,7 +9,7 @@ const DIST = 'dist';
 const ORIGIN = 'https://www.shiftora.ai';
 
 const serverEntry = pathToFileURL(join(process.cwd(), 'dist-ssr', 'entry-server.js')).href;
-const { render, allRoutes, getRouteMeta, renderHead } = await import(serverEntry);
+const { render, allRoutes, getRouteMeta, renderHead, sitemapEntries } = await import(serverEntry);
 
 // Template = built client index.html. Strip its default <title>/description so
 // per-route ones don't duplicate.
@@ -22,32 +22,38 @@ if (!template.includes('<div id="root"></div>')) {
   throw new Error('prerender: could not find <div id="root"></div> in dist/index.html');
 }
 
-const routes = allRoutes();
-for (const route of routes) {
+function buildPage(route) {
   const appHtml = render(route);
   const head = renderHead(getRouteMeta(route));
-  const html = template
+  return template
     .replace('</head>', `    ${head}\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+}
 
+const routes = allRoutes();
+for (const route of routes) {
   const outPath = route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html');
   mkdirSync(dirname(outPath), { recursive: true });
-  writeFileSync(outPath, html);
+  writeFileSync(outPath, buildPage(route));
   console.log('prerendered', route);
 }
 
-// sitemap.xml
+// Branded 404 (served by `serve` for not-found responses; not in sitemap).
+writeFileSync(join(DIST, '404.html'), buildPage('/404'));
+console.log('prerendered /404 -> 404.html');
+
+// sitemap.xml with accurate per-URL lastmod
 const today = new Date().toISOString().slice(0, 10);
-const urls = routes
-  .map((r) => {
-    const loc = `${ORIGIN}${r === '/' ? '/' : r}`;
-    const priority = r === '/' ? '1.0' : r.startsWith('/blog/') ? '0.6' : '0.8';
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
-  })
+const entries = sitemapEntries(today);
+const urls = entries
+  .map(
+    (e) =>
+      `  <url>\n    <loc>${e.loc}</loc>\n    <lastmod>${e.lastmod}</lastmod>\n    <priority>${e.priority}</priority>\n  </url>`
+  )
   .join('\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
-console.log('wrote sitemap.xml with', routes.length, 'urls');
+console.log('wrote sitemap.xml with', entries.length, 'urls');
 
 // Clean up the SSR bundle so it is not served.
 rmSync('dist-ssr', { recursive: true, force: true });

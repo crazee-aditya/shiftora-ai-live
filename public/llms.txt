@@ -10,6 +10,15 @@ Shiftora is a B2B custom AI engineering firm. We audit how work moves through an
 - [Careers](https://www.shiftora.ai/careers): Open engineering roles in Mumbai and Dubai.
 - [Blog](https://www.shiftora.ai/blog): Articles on building AI-native enterprises, custom AI systems, and intelligent automation.
 
+## Articles
+
+- [What does it actually mean for an enterprise to become AI-native?](https://www.shiftora.ai/blog/what-is-an-ai-native-enterprise)
+- [How long does it really take to ship a custom enterprise AI system?](https://www.shiftora.ai/blog/how-long-to-ship-a-custom-enterprise-ai-system)
+- [What does a custom enterprise AI engagement cost, and why there is no price list?](https://www.shiftora.ai/blog/what-does-a-custom-enterprise-ai-engagement-cost)
+- [Custom AI versus off-the-shelf tools: when is a tailored build the right call?](https://www.shiftora.ai/blog/custom-ai-vs-off-the-shelf-tools)
+- [How a predictive CRM lets a sales team operate like one several times its size](https://www.shiftora.ai/blog/predictive-crm-sales-team-operating-larger)
+- [How do you rebuild a core platform with AI without breaking what already works?](https://www.shiftora.ai/blog/rebuilding-a-core-platform-without-breaking-it)
+
 ## Contact
 
 - Email: info@shiftora.ai / hello@shiftora.ai

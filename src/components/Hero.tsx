@@ -14,9 +14,6 @@ function scrollToContact() {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 }
 
-/* Frontier-model names, nominative use only. No logos. */
-const FRONTIER_MODELS = ['Anthropic', 'OpenAI', 'Google'];
-
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -159,19 +156,15 @@ export default function Hero() {
       <div className="relative z-20 mx-auto w-full max-w-[1440px] px-5 pb-14 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
         {/* Oversized bold brand wordmark */}
         <div
-          className="select-none font-bold uppercase tracking-tight text-gray-900"
+          className="mb-6 select-none font-bold uppercase tracking-tight text-gray-900 sm:mb-8"
           style={{
-            fontSize: 'clamp(3.5rem, 12.5vw, 11.5rem)',
+            fontSize: 'clamp(1.5rem, 8.2vw, 8rem)',
             lineHeight: 0.95,
             letterSpacing: '-0.04em',
           }}
         >
-          SHIFTORA
-        </div>
-
-        <p className="mb-5 mt-6 text-[13px] tracking-wide text-gray-900 sm:mb-8 sm:text-[14px]">
           Shiftora.ai
-        </p>
+        </div>
 
         <h1 className="font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 [font-size:clamp(1.75rem,7vw,4.2rem)] sm:[font-size:clamp(2.5rem,5vw,4.2rem)]">
           Tailored AI systems
@@ -184,28 +177,8 @@ export default function Hero() {
         </h1>
 
         {/* CTA row */}
-        <div className="mt-8 flex flex-col items-start gap-4 sm:mt-12 sm:flex-row sm:items-center sm:gap-5">
+        <div className="mt-8 sm:mt-12">
           <RollButton label="Start a build" onClick={scrollToContact} />
-
-          {/* Frontier-models cluster, nominative use only */}
-          <div
-            title="Tools we build with, not affiliated or endorsed"
-            className="inline-flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-[4px] bg-white px-3 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-shadow duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
-          >
-            <span className="text-[10px] uppercase tracking-widest text-gray-500">
-              Powered by
-            </span>
-            {FRONTIER_MODELS.map((name, i) => (
-              <span key={name} className="flex items-center gap-x-3">
-                {i > 0 && (
-                  <span aria-hidden="true" className="h-4 w-px bg-gray-300" />
-                )}
-                <span className="text-[12px] font-medium text-gray-900 sm:text-[13px]">
-                  {name}
-                </span>
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -1,11 +1,14 @@
 import { ArrowUpRight } from 'lucide-react';
 import { SiteHeader, SiteFooter } from '../components/SiteChrome';
 import RollButton from '../components/RollButton';
-import { getPost, formatDate } from '../lib/posts';
+import { getPost, getAllPosts, formatDate } from '../lib/posts';
 import { CAL_BOOKING_URL } from '../constants';
 
 export default function BlogPost({ slug }: { slug: string }) {
   const post = getPost(slug);
+  const related = getAllPosts()
+    .filter((p) => p.slug !== slug)
+    .slice(0, 3);
 
   if (!post) {
     return (
@@ -61,6 +64,33 @@ export default function BlogPost({ slug }: { slug: string }) {
             <RollButton label="Book a 30-min call" href={CAL_BOOKING_URL} />
           </div>
         </div>
+
+        {/* More articles (internal linking) */}
+        {related.length > 0 && (
+          <nav aria-label="More articles" className="mt-14 border-t border-gray-200 pt-8">
+            <p className="text-[11px] uppercase tracking-widest text-gray-400">
+              More articles
+            </p>
+            <ul className="mt-4 divide-y divide-gray-100">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <a
+                    href={`/blog/${r.slug}`}
+                    className="group flex items-baseline justify-between gap-4 py-3"
+                  >
+                    <span className="text-[15px] font-medium text-gray-900 transition-colors duration-300 group-hover:text-gray-500 sm:text-[16px]">
+                      {r.title}
+                    </span>
+                    <ArrowUpRight
+                      size={15}
+                      className="shrink-0 text-gray-400 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </article>
 
       <SiteFooter />
