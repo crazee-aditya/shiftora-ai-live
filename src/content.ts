@@ -47,7 +47,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Build the organization a new strategy requires',
         description:
-          'Define where authority must sit, which capabilities must exist, and which leadership and workforce choices the institution must make for the new strategy to take effect.',
+          'With leadership, define how organizational authority, capability, and workforce must change for the new strategy to take effect.',
       },
       {
         title: 'Redesign an operating model that preserves the past',
@@ -57,7 +57,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Bring a transformation back under institutional direction',
         description:
-          'Determine why a major program, restructuring, or technical initiative has not altered the institution as intended; then establish what must stop, be reordered, or be rebuilt.',
+          'Establish why a major program, restructuring, or technical initiative has not altered the institution as intended, and give leadership the basis to stop, reorder, or rebuild it.',
       },
     ],
   },
@@ -68,12 +68,12 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Create capacity for a new institutional responsibility',
         description:
-          'When no existing function can carry the responsibility, design its remit, governance, operating method, and supporting systems.',
+          'When an institution assumes a responsibility no existing function can carry, design its remit, governance, operating method, and supporting systems.',
       },
       {
         title: 'Build the software through which critical work will run',
         description:
-          "When existing products cannot carry the institution's decision rights and operating logic, design and deploy the system that can.",
+          "When existing products cannot embody the institution's established decision rights and operating logic, design and deploy the system that can.",
       },
       {
         title: 'Make fragmented data answer to a common decision',
@@ -83,7 +83,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Place models under operational authority',
         description:
-          'Establish the authority and bounds under which models may enter live work; then select or build what the mandate requires, preserving accountable human judgment and defining how performance will be evaluated and monitored.',
+          "Within the institution's established authority, define the bounds under which models may enter live work; then select or build what the mandate requires, preserving accountable human judgment and defining how performance will be evaluated and monitored.",
       },
     ],
   },
