@@ -1,10 +1,9 @@
-# Shiftora — robots.txt
-# We want classic search engines AND AI answer engines to read and cite us.
+# Shiftora
 
 User-agent: *
 Allow: /
 
-# --- AI search / answer engines: explicitly welcome (we want citations) ---
+# Search and answer engines
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -38,7 +37,6 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# --- Abusive crawler that ignores rules and adds no value ---
 User-agent: Bytespider
 Disallow: /
 
