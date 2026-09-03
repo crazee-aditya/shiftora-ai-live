@@ -2,10 +2,10 @@ export const FIRM_DESCRIPTION =
   'Shiftora is an integrated strategy and systems firm. Every institution is governed twice: formally by those responsible for its direction, and operationally by the systems through which it acts. The first establishes direction. The second determines what can be carried out. In governments and enterprises alike, structures built for earlier conditions often come to dictate present choices. Policy falters in delivery; strategy narrows to what inherited operations and technology will allow. Shiftora works where the two diverge. We begin with the judgment itself and remain with it through the organization and systems that must carry it out. When the necessary capability does not yet exist, we build it. This is sovereign capacity: the institution remains free to alter its course, and its systems remain capable of following.';
 
 export const MANDATES_INTRO =
-  "A Shiftora mandate begins where a consequential decision exceeds the institution's present capacity to carry it out. The work takes the form that decision requires.";
+  "A Shiftora mandate begins where an institution's direction or responsibility exceeds its present capacity to act. The work takes the form that condition requires.";
 
 export const MANDATES_CLOSE =
-  "A mandate belongs within Shiftora's remit when an important decision crosses institutional boundaries, cannot be completed by advice alone, and requires capability the institution must be able to govern.";
+  "A mandate belongs within Shiftora's remit when a consequential direction or responsibility crosses institutional boundaries, cannot be carried by advice alone, and requires capability the responsible institution can govern.";
 
 export interface Mandate {
   title: string;
@@ -63,7 +63,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
   },
   {
     number: '03',
-    condition: 'When capability is missing',
+    condition: 'When responsibility outruns capability',
     mandates: [
       {
         title: 'Create capacity for a new institutional responsibility',

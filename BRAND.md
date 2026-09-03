@@ -8,13 +8,13 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Worldview:** Every institution is governed twice: formally by those responsible for its direction, and operationally by the systems through which it acts.
 
-**Domain:** The passage from institutional judgment to operating capability.
+**Domain:** The passage from institutional direction or responsibility to operating capability.
 
 **Responsibility:** Hold a consequential mandate intact as it crosses strategy, authority, organization, operations, capital, information, and technology.
 
-**Completion condition:** The institution can carry out the chosen course and can alter that course without becoming captive to the capability created for it.
+**Completion condition:** The institution can carry out the direction or discharge the responsibility at stake and retains the authority and knowledge required to govern and adapt the capability created for it.
 
-**Sovereign capacity:** The institution remains free to alter its course, and its systems remain capable of following. This describes retained institutional agency; it is not a claim to public authority, national status, or complete technical independence.
+**Sovereign capacity:** The institution retains authority over its course and can govern and adapt the means on which action depends. For durable commitments, agency may take the form of oversight, intervention, transfer, or eventual exit rather than immediate reversibility. This is not a claim to public authority, national status, or complete technical independence.
 
 ## Direction of reasoning
 
@@ -35,7 +35,7 @@ Work belongs within Shiftora only when all four statements are true:
 1. A consequential institutional decision or responsibility is at stake.
 2. The work crosses boundaries that ordinarily divide judgment from execution.
 3. Advice alone cannot make the course executable.
-4. The resulting capability must remain governable as the institution changes course.
+4. The resulting capability must remain under effective institutional governance as direction or responsibility changes, whether it is operated by Shiftora, transferred, or retained by another party.
 
 Routine staff augmentation, undifferentiated software delivery, generic strategy reports, product resale, isolated process improvement, and ordinary managed services do not qualify by themselves.
 
@@ -44,6 +44,10 @@ Apply three counterfactual screens before admitting the work:
 1. **Integrity:** If Shiftora delivered only the requested artifact or labor, would the governing judgment still fragment before it became operational? If no, the work is ordinary delivery.
 2. **Consequence:** Would failure materially alter a public duty, strategic position, allocation of authority, capital or risk, or control of a critical capability—not merely a deadline, budget, or departmental KPI? If no, consequence has been inflated.
 3. **Agency:** At completion, can the institution understand, direct, change, replace, and where relevant exit the capability without Shiftora's permission or inaccessible knowledge? If no, the capability is not governable.
+
+## External principal
+
+In a Shiftora mandate, a client institution or authorized coalition remains the principal whose direction or responsibility is being carried. Shiftora may own capital, assets, products, or operating roles required by that mandate. When Shiftora's own investment thesis or product strategy becomes the governing judgment, the activity belongs to a separate principal-business category; it does not become a Shiftora mandate merely because it is strategically or technically complex.
 
 ## Reserved authority
 
@@ -54,7 +58,8 @@ The client retains every decision right reserved to it by law, regulation, fiduc
 - Use American English in public copy, except where an official name or quoted source requires otherwise.
 - Use **firm** once to name the institution.
 - Use **mandate** for a consequential engagement held intact across boundaries.
-- Use **systems** to include organizational, operating, financial, informational, and technical arrangements—not software alone.
+- Use **systems** to include organizational, operating, financial, informational, technical, physical, and industrial arrangements—not software alone.
+- Use **institution** to include an authorized arrangement among several institutions when necessary. Integration must not centralize authority that should remain distributed.
 - Use **integrated** for the architecture of responsibility, not as a decorative adjective.
 - Use **sovereign** only when the sentence identifies the authority, asset, dependency, or range of action that remains governable.
 - Use **AI** and **machine learning** only for technical instruments, never the category.

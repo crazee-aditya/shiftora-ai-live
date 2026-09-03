@@ -7,9 +7,11 @@ technical services. Preserve that distinction in every change.
 
 - The category is **integrated strategy and systems firm**.
 - The governing thesis is **Every institution is governed twice.**
-- Shiftora works in the passage from institutional judgment to operating capability.
+- Shiftora works in the passage from institutional direction or responsibility to operating capability.
 - AI, software, data, models, organization, capital, and operations are possible forms of a
   mandate. None is the umbrella identity.
+- A client institution or authorized coalition remains the principal in a Shiftora mandate. A
+  business governed by Shiftora's own product or investment thesis requires a separate category.
 - “Sovereign” must name retained institutional control or freedom of action; never use it as an
   ornamental synonym for premium, private, or local.
 
