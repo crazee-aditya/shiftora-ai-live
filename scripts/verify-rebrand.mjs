@@ -65,11 +65,13 @@ const checks = [
   [mandates, 'The institutional conditions that may give rise to a Shiftora mandate', 'prospective mandate metadata'],
   [mandates, 'A Shiftora mandate begins where a consequential decision exceeds', 'mandate test'],
   [mandates, 'Carry a national priority into operation', 'public mandate'],
+  [mandates, 'under the authority of the institution responsible', 'public authority boundary'],
   [mandates, 'Reallocate capital around a chosen course', 'capital mandate'],
   [mandates, 'Build the organization a new strategy requires', 'organization mandate'],
   [mandates, 'Build the software through which critical work will run', 'software mandate'],
   [mandates, 'Make fragmented data answer to a common decision', 'data mandate'],
   [mandates, 'Place models under operational authority', 'models mandate'],
+  [mandates, 'Establish the authority and bounds under which models may enter live work', 'model authority boundary'],
   [mandates, 'Keep critical knowledge under institutional control', 'sovereign mandate'],
   [mandates, 'Discuss a mandate.', 'contact action'],
   [notFound, '<title>Page not found — Shiftora</title>', '404 title'],
@@ -87,6 +89,9 @@ for (const retiredPhrase of [
   'Representative Shiftora mandates',
   'Fields of action',
   'Recover a stalled transformation',
+  'accountable delivery across authority',
+  'Select or build models for live work',
+  'build the models and infrastructure required to use it while retaining institutional authority',
 ]) {
   if (home.includes(retiredPhrase) || mandates.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);

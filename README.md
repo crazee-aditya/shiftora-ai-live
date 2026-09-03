@@ -7,6 +7,8 @@ This branch contains the two-page institutional rebrand:
 - `/` — **The firm**
 - `/mandates` — **Mandates**
 
+The upstream positioning and language rules are recorded in [BRAND.md](./BRAND.md). Public copy must be derived from that institutional charter rather than from a list of present services.
+
 The site is prerendered for search and answer engines, with a real branded 404, a two-URL sitemap,
 route-specific metadata, structured data, and a restrained paper/ink visual system.
 
@@ -25,6 +27,14 @@ npm run verify
 
 This builds the site and verifies the public copy, route metadata, structured data, sitemap, heading
 structure, retired-positioning exclusions, and image dimensions.
+
+```sh
+npm run verify:visual
+```
+
+The visual check opens the production build at 320, 390, 768, and 1440 pixels, verifies the page
+structure and horizontal fit, and saves full-page review images to a temporary directory. Set
+`SHIFTORA_CHROME_PATH` if Chrome is installed somewhere other than the standard macOS location.
 
 ```sh
 npm run verify:release

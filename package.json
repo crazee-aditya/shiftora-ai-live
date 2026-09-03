@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "verify": "npm run build && node scripts/verify-rebrand.mjs",
+    "verify:visual": "npm run build && node scripts/visual-check.mjs",
     "verify:release": "npm run verify && node scripts/verify-fonts.mjs",
     "preview": "vite preview",
     "start": "serve dist -l ${PORT:-3000}"

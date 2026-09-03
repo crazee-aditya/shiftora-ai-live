@@ -26,17 +26,17 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Carry a national priority into operation',
         description:
-          'Translate an adopted public objective into accountable delivery across authority, funding, procurement, operations, and the systems required for execution.',
+          "Carry an adopted public objective through the funding, procurement, operating, and technical arrangements required for delivery, under the authority of the institution responsible.",
       },
       {
         title: 'Reposition an enterprise for its next phase',
         description:
-          'Determine where the next period of growth can come from, then reshape the business model, partnerships, and investment sequence required to pursue it.',
+          "Identify the sources of the next period of growth, then carry leadership's chosen course through the business model, partnerships, and sequence of investment.",
       },
       {
         title: 'Reallocate capital around a chosen course',
         description:
-          'Align portfolio priorities, liquidity, return thresholds, financial controls, and operating information with the course the institution has chosen.',
+          'Carry the chosen course into the allocation of capital, risk, and operating attention, and into the information by which those allocations are governed.',
       },
     ],
   },
@@ -47,7 +47,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Build the organization a new strategy requires',
         description:
-          'Define how authority must be held, which capabilities must exist, and how leadership and the workforce must change for the new strategy to take effect.',
+          'Define where authority must sit, which capabilities must exist, and which leadership and workforce choices the institution must make for the new strategy to take effect.',
       },
       {
         title: 'Redesign an operating model that preserves the past',
@@ -57,7 +57,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Bring a transformation back under institutional direction',
         description:
-          'Form an independent view of why a major programme, restructuring, or technical initiative has failed to alter operating reality; then resequence and rebuild the work.',
+          'Establish why a major programme, restructuring, or technical initiative has not altered the institution as intended; then reorder and rebuild the work.',
       },
     ],
   },
@@ -68,22 +68,22 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Create capacity for a new institutional responsibility',
         description:
-          'When no existing function can carry the work, define its mandate, governance, and operating method together with the systems on which it will depend.',
+          'When no existing function can carry the responsibility, design its remit, governance, operating method, and supporting systems.',
       },
       {
         title: 'Build the software through which critical work will run',
         description:
-          "Design and deploy a custom application around the institution's decision rights and operating logic when existing products cannot satisfy its operating requirements.",
+          "When existing products cannot carry the institution's decision rights and operating logic, design and deploy the system that can.",
       },
       {
         title: 'Make fragmented data answer to a common decision',
         description:
-          'Establish a data foundation whose meaning, provenance, permissions, and quality hold as information moves across the institution and grows in scale.',
+          'Build the data architecture that preserves meaning, provenance, permissions, and quality as information moves across the institution and grows in scale.',
       },
       {
         title: 'Place models under operational authority',
         description:
-          'Select or build models for live work, defining who governs their data, which decisions they may inform, which bounded actions they may execute, where accountable human judgment must remain, and how performance will be evaluated and monitored.',
+          'Establish the authority and bounds under which models may enter live work; then select or build what the mandate requires, preserving accountable human judgment and defining how performance will be evaluated and monitored.',
       },
     ],
   },
@@ -94,12 +94,12 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Determine what the institution must control',
         description:
-          'Distinguish what may be bought, shared, or delegated from what must remain under direct authority because of security, jurisdiction, continuity, or strategic dependency.',
+          'Establish the boundary between what the institution may buy, share, or delegate and what must remain under its direct control because of security, jurisdiction, continuity, or strategic dependence.',
       },
       {
         title: 'Keep critical knowledge under institutional control',
         description:
-          'Where sensitive knowledge must remain inside a defined security or jurisdictional boundary, build the models and infrastructure required to use it while retaining institutional authority over access, operation, and change.',
+          'Where sensitive knowledge must remain inside a defined security or jurisdictional boundary, create the capability to use it there—including the models and infrastructure the mandate requires—while retaining institutional authority over access, operation, and change.',
       },
     ],
   },
