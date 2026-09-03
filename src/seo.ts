@@ -86,16 +86,6 @@ function organizationGraph(): object[] {
         email: SITE.email,
         availableLanguage: ['en'],
       },
-      knowsAbout: [
-        'Institutional strategy',
-        'Operating model design',
-        'Organization design',
-        'Capital allocation systems',
-        'Custom enterprise software',
-        'Data infrastructure',
-        'Machine learning systems',
-        'Sovereign technology systems',
-      ],
     },
     {
       '@type': 'WebSite',
@@ -126,7 +116,7 @@ export function getRouteMeta(route: string): RouteMeta {
 
   if (path === '/mandates') {
     const description =
-      'The institutional conditions that may give rise to a Shiftora mandate, spanning direction, operating structure, software, data, models, and retained control.';
+      "Shiftora mandates begin where consequential direction or responsibility exceeds an institution's present capacity to act.";
     return {
       title: 'Mandates — Shiftora',
       description,

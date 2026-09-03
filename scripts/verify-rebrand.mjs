@@ -62,7 +62,7 @@ const checks = [
   [mandates, '<title>Mandates — Shiftora</title>', 'mandates title'],
   [mandates, '<meta name="theme-color" content="#090a0a" />', 'mandates browser color'],
   [mandates, '>Integrated strategy and systems firm</p>', 'direct-entry category'],
-  [mandates, 'The institutional conditions that may give rise to a Shiftora mandate', 'prospective mandate metadata'],
+  [mandates, 'Shiftora mandates begin where consequential direction or responsibility exceeds', 'prospective mandate metadata'],
   [mandates, 'A Shiftora mandate begins where a consequential decision exceeds', 'mandate test'],
   [mandates, 'Carry a national priority into operation', 'public mandate'],
   [mandates, 'under the authority of the institution responsible', 'public authority boundary'],
@@ -98,10 +98,16 @@ for (const retiredPhrase of [
   'accountable delivery across authority',
   'Select or build models for live work',
   'build the models and infrastructure required to use it while retaining institutional authority',
+  'Sovereign technology systems',
+  'Available for engagements worldwide',
 ]) {
   if (home.includes(retiredPhrase) || mandates.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
   }
+}
+
+if (/"knowsAbout"/.test(`${home}\n${mandates}`)) {
+  throw new Error('Verification failed: structured data must not reduce the firm to a service inventory.');
 }
 
 for (const [label, pattern] of [
