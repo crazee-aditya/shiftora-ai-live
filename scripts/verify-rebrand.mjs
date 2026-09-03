@@ -96,7 +96,7 @@ for (const [label, pattern] of [
   ['unsupported prestige', /\b(?:world[- ]class|best[- ]in[- ]class|preeminent|unmatched|industry[- ]leading|trusted by|most consequential)\b/i],
   ['generic promotional language', /\b(?:game[- ]changing|cutting[- ]edge|revolution(?:ary|ize|izing)|future[- ]proof|next[- ]generation|transformative solutions?|AI[- ]powered solutions?|bespoke digital solutions?|transformation journeys?|end[- ]to[- ]end transformation)\b/i],
   ['low-status audience suffix', /\b(?:firm|company|consultancy|agency)\s+for\s+(?:governments?|companies|enterprises|organizations?)\b/i],
-  ['source-company signature language', /\b(?:machinery of execution|foundational layer|build to the mission|software that works|ontology of the enterprise)\b/i],
+  ['source-company signature language', /\b(?:machinery of execution|foundational layer|build to the mission|software that works|ontology of the enterprise|where new capability is required, we build it)\b/i],
   ['AI-copy cliché', /\b(?:unlock|empower|leverage|harness|seamless|holistic|ever[- ]evolving|drive innovation)\b/i],
 ]) {
   if (pattern.test(`${home}\n${mandates}`)) {
