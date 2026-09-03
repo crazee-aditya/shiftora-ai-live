@@ -5,7 +5,7 @@ export const MANDATES_INTRO =
   "A Shiftora mandate begins where an institution's direction or responsibility exceeds its present capacity to act. The work takes the form that condition requires.";
 
 export const MANDATES_CLOSE =
-  "A mandate belongs within Shiftora's remit when a consequential direction or responsibility crosses institutional boundaries, cannot be carried by advice alone, and requires capability the responsible institution can govern.";
+  "A Shiftora mandate holds a consequential direction or responsibility intact until the institution can act and govern the capability on which action depends.";
 
 export interface Mandate {
   title: string;
@@ -26,12 +26,12 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Carry a national priority into operation',
         description:
-          "Carry an adopted public objective through the funding, procurement, operating, and technical arrangements required for delivery, under the authority of the institution responsible.",
+          'Carry an adopted public objective through the funding, procurement, operating, and technical arrangements required for delivery across the institutions responsible, under their continuing authority.',
       },
       {
         title: 'Reposition an enterprise for its next phase',
         description:
-          "Identify the sources of the next period of growth, then carry leadership's chosen course through the business model, partnerships, and sequence of investment.",
+          "Identify where the next period of growth and advantage will come from, then carry leadership's chosen course through the business model, capital, partnerships, and the organization and systems that must support it.",
       },
       {
         title: 'Reallocate capital around a chosen course',
@@ -68,7 +68,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Create capacity for a new institutional responsibility',
         description:
-          'When an institution assumes a responsibility no existing function can carry, design its remit, governance, operating method, and supporting systems.',
+          "When an institution assumes a responsibility no existing function can carry, define the function's role and governance, then build the operating method, infrastructure, and systems required to discharge it.",
       },
       {
         title: 'Build the software through which critical work will run',
@@ -78,12 +78,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Make fragmented data answer to a common decision',
         description:
-          'Establish the shared information required for a common decision, then build the data architecture that preserves its meaning, provenance, permissions, and quality as its volume and use grow across the institution.',
-      },
-      {
-        title: 'Place models under operational authority',
-        description:
-          "Within the institution's established authority, define the bounds under which models may enter live work; then select or build what the mandate requires, preserving accountable human judgment and defining how performance will be evaluated and monitored.",
+          'Establish the shared information a consequential decision requires, then build the architecture that preserves its meaning, provenance, permissions, and integrity as use grows across the institution.',
       },
     ],
   },
@@ -97,9 +92,14 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
           "With the institution's accountable authorities, establish the boundary between what may be bought, shared, or delegated and what must remain under direct control because of security, jurisdiction, continuity, or strategic dependence.",
       },
       {
-        title: 'Keep critical knowledge under institutional control',
+        title: 'Place models under operational authority',
         description:
-          'Where sensitive knowledge must remain inside a defined security or jurisdictional boundary, create the capability to use it there—including the models and infrastructure the mandate requires—while retaining institutional authority over access, operation, and change.',
+          "Within the institution's authority, define where models may enter live work, what must remain human judgment, and how performance will be assessed; then select or build what the mandate requires.",
+      },
+      {
+        title: 'Establish critical capability under institutional control',
+        description:
+          'When security, jurisdiction, continuity, or strategic dependence makes ordinary procurement insufficient, build or restructure the capability so the institution can govern its operation, change, transfer, and exit.',
       },
     ],
   },
