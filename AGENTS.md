@@ -56,7 +56,8 @@ technical services. Preserve that distinction in every change.
 - Run `npm run verify` after every content, route, metadata, or layout change.
 - Run `npm run verify:visual` after any copy-length, typography, spacing, or responsive-layout change;
   inspect the generated 390px and 1440px screenshots rather than trusting fit metrics alone. The
-  check must continue to cover both sides of every responsive boundary.
+  check must continue to cover both sides of every responsive boundary and preserve its metadata,
+  landmark, heading-order, unique-id, labeled-link, and skip-navigation checks.
 - Run `npm run verify:release` before production deployment. It must not pass until the licensed
   Söhne and Alliance No. 2 assets are installed and declared.
 - Keep the page copy, metadata, `llms.txt`, social assets, and sitemap aligned.

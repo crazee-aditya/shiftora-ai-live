@@ -222,14 +222,35 @@ try {
     const { result } = await send(
       'Runtime.evaluate',
       {
-        expression: `JSON.stringify({
-          title: document.title,
-          h1Count: document.querySelectorAll('h1').length,
-          mainCount: document.querySelectorAll('main').length,
-          innerWidth: window.innerWidth,
-          scrollWidth: document.documentElement.scrollWidth,
-          bodyScrollWidth: document.body.scrollWidth
-        })`,
+        expression: `(() => {
+          const headings = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')]
+            .map((heading) => Number(heading.tagName.slice(1)));
+          const ids = [...document.querySelectorAll('[id]')].map((element) => element.id);
+          const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
+          const unlabeledLinks = [...document.querySelectorAll('a')].filter((link) =>
+            !(link.textContent?.trim() || link.getAttribute('aria-label'))
+          ).length;
+          const headingSkip = headings.some((level, index) => index > 0 && level > headings[index - 1] + 1);
+          const skipLink = document.querySelector('.skip-link');
+
+          return JSON.stringify({
+            title: document.title,
+            description: document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '',
+            canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '',
+            viewportMeta: Boolean(document.querySelector('meta[name="viewport"]')),
+            language: document.documentElement.lang,
+            h1Count: document.querySelectorAll('h1').length,
+            mainCount: document.querySelectorAll('main').length,
+            headingSkip,
+            duplicateIdCount: new Set(duplicateIds).size,
+            unlabeledLinks,
+            skipTarget: skipLink?.getAttribute('href') ?? '',
+            mainTargetExists: Boolean(document.querySelector('main#main-content')),
+            innerWidth: window.innerWidth,
+            scrollWidth: document.documentElement.scrollWidth,
+            bodyScrollWidth: document.body.scrollWidth
+          });
+        })()`,
         returnByValue: true,
       },
       sessionId,
@@ -238,13 +259,29 @@ try {
     const metrics = JSON.parse(result.value);
     const overflow = Math.max(metrics.scrollWidth, metrics.bodyScrollWidth) > metrics.innerWidth + 1;
     const validStructure = metrics.h1Count === 1 && metrics.mainCount === 1;
+    const validMetadata = Boolean(
+      metrics.title &&
+      metrics.description &&
+      metrics.canonical &&
+      metrics.viewportMeta &&
+      metrics.language.toLowerCase().startsWith('en')
+    );
+    const validNavigation = Boolean(
+      metrics.skipTarget === '#main-content' &&
+      metrics.mainTargetExists &&
+      metrics.unlabeledLinks === 0
+    );
+    const validDocument = !metrics.headingSkip && metrics.duplicateIdCount === 0;
     const label = `${testCase.route} at ${testCase.width}px`;
     console.log(
-      `${overflow || !validStructure ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
+      `${overflow || !validStructure || !validMetadata || !validNavigation || !validDocument ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
     );
 
     if (overflow) failures.push(`${label} overflows horizontally.`);
     if (!validStructure) failures.push(`${label} has invalid heading or main structure.`);
+    if (!validMetadata) failures.push(`${label} is missing required title, description, canonical, viewport, or language metadata.`);
+    if (!validNavigation) failures.push(`${label} has an invalid skip target or an unlabeled link.`);
+    if (!validDocument) failures.push(`${label} has a skipped heading level or duplicate id.`);
 
     if (testCase.screenshot) {
       const { cssContentSize } = await send('Page.getLayoutMetrics', {}, sessionId);
