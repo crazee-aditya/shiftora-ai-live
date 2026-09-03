@@ -45,6 +45,7 @@ The client retains every decision right reserved to it by law, regulation, fiduc
 
 ## Language controls
 
+- Use American English in public copy, except where an official name or quoted source requires otherwise.
 - Use **firm** once to name the institution.
 - Use **mandate** for a consequential engagement held intact across boundaries.
 - Use **systems** to include organizational, operating, financial, informational, and technical arrangements—not software alone.

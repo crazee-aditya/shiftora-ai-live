@@ -36,7 +36,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Reallocate capital around a chosen course',
         description:
-          'Carry the chosen course into the allocation of capital, risk, and operating attention, and into the information by which those allocations are governed.',
+          'Carry the chosen course into how capital, risk, and management attention are allocated—and into the information and controls used to govern those choices.',
       },
     ],
   },
@@ -57,7 +57,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Bring a transformation back under institutional direction',
         description:
-          'Establish why a major programme, restructuring, or technical initiative has not altered the institution as intended; then reorder and rebuild the work.',
+          'Determine why a major program, restructuring, or technical initiative has not altered the institution as intended; then establish what must stop, be reordered, or be rebuilt.',
       },
     ],
   },
@@ -78,7 +78,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Make fragmented data answer to a common decision',
         description:
-          'Build the data architecture that preserves meaning, provenance, permissions, and quality as information moves across the institution and grows in scale.',
+          'Establish the shared information required for a common decision, then build the data architecture that preserves its meaning, provenance, permissions, and quality as its volume and use grow across the institution.',
       },
       {
         title: 'Place models under operational authority',
@@ -94,7 +94,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Determine what the institution must control',
         description:
-          'Establish the boundary between what the institution may buy, share, or delegate and what must remain under its direct control because of security, jurisdiction, continuity, or strategic dependence.',
+          "With the institution's accountable authorities, establish the boundary between what may be bought, shared, or delegated and what must remain under direct control because of security, jurisdiction, continuity, or strategic dependence.",
       },
       {
         title: 'Keep critical knowledge under institutional control',

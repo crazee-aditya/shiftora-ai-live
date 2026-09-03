@@ -27,6 +27,7 @@ technical services. Preserve that distinction in every change.
 
 ## Language
 
+- Use American English in public copy, except for official names and quotations.
 - Begin from institutional stakes and governing ideas, not from a list of currently known services.
 - Governments and enterprises are institutional arenas, never an audience suffix such as “a firm
   for governments and companies.”
@@ -52,7 +53,8 @@ technical services. Preserve that distinction in every change.
 
 - Run `npm run verify` after every content, route, metadata, or layout change.
 - Run `npm run verify:visual` after any copy-length, typography, spacing, or responsive-layout change;
-  inspect the generated 390px and 1440px screenshots rather than trusting fit metrics alone.
+  inspect the generated 390px and 1440px screenshots rather than trusting fit metrics alone. The
+  check must continue to cover both sides of every responsive boundary.
 - Run `npm run verify:release` before production deployment. It must not pass until the licensed
   Söhne and Alliance No. 2 assets are installed and declared.
 - Keep the page copy, metadata, `llms.txt`, social assets, and sitemap aligned.

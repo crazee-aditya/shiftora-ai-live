@@ -68,11 +68,14 @@ const checks = [
   [mandates, 'under the authority of the institution responsible', 'public authority boundary'],
   [mandates, 'Reallocate capital around a chosen course', 'capital mandate'],
   [mandates, 'Build the organization a new strategy requires', 'organization mandate'],
+  [mandates, 'what must stop, be reordered, or be rebuilt', 'transformation termination test'],
   [mandates, 'Build the software through which critical work will run', 'software mandate'],
   [mandates, 'Make fragmented data answer to a common decision', 'data mandate'],
+  [mandates, 'Establish the shared information required for a common decision', 'decision-led data mandate'],
   [mandates, 'Place models under operational authority', 'models mandate'],
   [mandates, 'Establish the authority and bounds under which models may enter live work', 'model authority boundary'],
   [mandates, 'Keep critical knowledge under institutional control', 'sovereign mandate'],
+  [mandates, 'With the institution&#x27;s accountable authorities', 'control-boundary authority'],
   [mandates, 'Discuss a mandate.', 'contact action'],
   [notFound, '<title>Page not found — Shiftora</title>', '404 title'],
 ];
@@ -103,6 +106,7 @@ for (const [label, pattern] of [
   ['generic promotional language', /\b(?:game[- ]changing|cutting[- ]edge|revolution(?:ary|ize|izing)|future[- ]proof|next[- ]generation|transformative solutions?|AI[- ]powered solutions?|bespoke digital solutions?|transformation journeys?|end[- ]to[- ]end transformation)\b/i],
   ['low-status audience suffix', /\b(?:firm|company|consultancy|agency)\s+for\s+(?:governments?|companies|enterprises|organizations?)\b/i],
   ['source-company signature language', /\b(?:machinery of execution|foundational layer|build to the mission|software that works|ontology of the enterprise|where new capability is required, we build it)\b/i],
+  ['non-American house style', /\b(?:programmes?|organisations?|prioritis(?:e|ed|es|ing)|labour|behaviours?|modelling|centres?)\b/i],
   ['AI-copy cliché', /\b(?:unlock|empower|leverage|harness|seamless|holistic|ever[- ]evolving|drive innovation)\b/i],
 ]) {
   if (pattern.test(`${home}\n${mandates}`)) {
