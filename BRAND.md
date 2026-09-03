@@ -39,6 +39,12 @@ Work belongs within Shiftora only when all four statements are true:
 
 Routine staff augmentation, undifferentiated software delivery, generic strategy reports, product resale, isolated process improvement, and ordinary managed services do not qualify by themselves.
 
+Apply three counterfactual screens before admitting the work:
+
+1. **Integrity:** If Shiftora delivered only the requested artifact or labor, would the governing judgment still fragment before it became operational? If no, the work is ordinary delivery.
+2. **Consequence:** Would failure materially alter a public duty, strategic position, allocation of authority, capital or risk, or control of a critical capability—not merely a deadline, budget, or departmental KPI? If no, consequence has been inflated.
+3. **Agency:** At completion, can the institution understand, direct, change, replace, and where relevant exit the capability without Shiftora's permission or inaccessible knowledge? If no, the capability is not governable.
+
 ## Reserved authority
 
 The client retains every decision right reserved to it by law, regulation, fiduciary duty, professional license, or command. Shiftora may advise, design, build, deploy, and support operation; the category does not authorize the firm to assume the powers of cabinets, public officials, boards, clinicians, commanders, auditors, or other accountable professionals.
