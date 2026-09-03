@@ -1,10 +1,12 @@
 {
-  "name": "shiftora-landing",
+  "name": "shiftora-site",
   "version": "0.1.0",
-  "description": "",
+  "description": "The two-page institutional site for Shiftora.",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "verify": "npm run build && node scripts/verify-rebrand.mjs",
+    "verify:release": "npm run verify && node scripts/verify-fonts.mjs",
     "preview": "vite preview",
     "start": "serve dist -l ${PORT:-3000}"
   },
@@ -16,24 +18,14 @@
     "node": ">=22 <23"
   },
   "dependencies": {
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
-    "framer-motion": "^11.18.2",
-    "lucide-react": "^1.17.0",
-    "marked": "^18.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "serve": "^14.2.6",
-    "shaders": "^2.5.130",
-    "three": "^0.171.0"
+    "serve": "^14.2.6"
   },
   "devDependencies": {
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^6.0.2",
-    "autoprefixer": "^10.5.0",
-    "postcss": "^8.5.15",
-    "tailwindcss": "3.4",
     "typescript": "^6.0.3",
     "vite": "^8.0.16"
   },

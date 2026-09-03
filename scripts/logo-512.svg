@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="32" fill="#eeece5"/>
+  <path d="M50 49H462M50 463H462" stroke="#11110f" stroke-opacity="0.25"/>
+  <text x="244" y="379" text-anchor="middle" font-family="Alliance No. 2, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="390" font-weight="700" letter-spacing="-28" fill="#11110f">s</text>
+</svg>

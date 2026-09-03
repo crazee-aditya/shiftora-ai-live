@@ -1,7 +1,5 @@
-import Careers from './components/Careers';
-import HomePage from './pages/HomePage';
-import BlogIndex from './pages/BlogIndex';
-import BlogPost from './pages/BlogPost';
+import DescriptionPage from './pages/DescriptionPage';
+import MandatesPage from './pages/MandatesPage';
 import NotFound from './pages/NotFound';
 
 /**
@@ -20,11 +18,7 @@ function resolvePath(route?: string): string {
 export default function App({ route }: { route?: string }) {
   const path = resolvePath(route);
 
-  if (path === '/') return <HomePage />;
-  if (path === '/careers') return <Careers />;
-  if (path === '/blog') return <BlogIndex />;
-  if (path.startsWith('/blog/')) {
-    return <BlogPost slug={path.slice('/blog/'.length)} />;
-  }
+  if (path === '/') return <DescriptionPage />;
+  if (path === '/mandates') return <MandatesPage />;
   return <NotFound />;
 }

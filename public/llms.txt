@@ -1,27 +1,17 @@
 # Shiftora
 
-> Shiftora builds custom enterprise AI systems, software, and intelligent automations that make large enterprises AI-native. Senior-led engineering, delivered to production in weeks, not quarters. Operating from Dubai and Mumbai, serving enterprises worldwide.
+> Shiftora is an integrated strategy and systems firm. It works where institutional direction and operating reality diverge, from governing judgment through the organization and systems required to carry it out.
 
-Shiftora is a B2B custom AI engineering firm. We audit how work moves through an organization, rebuild core workflows as production AI systems, and operate them as a long-term partner. Capabilities span predictive lead scoring and sales intelligence, custom CRMs and high-volume outbound, LLM applications (RAG and agents), predictive forecasting and ML, computer vision, document automation, and full-platform rebuilds.
+Shiftora's work may take institutional, organizational, financial, operational, or technical form. Where new capability is required, Shiftora builds it. The governing standard is sovereign capacity: the institution remains free to alter course while retaining authority over the systems, data, models, and knowledge on which action depends.
 
 ## Pages
 
-- [Home](https://www.shiftora.ai/): Positioning, selected (anonymized) client engagements, how we work, and contact.
-- [Careers](https://www.shiftora.ai/careers): Open engineering roles in Mumbai and Dubai.
-- [Blog](https://www.shiftora.ai/blog): Articles on building AI-native enterprises, custom AI systems, and intelligent automation.
-
-## Articles
-
-- [What does it actually mean for an enterprise to become AI-native?](https://www.shiftora.ai/blog/what-is-an-ai-native-enterprise)
-- [How long does it really take to ship a custom enterprise AI system?](https://www.shiftora.ai/blog/how-long-to-ship-a-custom-enterprise-ai-system)
-- [What does a custom enterprise AI engagement cost, and why there is no price list?](https://www.shiftora.ai/blog/what-does-a-custom-enterprise-ai-engagement-cost)
-- [Custom AI versus off-the-shelf tools: when is a tailored build the right call?](https://www.shiftora.ai/blog/custom-ai-vs-off-the-shelf-tools)
-- [How a predictive CRM lets a sales team operate like one several times its size](https://www.shiftora.ai/blog/predictive-crm-sales-team-operating-larger)
-- [How do you rebuild a core platform with AI without breaking what already works?](https://www.shiftora.ai/blog/rebuilding-a-core-platform-without-breaking-it)
+- [The firm](https://www.shiftora.ai/): The institutional thesis and the role Shiftora assumes.
+- [Mandates](https://www.shiftora.ai/mandates): The institutional conditions that may give rise to a Shiftora mandate.
 
 ## Contact
 
-- Email: info@shiftora.ai / hello@shiftora.ai
-- Phone: +971 55 606 5297
+- Email: info@shiftora.ai
 - Founder: Shreshth Daga
-- Locations: Dubai (UAE), Mumbai (India)
+- Based in: Dubai and Mumbai
+- Available for engagements worldwide
