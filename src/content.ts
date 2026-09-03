@@ -83,7 +83,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Place models under operational authority',
         description:
-          'Select or build models for live work, defining who governs their data, which decisions or actions they may inform or execute, when human review is required, and how performance will be evaluated and monitored.',
+          'Select or build models for live work, defining who governs their data, which decisions they may inform, which bounded actions they may execute, where accountable human judgment must remain, and how performance will be evaluated and monitored.',
       },
     ],
   },
@@ -99,7 +99,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Keep critical knowledge under institutional control',
         description:
-          'Where sensitive knowledge cannot cross a security or jurisdictional boundary, build the models and infrastructure required to use it without transferring authority over access, operation, or change.',
+          'Where sensitive knowledge must remain inside a defined security or jurisdictional boundary, build the models and infrastructure required to use it while retaining institutional authority over access, operation, and change.',
       },
     ],
   },
