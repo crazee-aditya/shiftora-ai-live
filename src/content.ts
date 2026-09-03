@@ -55,7 +55,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
           'Reconfigure how decisions, resources, and work move through the institution when the present model continues to reproduce an earlier strategy.',
       },
       {
-        title: 'Recover a stalled transformation',
+        title: 'Bring a transformation back under institutional direction',
         description:
           'Form an independent view of why a major programme, restructuring, or technical initiative has failed to alter operating reality; then resequence and rebuild the work.',
       },

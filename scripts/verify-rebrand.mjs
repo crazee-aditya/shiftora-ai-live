@@ -86,6 +86,7 @@ for (const retiredPhrase of [
   'make large enterprises AI-native',
   'Representative Shiftora mandates',
   'Fields of action',
+  'Recover a stalled transformation',
 ]) {
   if (home.includes(retiredPhrase) || mandates.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
