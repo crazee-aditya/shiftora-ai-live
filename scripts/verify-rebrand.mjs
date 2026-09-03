@@ -111,7 +111,7 @@ assertInOrder(
     'Every institution is governed twice:',
     'In governments and enterprises alike,',
     'Shiftora works where the two diverge.',
-    'Where new capability is required, we build it.',
+    'When the necessary capability does not yet exist, we build it.',
     'This is sovereign capacity:',
   ],
   'description argument'
