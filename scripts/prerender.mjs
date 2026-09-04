@@ -42,13 +42,13 @@ for (const route of routes) {
 writeFileSync(join(DIST, '404.html'), buildPage('/404'));
 console.log('prerendered /404 -> 404.html');
 
-// sitemap.xml with accurate per-URL lastmod
-const today = new Date().toISOString().slice(0, 10);
-const entries = sitemapEntries(today);
+// Omit lastmod until a real per-route content revision is available. A build
+// date would incorrectly tell crawlers that unchanged pages were modified.
+const entries = sitemapEntries();
 const urls = entries
   .map(
     (e) =>
-      `  <url>\n    <loc>${e.loc}</loc>\n    <lastmod>${e.lastmod}</lastmod>\n    <priority>${e.priority}</priority>\n  </url>`
+      `  <url>\n    <loc>${e.loc}</loc>\n    <priority>${e.priority}</priority>\n  </url>`
   )
   .join('\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;

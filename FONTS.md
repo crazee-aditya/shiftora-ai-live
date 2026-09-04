@@ -18,6 +18,10 @@ Place the files in `public/fonts/`, add the matching `@font-face` declarations a
 `src/index.css`, and use `font-display: swap`. Preserve the existing family names in the CSS:
 `Alliance No. 2` and `Söhne`.
 
+Files under `/fonts/` use a one-day revalidation policy rather than year-long immutable caching,
+because the release process does not require content-hashed font filenames. Do not change the policy
+to `immutable` unless filename versioning is enforced at the same time.
+
 Required web weights are Söhne 400/500 and Alliance No. 2 400/500/700. A licensed variable file
 may cover the range. Convert all lettering in `scripts/og-image.svg`, `scripts/logo-512.svg`, and
 `public/favicon.svg` to paths using the licensed desktop faces, then regenerate the PNG assets.
@@ -34,5 +38,13 @@ blessed merely by recording whatever file happens to exist.
 Do not substitute similarly named downloads from unofficial font sites.
 
 Run `npm run verify:release` after installing the fonts. That check intentionally fails while the
-licensed faces are absent, if a declared WOFF2 file is missing, or if the outlined-source/raster
-digest record is absent or stale.
+licensed faces are absent, if a face omits `font-display: swap`, if a declared WOFF2 file is missing,
+if any required family-and-weight combination does not load in the browser, or if the
+outlined-source/raster digest record is absent or stale. The browser check explicitly loads Söhne
+400/500 and Alliance No. 2 400/500/700 before evaluating the 22 route-and-viewport cases; it does
+not infer success merely because a fallback rendered the page. It also verifies the computed family
+and weight on representative display, paragraph, label, and wordmark elements.
+
+The automated checks cannot establish ownership of a font licence. Retain the foundry invoices or
+agreements that cover web use and desktop conversion to outlines, and record a human licence sign-off
+with the release evidence.

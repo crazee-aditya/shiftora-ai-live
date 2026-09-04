@@ -21,12 +21,13 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 1. Choose Page-one Option A, B, or C in the rebrand copy system.
 2. If the choice changes from A, update visible copy, metadata, social-image wording, machine-readable copy, and verification expectations together.
 3. License Söhne Buch/Kräftig and Alliance No. 2 Regular/Medium/Bold for web use.
-4. Add the WOFF2 files and `@font-face` declarations described in `FONTS.md`.
-5. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, then run `npm run brand:build-assets` to generate the PNGs deterministically and record their provenance.
-6. Run `npm run verify:release` and `npm run verify:visual`; the release check includes the full dependency audit.
-7. Inspect the licensed-font screenshots at phone, tablet, and desktop widths.
-8. Confirm the public meaning of the Dubai and Mumbai locations and send a real test message through `info@shiftora.ai`.
-9. Push the rebrand branch, review the remote diff and deployment preview, then merge deliberately.
+4. Retain the foundry licence evidence and record manual approval for web use and desktop-generated outlines; the automated gate cannot prove legal ownership.
+5. Add the WOFF2 files and `@font-face` declarations described in `FONTS.md`.
+6. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, then run `npm run brand:build-assets` to generate the PNGs deterministically and record their provenance.
+7. Run `npm run verify:release`; it includes the full dependency audit and the 22-case visual suite in strict licensed-font mode.
+8. Inspect the licensed-font screenshots at phone, tablet, and desktop widths, including the 600/601px, 1100/1101px, and 1279/1280px transitions.
+9. Confirm the public meaning of the Dubai and Mumbai locations and send a real test message through `info@shiftora.ai`.
+10. Push the rebrand branch, review the remote diff and deployment preview, then merge deliberately.
 
 ## Verification already passing
 
@@ -37,8 +38,13 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 - Production responses for `/`, `/mandates`, and unknown routes.
 - Branded `404` with a real `404` status and `noindex, follow`.
 - Static-asset and HTML cache policies plus configured security headers.
-- Browser structure, overflow, hydration, and console health across 320–1440px.
-- Current full build-toolchain and production dependency audits: zero known vulnerabilities (registry network permitting).
+- HSTS and the common security policy on public pages, redirects, retired routes, static assets, and malformed-request responses.
+- HSTS is deliberately scoped to the serving host (`max-age=31536000`) without `includeSubDomains` or preload until every Shiftora subdomain is confirmed permanently HTTPS-capable.
+- Revalidating cache policy for stable-name future font assets; immutable caching remains limited to hashed build assets.
+- Structured data keeps physical locations separate from service territory; no `areaServed` claim is inferred from Dubai or Mumbai.
+- Sitemap modification dates are omitted until true per-route revision dates can be supplied.
+- Browser structure, overflow, hydration, error logging, minimum target size, type-scale continuity, and breakpoint stability across 22 route-and-viewport combinations from 320–1440px.
+- Dependency audits fail the release closed when the advisory registry is unavailable. A fresh successful result is required immediately before release; the most recent retry timed out and is not represented as current evidence.
 - The previous `/careers`, `/blog`, and six article routes have an explicit `410 Gone` policy; they are not redirected to an unrelated successor.
 - Railway runs `npm run verify:release`, so fallback typography or stale/unrecorded brand assets cannot reach a deployable build through the repository configuration.
 
@@ -48,6 +54,9 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 
 - missing licensed Söhne declarations;
 - missing licensed Alliance No. 2 declarations;
-- no declared licensed WOFF2 assets; or
-- text remaining in the social card, organization logo, or favicon SVG sources.
+- a required face without `font-display: swap`;
+- no declared licensed WOFF2 assets;
+- a required face that does not actually load in the browser;
+- a display, body, label, or wordmark element using the wrong computed family or weight;
+- text remaining in the social card, organization logo, or favicon SVG sources; or
 - an absent or stale `brand-assets.json` digest record for the outlined sources and regenerated PNGs.

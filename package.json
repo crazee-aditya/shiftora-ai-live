@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
-    "verify": "npm run build && node scripts/verify-rebrand.mjs && node scripts/verify-production-server.mjs",
+    "verify": "npm run build && node scripts/verify-rebrand.mjs && node scripts/test-font-policy.mjs && node scripts/verify-production-server.mjs",
     "verify:visual": "npm run build && node scripts/visual-check.mjs",
-    "verify:release": "npm run verify && npm run audit:all && node scripts/verify-fonts.mjs",
+    "verify:visual:release": "SHIFTORA_REQUIRE_LICENSED_FONTS=1 npm run verify:visual",
+    "verify:release": "npm run verify && npm run audit:all && node scripts/verify-fonts.mjs && npm run verify:visual:release",
     "brand:build-assets": "node scripts/build-brand-assets.mjs",
     "audit:all": "npm audit --audit-level=high",
     "audit:prod": "npm audit --omit=dev --audit-level=high",

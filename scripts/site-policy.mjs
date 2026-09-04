@@ -11,3 +11,14 @@ export const RETIRED_PATHS = Object.freeze([
 
 export const SITE_CSP =
   "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests";
+
+export const SITE_HSTS = 'max-age=31536000';
+
+export const COMMON_SECURITY_HEADERS = Object.freeze({
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Content-Security-Policy': SITE_CSP,
+  'X-Frame-Options': 'DENY',
+  'Strict-Transport-Security': SITE_HSTS,
+});

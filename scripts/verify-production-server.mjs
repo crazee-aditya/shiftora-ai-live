@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
-import { RETIRED_PATHS, SITE_CSP } from './site-policy.mjs';
+import { resolve } from 'node:path';
+import { RETIRED_PATHS, SITE_CSP, SITE_HSTS } from './site-policy.mjs';
 
 async function reservePort() {
   const probe = createServer();
@@ -44,6 +46,18 @@ function assertExactHeader(response, name, expected) {
   }
 }
 
+function assertCommonHeaders(response) {
+  assertHeader(response, 'x-content-type-options', 'nosniff');
+  assertHeader(response, 'referrer-policy', 'strict-origin-when-cross-origin');
+  assertHeader(response, 'permissions-policy', 'camera=(), microphone=(), geolocation=()');
+  assertExactHeader(response, 'content-security-policy', SITE_CSP);
+  assertHeader(response, 'x-frame-options', 'DENY');
+  assertExactHeader(response, 'strict-transport-security', SITE_HSTS);
+}
+
+const fontFixturePath = resolve('dist/fonts/policy-test.woff2');
+await mkdir(resolve('dist/fonts'), { recursive: true });
+await writeFile(fontFixturePath, new Uint8Array());
 const port = await reservePort();
 const baseUrl = `http://127.0.0.1:${port}`;
 const child = spawn(process.execPath, ['scripts/start-server.mjs'], {
@@ -80,11 +94,7 @@ try {
     }
     if (!text.includes(marker)) throw new Error(`${label} response is missing “${marker}”.`);
     assertHeader(response, 'cache-control', 'max-age=0, must-revalidate');
-    assertHeader(response, 'x-content-type-options', 'nosniff');
-    assertHeader(response, 'referrer-policy', 'strict-origin-when-cross-origin');
-    assertHeader(response, 'permissions-policy', 'camera=(), microphone=(), geolocation=()');
-    assertExactHeader(response, 'content-security-policy', SITE_CSP);
-    assertHeader(response, 'x-frame-options', 'DENY');
+    assertCommonHeaders(response);
   }
 
   for (const [path, response] of retiredResponses) {
@@ -98,14 +108,14 @@ try {
     if (!text.includes('<meta name="robots" content="noindex, follow" />')) {
       throw new Error(`retired route ${path} is missing the noindex directive.`);
     }
-    assertExactHeader(response, 'content-security-policy', SITE_CSP);
-    assertHeader(response, 'x-frame-options', 'DENY');
+    assertCommonHeaders(response);
   }
 
   const retiredTrailingSlash = await fetch(`${baseUrl}/careers/`, { redirect: 'manual' });
   if (retiredTrailingSlash.status !== 410) {
     throw new Error(`retired trailing-slash route returned ${retiredTrailingSlash.status}; expected 410.`);
   }
+  assertCommonHeaders(retiredTrailingSlash);
 
   const retiredHead = await fetch(`${baseUrl}/blog`, { method: 'HEAD' });
   if (retiredHead.status !== 410 || (await retiredHead.text()) !== '') {
@@ -121,6 +131,29 @@ try {
   const asset = await fetch(`${baseUrl}${assetPath}`);
   if (!asset.ok) throw new Error(`Built asset returned ${asset.status}: ${assetPath}`);
   assertHeader(asset, 'cache-control', 'max-age=31536000, immutable');
+  assertCommonHeaders(asset);
+
+  const font = await fetch(`${baseUrl}/fonts/policy-test.woff2`);
+  if (!font.ok) throw new Error(`Font-policy fixture returned ${font.status}.`);
+  assertExactHeader(font, 'cache-control', 'public, max-age=86400, must-revalidate');
+  assertCommonHeaders(font);
+
+  const redirect = await fetch(`${baseUrl}/mandates/`, { redirect: 'manual' });
+  if (redirect.status !== 301) {
+    throw new Error(`canonical trailing-slash redirect returned ${redirect.status}; expected 301.`);
+  }
+  assertCommonHeaders(redirect);
+
+  const malformed = await fetch(`${baseUrl}/%E0%A4%A`, { redirect: 'manual' });
+  if (malformed.status !== 400 || (await malformed.text()) !== 'Bad Request') {
+    throw new Error('Malformed URI must return the fixed 400 response.');
+  }
+  assertExactHeader(malformed, 'content-type', 'text/plain; charset=utf-8');
+  assertExactHeader(malformed, 'cache-control', 'no-store');
+  assertCommonHeaders(malformed);
+  if (/URIError|URI malformed/.test(serverError)) {
+    throw new Error('Malformed URI emitted an avoidable stack trace.');
+  }
 
   console.log('Verified production routing, explicit retired routes, cache policy, and security headers.');
 } finally {
@@ -139,4 +172,5 @@ try {
   if (child.exitCode && child.exitCode !== 143 && serverError.trim()) {
     console.error(serverError.trim());
   }
+  await rm(fontFixturePath, { force: true });
 }

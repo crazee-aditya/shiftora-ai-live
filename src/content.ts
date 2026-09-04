@@ -29,7 +29,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Carry a national priority into operation',
         description:
-          'Under continuing public authority, take an adopted objective through the funding, procurement, and institutions on which delivery depends.',
+          'Under continuing public authority, advise the bodies responsible for funding, procurement, and delivery, then undertake the work they entrust to us in carrying the adopted objective into operation.',
       },
       {
         title: 'Reposition an enterprise for its next phase',
@@ -60,7 +60,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Build the organization a new strategy requires',
         description:
-          'With those who hold the relevant authority, reshape leadership and organization so an adopted strategy can take effect.',
+          'Advise those who hold the relevant authority on leadership and organization, then carry into effect the organizational arrangements they approve for the adopted strategy.',
       },
     ],
   },
@@ -81,7 +81,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Establish the information a consequential mandate requires',
         description:
-          'When necessary data is divided across systems or jurisdictions, establish the common definitions, stewardship, and architecture by which the institution can rely on it.',
+          "When necessary data is divided across systems or jurisdictions, advise the relevant authorities on common definitions and stewardship. Build the architecture they approve for the institution's specified purposes.",
       },
     ],
   },

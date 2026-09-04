@@ -28,28 +28,35 @@ npm run verify
 This builds the site and verifies the public copy, route metadata, structured data, sitemap, heading
 structure, retired-positioning exclusions, and image dimensions. It then launches the production
 server on an isolated local port and checks route status, the branded 404, cache behavior, and the
-configured security headers. It also verifies the explicit `410 Gone` policy for the retired careers,
-blog-index, and six legacy article URLs.
+configured security headers, including HSTS on success, redirects, retirements, and malformed-request
+responses. It also verifies the explicit `410 Gone` policy for the retired careers, blog-index, and
+six legacy article URLs. Sitemap modification dates remain omitted until true per-route revision
+dates are available.
 
 ```sh
 npm run verify:visual
 ```
 
-The visual check opens the production build from 320 through 1440 pixels, including both sides of
-the 600px and 1100px layout boundaries and the branded 404 at mobile and desktop sizes. It verifies
-page structure, horizontal fit, metadata, indexing controls, hydration, and browser-console health,
-plus 44px minimum mobile link targets, then saves full-page review images to a temporary directory. Set
-`SHIFTORA_CHROME_PATH` if Chrome is installed somewhere other than the standard macOS location.
+The visual check opens the production build in 22 route-and-viewport combinations from 320 through
+1440 pixels, including both sides of the 600px, 1100px, and 1279/1280px layout transitions and the
+branded 404 at mobile and desktop sizes. It verifies page structure, horizontal fit, metadata,
+indexing controls, hydration, browser errors, minimum mobile target sizes, heading headroom, and
+continuity of the responsive type scale, then saves full-page review images to a temporary directory.
+Set `SHIFTORA_CHROME_PATH` if Chrome is installed somewhere other than the standard macOS location.
 
 ```sh
 npm run verify:release
 ```
 
 The release check additionally runs the full dependency audit and requires properly licensed,
-self-hosted Söhne and Alliance No. 2 webfonts at every weight used by the design. It also requires
-outlined brand lettering plus deterministic social/organization PNGs and a provenance record binding
-the source, output, generator, and renderer version. It intentionally fails until those assets are added. See
-[FONTS.md](./FONTS.md).
+self-hosted Söhne and Alliance No. 2 webfonts at every weight used by the design. Each face must use
+`font-display: swap`, and the release-mode visual suite force-loads every required face and verifies
+the computed family and weight of representative display, body, label, and wordmark elements so
+fallback or selector regressions cannot pass. The check also requires outlined brand lettering plus
+deterministic social/organization PNGs and a provenance record binding the source, output, generator,
+and renderer version. Licensing itself requires retained human evidence; the automated gate proves
+technical integrity, not ownership of rights. It intentionally fails until those assets are added.
+See [FONTS.md](./FONTS.md).
 
 Do not deploy this branch while `npm run verify:release` is failing.
 

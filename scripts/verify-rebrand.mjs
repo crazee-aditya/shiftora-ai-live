@@ -67,9 +67,12 @@ const checks = [
   [mandates, 'A Shiftora mandate begins where an institution&#x27;s direction or responsibility exceeds', 'mandate test'],
   [mandates, 'Carry a national priority into operation', 'public mandate'],
   [mandates, 'Under continuing public authority', 'public authority boundary'],
+  [mandates, 'advise the bodies responsible for funding, procurement, and delivery', 'public-process advisory boundary'],
+  [mandates, 'undertake the work they entrust to us', 'public implementation authority'],
   [mandates, 'Reallocate capital around a chosen course', 'capital mandate'],
   [mandates, 'Build the organization a new strategy requires', 'organization mandate'],
-  [mandates, 'With those who hold the relevant authority, reshape leadership and organization', 'organizational mandate'],
+  [mandates, 'Advise those who hold the relevant authority on leadership and organization', 'leadership advisory boundary'],
+  [mandates, 'carry into effect the organizational arrangements they approve', 'organizational implementation authority'],
   [mandates, 'give those with authority the basis to stop it, reorder it, or rebuild it', 'transformation termination test'],
   [mandates, 'advise the relevant authority on the function required', 'new-responsibility authority'],
   [mandates, 'then build its operating capacity', 'material capability construction'],
@@ -78,6 +81,8 @@ const checks = [
   [mandates, 'cannot serve the function as its obligations and operating conditions demand', 'software authority boundary'],
   [mandates, 'Establish the information a consequential mandate requires', 'data mandate'],
   [mandates, 'When necessary data is divided across systems or jurisdictions', 'mandate-led data work'],
+  [mandates, 'advise the relevant authorities on common definitions and stewardship', 'information-governance authority'],
+  [mandates, 'Build the architecture they approve', 'information-architecture authority'],
   [mandates, 'Set the terms under which models may act', 'models mandate'],
   [mandates, 'advise the responsible authorities on which judgments must remain human', 'model authority boundary'],
   [mandates, 'When strategic dependence becomes unacceptable', 'sovereign-dependence condition'],
@@ -199,6 +204,13 @@ if (
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
 if (sitemapUrls !== 2 || !sitemap.includes('/mandates</loc>')) {
   throw new Error('Verification failed: sitemap must contain exactly the two public pages.');
+}
+if (sitemap.includes('<lastmod>')) {
+  throw new Error('Verification failed: sitemap lastmod must be omitted until true per-route revision dates are available.');
+}
+
+if (home.includes('"areaServed"') || mandates.includes('"areaServed"')) {
+  throw new Error('Verification failed: office locations must not be inferred as an areaServed claim.');
 }
 
 const ogSize = readPngSize('dist/og-image.png');

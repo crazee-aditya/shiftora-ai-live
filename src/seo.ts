@@ -71,10 +71,6 @@ function organizationGraph(): object[] {
       slogan: 'Every institution is governed twice.',
       email: SITE.email,
       founder: { '@id': `${SITE.origin}/#shreshth-daga` },
-      areaServed: [
-        { '@type': 'Country', name: 'United Arab Emirates' },
-        { '@type': 'Country', name: 'India' },
-      ],
       address: [
         { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
         { '@type': 'PostalAddress', addressLocality: 'Mumbai', addressCountry: 'IN' },
@@ -214,11 +210,9 @@ export function allRoutes(): string[] {
   return ['/', '/mandates'];
 }
 
-export function sitemapEntries(
-  buildDate: string
-): Array<{ loc: string; lastmod: string; priority: string }> {
+export function sitemapEntries(): Array<{ loc: string; priority: string }> {
   return [
-    { loc: `${SITE.origin}/`, lastmod: buildDate, priority: '1.0' },
-    { loc: `${SITE.origin}/mandates`, lastmod: buildDate, priority: '0.9' },
+    { loc: `${SITE.origin}/`, priority: '1.0' },
+    { loc: `${SITE.origin}/mandates`, priority: '0.9' },
   ];
 }

@@ -12,6 +12,34 @@ const distRoot = join(projectRoot, 'dist');
 const chromePath =
   process.env.SHIFTORA_CHROME_PATH ??
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const requireLicensedFonts = process.env.SHIFTORA_REQUIRE_LICENSED_FONTS === '1';
+const requiredFonts = [
+  { family: 'Söhne', weight: 400 },
+  { family: 'Söhne', weight: 500 },
+  { family: 'Alliance No. 2', weight: 400 },
+  { family: 'Alliance No. 2', weight: 500 },
+  { family: 'Alliance No. 2', weight: 700 },
+];
+const fontRolesByRoute = {
+  '/': [
+    { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
+    { selector: '.description-copy', family: 'Söhne', weight: 400 },
+    { selector: '.page-kicker', family: 'Söhne', weight: 500 },
+  ],
+  '/mandates': [
+    { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
+    { selector: '.mandates-hero h1', family: 'Alliance No. 2', weight: 500 },
+    { selector: '.mandate-item h3', family: 'Alliance No. 2', weight: 400 },
+    { selector: '.mandates-close p', family: 'Alliance No. 2', weight: 400 },
+    { selector: '.mandate-item p', family: 'Söhne', weight: 400 },
+    { selector: '.page-kicker', family: 'Söhne', weight: 500 },
+  ],
+  '/404': [
+    { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
+    { selector: '.not-found-page__main h1', family: 'Alliance No. 2', weight: 500 },
+    { selector: '.page-kicker', family: 'Söhne', weight: 500 },
+  ],
+};
 
 await access(join(distRoot, 'index.html'));
 await access(chromePath);
@@ -151,6 +179,11 @@ socket.addEventListener('message', ({ data }) => {
     runtimeFailures.add(`${currentCase}: console.error ${description}`);
   }
 
+  if (message.method === 'Log.entryAdded' && message.params?.entry?.level === 'error') {
+    const entry = message.params.entry;
+    runtimeFailures.add(`${currentCase}: browser error ${entry.text ?? 'unknown error'}`);
+  }
+
   for (let index = eventWaiters.length - 1; index >= 0; index -= 1) {
     const waiter = eventWaiters[index];
     if (waiter.method !== message.method || waiter.sessionId !== message.sessionId) continue;
@@ -183,12 +216,14 @@ const waitForEvent = (method, sessionId, timeoutMs = 12_000) =>
   });
 
 const failures = [];
+const measuredCases = new Map();
 
 try {
   const { targetId } = await send('Target.createTarget', { url: 'about:blank' });
   const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true });
   await send('Page.enable', {}, sessionId);
   await send('Runtime.enable', {}, sessionId);
+  await send('Log.enable', {}, sessionId);
   await send(
     'Emulation.setEmulatedMedia',
     { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] },
@@ -211,6 +246,10 @@ try {
     { route: '/mandates', width: 1100, height: 1000 },
     { route: '/', width: 1101, height: 1000 },
     { route: '/mandates', width: 1101, height: 1000 },
+    { route: '/', width: 1279, height: 1000 },
+    { route: '/mandates', width: 1279, height: 1000 },
+    { route: '/', width: 1280, height: 1000 },
+    { route: '/mandates', width: 1280, height: 1000 },
     { route: '/', width: 1440, height: 1000, screenshot: 'home-1440.png' },
     { route: '/mandates', width: 1440, height: 1000, screenshot: 'mandates-1440.png' },
     { route: '/404', width: 1440, height: 1000, expectNoIndex: true, screenshot: '404-1440.png' },
@@ -236,7 +275,11 @@ try {
     await loaded;
     await send(
       'Runtime.evaluate',
-      { expression: 'document.fonts.ready', awaitPromise: true, returnByValue: true },
+      {
+        expression: `Promise.allSettled(${JSON.stringify(requiredFonts)}.map(({ family, weight }) => document.fonts.load(\`${'${weight}'} 16px "${'${family}'}"\`))).then(() => document.fonts.ready)`,
+        awaitPromise: true,
+        returnByValue: true,
+      },
       sessionId,
     );
 
@@ -259,6 +302,46 @@ try {
           }).map((link) => link.textContent?.trim() || link.getAttribute('aria-label') || 'unlabeled');
           const headingSkip = headings.some((level, index) => index > 0 && level > headings[index - 1] + 1);
           const skipLink = document.querySelector('.skip-link');
+          const normalizedFamily = (value) => value.replace(/^['"]|['"]$/g, '');
+          const faceCoversWeight = (face, weight) => {
+            const bounds = String(face.weight).match(/\d+/g)?.map(Number) ?? [];
+            if (bounds.length === 0) return false;
+            return bounds.length === 1
+              ? bounds[0] === weight
+              : bounds[0] <= weight && bounds[bounds.length - 1] >= weight;
+          };
+          const requiredFonts = ${JSON.stringify(requiredFonts)};
+          const loadedFontFailures = requiredFonts.filter(({ family, weight }) => {
+            const matchingFaces = [...document.fonts].filter((face) =>
+              normalizedFamily(face.family) === family && faceCoversWeight(face, weight)
+            );
+            return !document.fonts.check(\`${'${weight}'} 16px "${'${family}'}"\`) ||
+              !matchingFaces.some((face) => face.status === 'loaded');
+          }).map(({ family, weight }) => \`${'${family}'} ${'${weight}'}\`);
+          const fontRoles = ${JSON.stringify(fontRolesByRoute[testCase.route] ?? [])};
+          const fontRoleFailures = fontRoles.flatMap(({ selector, family, weight }) => {
+            const element = document.querySelector(selector);
+            if (!element) return [\`${'${selector}'} is missing\`];
+            const style = getComputedStyle(element);
+            const computedFamily = normalizedFamily(style.fontFamily.split(',')[0].trim());
+            const computedWeight = Number(style.fontWeight);
+            return computedFamily === family && computedWeight === weight
+              ? []
+              : [\`${'${selector}'} uses ${'${computedFamily}'} ${'${computedWeight}'}; expected ${'${family}'} ${'${weight}'}\`];
+          });
+          const firstMandateTitle = document.querySelector('.mandate-item h3');
+          const firstMandateRect = firstMandateTitle?.getBoundingClientRect();
+          const mandatesHero = document.querySelector('.mandates-hero');
+          const mandatesHeroHeading = document.querySelector('.mandates-hero h1');
+          const mandatesHeroStyle = mandatesHero ? getComputedStyle(mandatesHero) : null;
+          const mandatesHeroWidth = mandatesHero
+            ? mandatesHero.clientWidth - Number.parseFloat(mandatesHeroStyle.paddingLeft) - Number.parseFloat(mandatesHeroStyle.paddingRight)
+            : 0;
+          const mandatesHeroRange = document.createRange();
+          if (mandatesHeroHeading) mandatesHeroRange.selectNodeContents(mandatesHeroHeading);
+          const mandatesHeroHeadroom = mandatesHeroHeading
+            ? mandatesHeroWidth - mandatesHeroRange.getBoundingClientRect().width
+            : 0;
 
           return JSON.stringify({
             title: document.title,
@@ -277,7 +360,16 @@ try {
             mainTargetExists: Boolean(document.querySelector('main#main-content')),
             innerWidth: window.innerWidth,
             scrollWidth: document.documentElement.scrollWidth,
-            bodyScrollWidth: document.body.scrollWidth
+            bodyScrollWidth: document.body.scrollWidth,
+            loadedFontFailures,
+            fontRoleFailures,
+            fontSetStatus: document.fonts.status,
+            descriptionFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.description-copy') ?? document.body).fontSize),
+            mandatesHeroFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.mandates-hero h1') ?? document.body).fontSize),
+            mandateTitleFontSize: Number.parseFloat(getComputedStyle(firstMandateTitle ?? document.body).fontSize),
+            firstMandateTitleWidth: firstMandateRect?.width ?? 0,
+            firstMandateTitleHeight: firstMandateRect?.height ?? 0,
+            mandatesHeroHeadroom,
           });
         })()`,
         returnByValue: true,
@@ -286,6 +378,7 @@ try {
     );
 
     const metrics = JSON.parse(result.value);
+    measuredCases.set(`${testCase.route}:${testCase.width}`, metrics);
     const overflow = Math.max(metrics.scrollWidth, metrics.bodyScrollWidth) > metrics.innerWidth + 1;
     const validStructure = metrics.h1Count === 1 && metrics.mainCount === 1;
     const validMetadata = Boolean(
@@ -303,9 +396,14 @@ try {
       (testCase.width >= 768 || metrics.undersizedLinks.length === 0)
     );
     const validDocument = !metrics.headingSkip && metrics.duplicateIdCount === 0;
+    const validFonts = !requireLicensedFonts || (
+      metrics.fontSetStatus === 'loaded' &&
+      metrics.loadedFontFailures.length === 0 &&
+      metrics.fontRoleFailures.length === 0
+    );
     const label = `${testCase.route} at ${testCase.width}px`;
     console.log(
-      `${overflow || !validStructure || !validMetadata || !validIndexing || !validNavigation || !validDocument ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
+      `${overflow || !validStructure || !validMetadata || !validIndexing || !validNavigation || !validDocument || !validFonts ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
     );
 
     if (overflow) failures.push(`${label} overflows horizontally.`);
@@ -319,6 +417,18 @@ try {
       failures.push(`${label} has an invalid skip target, unlabeled link, or sub-44px mobile target.${targetDetail}`);
     }
     if (!validDocument) failures.push(`${label} has a skipped heading level or duplicate id.`);
+    if (testCase.route === '/mandates' && testCase.width === 320 && metrics.mandatesHeroHeadroom < 16) {
+      failures.push(`${label} leaves only ${metrics.mandatesHeroHeadroom.toFixed(2)}px of heading headroom.`);
+    }
+    if (!validFonts) {
+      const fontDetail = metrics.loadedFontFailures.length > 0
+        ? `missing faces: ${metrics.loadedFontFailures.join(', ')}`
+        : `font set: ${metrics.fontSetStatus}`;
+      const roleDetail = metrics.fontRoleFailures.length > 0
+        ? `; invalid roles: ${metrics.fontRoleFailures.join('; ')}`
+        : '';
+      failures.push(`${label} failed licensed typography verification (${fontDetail}${roleDetail}).`);
+    }
 
     if (testCase.screenshot) {
       const { cssContentSize } = await send('Page.getLayoutMetrics', {}, sessionId);
@@ -334,6 +444,39 @@ try {
         sessionId,
       );
       await writeFile(join(outputPath, testCase.screenshot), Buffer.from(data, 'base64'));
+    }
+  }
+
+  const assertMonotonic = (route, beforeWidth, afterWidth, metrics) => {
+    const before = measuredCases.get(`${route}:${beforeWidth}`);
+    const after = measuredCases.get(`${route}:${afterWidth}`);
+    if (!before || !after) return;
+    for (const metric of metrics) {
+      if (after[metric] + 0.1 < before[metric]) {
+        failures.push(
+          `${route} ${metric} decreases across ${beforeWidth}/${afterWidth}px (${before[metric]}px to ${after[metric]}px).`,
+        );
+      }
+    }
+  };
+
+  assertMonotonic('/', 600, 601, ['descriptionFontSize']);
+  assertMonotonic('/mandates', 600, 601, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+  assertMonotonic('/mandates', 1100, 1101, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+  assertMonotonic('/mandates', 1279, 1280, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+
+  const beforeDesktop = measuredCases.get('/mandates:1279');
+  const afterDesktop = measuredCases.get('/mandates:1280');
+  if (beforeDesktop && afterDesktop) {
+    const widthRatio = afterDesktop.firstMandateTitleWidth / beforeDesktop.firstMandateTitleWidth;
+    const heightRatio = afterDesktop.firstMandateTitleHeight / beforeDesktop.firstMandateTitleHeight;
+    console.log(
+      `Desktop transition 1279/1280px: first title width ${beforeDesktop.firstMandateTitleWidth.toFixed(2)}px → ${afterDesktop.firstMandateTitleWidth.toFixed(2)}px; height ${beforeDesktop.firstMandateTitleHeight.toFixed(2)}px → ${afterDesktop.firstMandateTitleHeight.toFixed(2)}px.`,
+    );
+    if (widthRatio < 0.7 || heightRatio > 1.5) {
+      failures.push(
+        `/mandates has an unstable 1279/1280px desktop transition (width ratio ${widthRatio.toFixed(2)}, height ratio ${heightRatio.toFixed(2)}).`,
+      );
     }
   }
 

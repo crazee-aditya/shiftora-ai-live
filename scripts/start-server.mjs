@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { resolve } from 'node:path';
 import handler from 'serve-handler';
-import { RETIRED_PATHS, SITE_CSP } from './site-policy.mjs';
+import { COMMON_SECURITY_HEADERS, RETIRED_PATHS } from './site-policy.mjs';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const publicRoot = resolve(projectRoot, 'dist');
@@ -19,23 +19,35 @@ function normalizedPath(url = '/') {
   return pathname.replace(/\/+$/, '') || '/';
 }
 
+function applyCommonHeaders(response) {
+  for (const [name, value] of Object.entries(COMMON_SECURITY_HEADERS)) {
+    response.setHeader(name, value);
+  }
+}
+
+function sendError(response, status, message) {
+  if (!response.headersSent) {
+    response.writeHead(status, {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-store',
+    });
+  }
+  response.end(message);
+}
+
 function sendGone(request, response) {
   const body = readFileSync(resolve(publicRoot, '404.html'));
   response.writeHead(410, {
     'Content-Type': 'text/html; charset=utf-8',
     'Content-Length': String(body.byteLength),
     'Cache-Control': 'public, max-age=0, must-revalidate',
-    'X-Content-Type-Options': 'nosniff',
-    'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-    'Content-Security-Policy': SITE_CSP,
-    'X-Frame-Options': 'DENY',
   });
   if (request.method === 'HEAD') response.end();
   else response.end(body);
 }
 
 const server = createServer((request, response) => {
+  applyCommonHeaders(response);
   try {
     if (retiredPaths.has(normalizedPath(request.url))) {
       sendGone(request, response);
@@ -44,13 +56,15 @@ const server = createServer((request, response) => {
 
     void handler(request, response, { ...config, public: publicRoot }).catch((error) => {
       console.error(error);
-      if (!response.headersSent) response.writeHead(500);
-      response.end('Internal Server Error');
+      sendError(response, 500, 'Internal Server Error');
     });
   } catch (error) {
-    console.error(error);
-    if (!response.headersSent) response.writeHead(400);
-    response.end('Bad Request');
+    if (!(error instanceof URIError)) console.error(error);
+    sendError(
+      response,
+      error instanceof URIError ? 400 : 500,
+      error instanceof URIError ? 'Bad Request' : 'Internal Server Error',
+    );
   }
 });
 

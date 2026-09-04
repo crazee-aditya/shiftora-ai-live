@@ -212,12 +212,11 @@ a:focus-visible {
   max-width: 54ch;
   margin: 0;
   font-family: var(--text);
-  font-size: clamp(1.55rem, 2.45vw, 3.35rem);
+  font-size: clamp(1.7rem, 2.45vw, 3.35rem);
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.18;
   text-wrap: pretty;
-  animation: reveal-copy 760ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
 .description-copy p {
@@ -227,17 +226,6 @@ a:focus-visible {
 .description-copy__close {
   margin-top: 0.7em !important;
   max-width: 48ch;
-}
-
-@keyframes reveal-copy {
-  from {
-    opacity: 0;
-    transform: translateY(1.3rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .mandates-page {
@@ -338,7 +326,7 @@ a:focus-visible {
   max-width: 16ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(2.35rem, 4.8vw, 6.4rem);
+  font-size: clamp(2.75rem, calc(16vw - 10.05rem), 6.4rem);
   font-weight: 400;
   letter-spacing: -0.06em;
   line-height: 0.92;
@@ -366,7 +354,7 @@ a:focus-visible {
   max-width: 28ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(2.5rem, 5.8vw, 7.4rem);
+  font-size: clamp(3.05rem, 5.8vw, 7.4rem);
   font-weight: 400;
   letter-spacing: -0.06em;
   line-height: 0.95;
@@ -402,7 +390,7 @@ a:focus-visible {
   font-size: 0.88rem;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1279px) {
   .brand-footer span:first-child {
     display: none;
   }
@@ -467,7 +455,7 @@ a:focus-visible {
 
   .description-copy {
     max-width: 31ch;
-    font-size: clamp(1.42rem, 7vw, 2rem);
+    font-size: clamp(1.42rem, 7vw, 1.7rem);
     line-height: 1.22;
   }
 
@@ -476,7 +464,7 @@ a:focus-visible {
   }
 
   .mandates-hero h1 {
-    font-size: clamp(4.25rem, 22vw, 8rem);
+    font-size: clamp(4rem, 20vw, 5.4rem);
   }
 
   .mandates-hero__intro {
@@ -494,7 +482,7 @@ a:focus-visible {
   }
 
   .mandate-item h3 {
-    font-size: clamp(2.5rem, 13.5vw, 4.25rem);
+    font-size: clamp(2.5rem, 13.5vw, 2.75rem);
   }
 
   .mandates-close {
@@ -502,7 +490,7 @@ a:focus-visible {
   }
 
   .mandates-close p {
-    font-size: clamp(2.55rem, 12.5vw, 4.8rem);
+    font-size: clamp(2.55rem, 12.5vw, 3.05rem);
   }
 }
 
