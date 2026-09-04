@@ -85,7 +85,7 @@ try {
   );
 
   for (const [label, response, expectedStatus, text, marker] of [
-    ['home', home, 200, homeText, 'We advise governments and enterprises on the decisions that determine their course.'],
+    ['home', home, 200, homeText, 'remains through operation until the intended result is in force.'],
     ['engagements', engagements, 200, engagementsText, 'Command across a sovereign logistics network'],
     ['404', notFound, 404, notFoundText, 'This page does not exist.'],
   ]) {

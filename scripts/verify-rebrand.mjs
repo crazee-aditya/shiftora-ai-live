@@ -62,8 +62,9 @@ const checks = [
   [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
   [home, 'Shiftora is an integrated strategy and systems firm.', 'positioning'],
-  [home, 'We advise governments and enterprises on the decisions that determine their course.', 'strategic authority'],
-  [home, 'We build the systems that carry those decisions into effect.', 'operating responsibility'],
+  [home, 'Its domain is the direction and capacity of government and enterprise.', 'institutional domain'],
+  [home, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
+  [home, 'Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.', 'operating responsibility'],
   [home, 'An institution is sovereign when its decisions command the means of action.', 'sovereignty definition'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
@@ -119,8 +120,11 @@ for (const retiredPhrase of [
   'When the necessary capacity does not exist, we build it.',
   'Its domain is the architecture of government and enterprise:',
   'strategy, organization, capital, operations, data, and technology.',
-  'Shiftora advises the course, builds the capacity, and carries both into operation.',
   'An institution is sovereign when it can act at the scale of its responsibility.',
+  'We advise governments and enterprises on the decisions that determine their course.',
+  'We build the systems that carry those decisions into effect.',
+  'Its domain is the decisions that determine the course of governments and enterprises',
+  'The measure of the work is an institution whose judgment is matched by its means.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -154,8 +158,9 @@ assertInOrder(
   home,
   [
     'Shiftora is an integrated strategy and systems firm.',
-    'We advise governments and enterprises on the decisions that determine their course.',
-    'We build the systems that carry those decisions into effect.',
+    'Its domain is the direction and capacity of government and enterprise.',
+    'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',
+    'Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.',
     'An institution is sovereign when its decisions command the means of action.',
   ],
   'description argument',

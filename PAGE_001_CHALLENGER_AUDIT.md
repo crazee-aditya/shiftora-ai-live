@@ -1,10 +1,14 @@
-# Page 001 — Institutional Challenger
+# Page 001 — Institutional Challenger III
 
 **Protected baseline:** Git tag `version-1` at commit `3969a564544444915ece15c18abf314d61dc3f03`
 
+**Protected short challenger:** Git commit `0219854`
+
+**Rejected long challenger:** deliberately discarded before promotion; its reasoning remains recorded in the task history.
+
 ## Challenger copy
 
-> Shiftora is an integrated strategy and systems firm. We advise governments and enterprises on the decisions that determine their course. We build the systems that carry those decisions into effect.
+> Shiftora is an integrated strategy and systems firm. Its domain is the direction and capacity of government and enterprise. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.
 >
 > An institution is sovereign when its decisions command the means of action.
 
@@ -20,13 +24,13 @@
 | Dimension | Judgment |
 |---|---|
 | Category clarity | Preserved: the exact category remains the opening sentence. |
-| Brevity | Improved: the description falls from 40 words to 30 and removes the six-part inventory. |
-| Commanding nature | Improved: three declarations replace one explanatory compound argument. |
-| Institutional scale | Improved: the copy enters at the decisions determining the course of governments and enterprises. |
-| Distinctiveness | Preserved: advising direction and building the means of action remain inseparable. |
-| Executive comprehension | Improved: strategy and implementation are understood on the first read. |
-| Transition to Engagements | Improved: “the systems that carry those decisions into effect” creates the direct reason to inspect the record. |
+| Brevity | Balanced: longer than the short challenger and materially tighter than the rejected long version. |
+| Commanding nature | Improved: four declarative movements establish domain, architecture, responsibility, and result. |
+| Institutional scale | Preserved: direction and capacity place the firm above any individual discipline. |
+| Distinctiveness | Improved: “ordered as one institutional architecture” states why strategy and systems belong in one firm. |
+| Executive comprehension | Improved: the reader sees advisory responsibility, implementation, and staying power on the first read. |
+| Transition to Engagements | Improved: remaining through operation creates the direct reason to examine the record. |
 
 ## Decision
 
-The challenger clears the Version 1 succession gate. It preserves the category and institutional scale while materially improving brevity, command, comprehension, and the transition to evidence. Version 1 remains permanently recoverable from its tag and archive.
+Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation until the intended result is in force. This expresses the user's “stay until the ROI comes” intent without reducing the firm to support work or making an unsupported guarantee of financial return. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.

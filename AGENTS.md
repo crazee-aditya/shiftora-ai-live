@@ -7,8 +7,9 @@ technical services. Preserve that distinction in every change.
 
 - The category is **integrated strategy and systems firm**.
 - The governing thesis is **An institution is sovereign when its decisions command the means of action.**
-- Shiftora's domain is the decisions that determine the course of governments and enterprises, and the
-  systems that carry those decisions into effect.
+- Shiftora's domain is the direction and capacity of government and enterprise.
+- Strategy, organization, capital, operations, data, and technology are expressed as one institutional
+  architecture; do not collapse this architecture into a service list.
 - AI, software, data, models, organization, capital, and operations are possible forms of a
   mandate. None is the umbrella identity.
 - A client institution or authorized coalition remains the principal in a Shiftora mandate. A
@@ -36,6 +37,8 @@ technical services. Preserve that distinction in every change.
 
 - Use American English in public copy, except for official names and quotations.
 - Begin from institutional stakes and governing ideas, not from a list of currently known services.
+- Express staying power as remaining through operation until the intended result is in force; never reduce
+  this to hand-holding, delivery support, or an unsupported guarantee of financial return.
 - Treat the current capability set as proof, never premise or ceiling. A Page-one revision must remain
   coherent after every named method and desired client is removed, after a present capability is
   subtracted, and after an unknown future instrument is introduced under the same mandate doctrine.
