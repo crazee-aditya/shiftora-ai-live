@@ -121,6 +121,8 @@ await new Promise((resolveOpen, rejectOpen) => {
 let nextId = 0;
 const pending = new Map();
 const eventWaiters = [];
+const runtimeFailures = new Set();
+let currentCase = 'browser startup';
 
 socket.addEventListener('message', ({ data }) => {
   const message = JSON.parse(data);
@@ -131,6 +133,19 @@ socket.addEventListener('message', ({ data }) => {
     if (message.error) waiter.reject(new Error(message.error.message));
     else waiter.resolve(message.result);
     return;
+  }
+
+  if (message.method === 'Runtime.exceptionThrown') {
+    const details = message.params?.exceptionDetails;
+    const description = details?.exception?.description ?? details?.text ?? 'Unhandled runtime exception';
+    runtimeFailures.add(`${currentCase}: ${description}`);
+  }
+
+  if (message.method === 'Runtime.consoleAPICalled' && message.params?.type === 'error') {
+    const description = (message.params.args ?? [])
+      .map((argument) => argument.value ?? argument.description ?? argument.type)
+      .join(' ');
+    runtimeFailures.add(`${currentCase}: console.error ${description}`);
   }
 
   for (let index = eventWaiters.length - 1; index >= 0; index -= 1) {
@@ -180,6 +195,7 @@ try {
   const cases = [
     { route: '/', width: 320, height: 844 },
     { route: '/mandates', width: 320, height: 844 },
+    { route: '/404', width: 390, height: 844, expectNoIndex: true, screenshot: '404-390.png' },
     { route: '/', width: 390, height: 844, screenshot: 'home-390.png' },
     { route: '/mandates', width: 390, height: 844, screenshot: 'mandates-390.png' },
     { route: '/', width: 600, height: 900 },
@@ -194,9 +210,11 @@ try {
     { route: '/mandates', width: 1101, height: 1000 },
     { route: '/', width: 1440, height: 1000, screenshot: 'home-1440.png' },
     { route: '/mandates', width: 1440, height: 1000, screenshot: 'mandates-1440.png' },
+    { route: '/404', width: 1440, height: 1000, expectNoIndex: true, screenshot: '404-1440.png' },
   ];
 
   for (const testCase of cases) {
+    currentCase = `${testCase.route} at ${testCase.width}px`;
     await send(
       'Emulation.setDeviceMetricsOverride',
       {
@@ -237,6 +255,7 @@ try {
             title: document.title,
             description: document.querySelector('meta[name="description"]')?.getAttribute('content') ?? '',
             canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '',
+            robots: document.querySelector('meta[name="robots"]')?.getAttribute('content') ?? '',
             viewportMeta: Boolean(document.querySelector('meta[name="viewport"]')),
             language: document.documentElement.lang,
             h1Count: document.querySelectorAll('h1').length,
@@ -266,6 +285,7 @@ try {
       metrics.viewportMeta &&
       metrics.language.toLowerCase().startsWith('en')
     );
+    const validIndexing = !testCase.expectNoIndex || metrics.robots === 'noindex, follow';
     const validNavigation = Boolean(
       metrics.skipTarget === '#main-content' &&
       metrics.mainTargetExists &&
@@ -274,12 +294,13 @@ try {
     const validDocument = !metrics.headingSkip && metrics.duplicateIdCount === 0;
     const label = `${testCase.route} at ${testCase.width}px`;
     console.log(
-      `${overflow || !validStructure || !validMetadata || !validNavigation || !validDocument ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
+      `${overflow || !validStructure || !validMetadata || !validIndexing || !validNavigation || !validDocument ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
     );
 
     if (overflow) failures.push(`${label} overflows horizontally.`);
     if (!validStructure) failures.push(`${label} has invalid heading or main structure.`);
     if (!validMetadata) failures.push(`${label} is missing required title, description, canonical, viewport, or language metadata.`);
+    if (!validIndexing) failures.push(`${label} is missing the required noindex directive.`);
     if (!validNavigation) failures.push(`${label} has an invalid skip target or an unlabeled link.`);
     if (!validDocument) failures.push(`${label} has a skipped heading level or duplicate id.`);
 
@@ -299,6 +320,8 @@ try {
       await writeFile(join(outputPath, testCase.screenshot), Buffer.from(data, 'base64'));
     }
   }
+
+  failures.push(...runtimeFailures);
 
   console.log(`Screenshots: ${outputPath}`);
 
