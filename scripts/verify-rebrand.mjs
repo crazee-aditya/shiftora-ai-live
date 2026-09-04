@@ -70,9 +70,9 @@ const checks = [
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
   [engagements, '>Integrated strategy and systems firm</p>', 'direct-entry category'],
-  [engagements, 'Selected systems built for public authority and enterprise.', 'engagements opening'],
-  [engagements, 'Only the architecture may be described here.', 'confidentiality boundary'],
-  [engagements, 'obligations that survive the engagement', 'confidentiality duration'],
+  [engagements, 'Selected systems for public authority and enterprise.', 'engagements opening'],
+  [engagements, 'Architecture alone is disclosed;', 'confidentiality boundary'],
+  [engagements, 'continuing legal duties of confidence.', 'confidentiality duration'],
   [engagements, 'Where nations move', 'sovereign movement chapter'],
   [engagements, 'Command across a sovereign logistics network', 'government logistics record'],
   [engagements, 'Built for a government logistics institution', 'government identity'],
@@ -139,6 +139,9 @@ for (const retiredPhrase of [
   'Shiftora brings what is rarely generated internally: the vantage to see the whole and the means to shape what comes next.',
   'Shiftora brings the vantage to see the whole—and the means to shape what comes next.',
   'Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.',
+  'Selected systems built for public authority and enterprise.',
+  'Only the architecture may be described here.',
+  'obligations that survive the engagement',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);

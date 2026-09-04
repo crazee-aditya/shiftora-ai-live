@@ -5,7 +5,7 @@ export const FIRM_DESCRIPTION_CLOSE =
   'Shiftora brings the vantage to see the whole—and the means to make ambition executable.';
 
 export const ENGAGEMENTS_INTRO =
-  'Selected systems built for public authority and enterprise. Only the architecture may be described here. The principals, jurisdictions, and operating particulars remain protected by obligations that survive the engagement.';
+  'Selected systems for public authority and enterprise. Architecture alone is disclosed; all else remains subject to continuing legal duties of confidence.';
 
 export const ENGAGEMENTS_CLOSE =
   "A Shiftora system is complete when the institution's capacity to decide and act is equal to the responsibility it carries.";
