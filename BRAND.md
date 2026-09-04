@@ -6,13 +6,13 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Category:** Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.
 
-**Worldview:** What is rarely generated internally is both a vantage across the whole institution and the means to change it.
+**Worldview:** Shiftora's work joins a vantage across the whole institution with the means to turn new capability into operational advantage.
 
 **Domain:** Across world governments and enterprises, strategy, organization, capital, operations, data, and technology are ordered through one institutional architecture.
 
 **Responsibility:** Advise the course, build the capacity to carry it, and remain through operation until the intended result is in force, while every reserved decision right remains with the relevant client authority.
 
-**Completion condition:** The institution possesses both the perspective to see the whole and the means to change it.
+**Completion condition:** The institution can see the whole and make new capability operational.
 
 **Sovereign capacity:** The institution's systems are answerable to its lawful authority and equal to its responsibilities. This is not a claim to public authority by Shiftora, national status, total technical independence, ownership of every component, or a Palantir-like digital decision system.
 

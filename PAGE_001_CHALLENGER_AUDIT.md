@@ -10,7 +10,7 @@
 
 > Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
 >
-> Shiftora brings what is rarely generated internally: the vantage to see the whole and the means to change it.
+> Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.
 
 ## Reference lock
 
@@ -33,6 +33,6 @@
 
 ## Decision
 
-Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation. The close now restores the internal-generation argument while making the limitation impersonal: what is rare is the combination of a vantage across the whole and the means to convert what it reveals into change. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
+Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation. The close removes the internal-generation comparison entirely while retaining the combination of a vantage across the whole and the means to act on it. Its final movement now admits transformation, expansion, and new fields of growth by turning new capability into operational advantage. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
 
-The closing line preserves E76's internal-generation logic without naming the client as deficient. “Rarely” replaces the categorical “cannot”; “vantage” supplies perspective; “means” makes clear that Shiftora does not stop at diagnosis or advice.
+The closing line preserves E76's perspective-to-execution logic without defining Shiftora against any client limitation. “Vantage” supplies perspective; “new capability” includes growth and reinvention; “operational advantage” makes the result concrete. This final movement follows Palantir's progression from integrated decisions to fielded capability and operational advantage without repeating its signature copy.

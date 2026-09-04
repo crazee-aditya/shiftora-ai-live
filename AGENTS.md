@@ -7,7 +7,7 @@ technical services. Preserve that distinction in every change.
 
 - The category is **integrated strategy and systems firm**; its public scale statement is **operating across
   world governments and enterprises**.
-- The governing outcome is **Shiftora brings what is rarely generated internally: the vantage to see the whole and the means to change it.**
+- The governing outcome is **Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.**
 - Shiftora's domain spans world governments and enterprises without treating government as a separate
   practice or prospective audience.
 - Strategy, organization, capital, operations, data, and technology are expressed as one institutional
