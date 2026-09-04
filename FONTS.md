@@ -24,11 +24,12 @@ may cover the range. Convert all lettering in `scripts/og-image.svg`, `scripts/l
 External SVGs cannot inherit the page's webfonts, and a bitmap rendered from unresolved SVG text can
 silently preserve the development fallback.
 
-After regenerating `public/og-image.png` and `public/logo-512.png`, run
-`npm run brand:record-assets`. This records SHA-256 digests of the three outlined SVG sources and
-the two raster outputs in `brand-assets.json`. Commit that file with the assets. The release gate
-will fail if any source or output changes afterward, preventing an old fallback-rendered PNG from
-surviving a later SVG update.
+After the three SVGs contain licensed outlines, run `npm run brand:build-assets`. The command refuses
+live text, deterministically renders `public/og-image.png` and `public/logo-512.png` from their SVG
+sources, then records SHA-256 digests of the sources, outputs, generator, and Sharp renderer version
+in `brand-assets.json`. Commit the manifest with the assets. The release gate fails if a source,
+output, generator, or renderer version changes afterward, so an old fallback-rendered PNG cannot be
+blessed merely by recording whatever file happens to exist.
 
 Do not substitute similarly named downloads from unofficial font sites.
 

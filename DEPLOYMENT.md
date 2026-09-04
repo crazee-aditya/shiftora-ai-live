@@ -22,7 +22,7 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 2. If the choice changes from A, update visible copy, metadata, social-image wording, machine-readable copy, and verification expectations together.
 3. License Söhne Buch/Kräftig and Alliance No. 2 Regular/Medium/Bold for web use.
 4. Add the WOFF2 files and `@font-face` declarations described in `FONTS.md`.
-5. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, regenerate the PNG assets, and run `npm run brand:record-assets` to bind the committed outputs to those outlined sources.
+5. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, then run `npm run brand:build-assets` to generate the PNGs deterministically and record their provenance.
 6. Run `npm run verify:release` and `npm run verify:visual`; the release check includes the full dependency audit.
 7. Inspect the licensed-font screenshots at phone, tablet, and desktop widths.
 8. Confirm the public meaning of the Dubai and Mumbai locations and send a real test message through `info@shiftora.ai`.

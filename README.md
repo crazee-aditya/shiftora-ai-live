@@ -47,8 +47,8 @@ npm run verify:release
 
 The release check additionally runs the full dependency audit and requires properly licensed,
 self-hosted Söhne and Alliance No. 2 webfonts at every weight used by the design. It also requires
-outlined brand lettering plus a digest record binding the outlined sources to the regenerated social
-and organization PNGs. It intentionally fails until those assets are added. See
+outlined brand lettering plus deterministic social/organization PNGs and a provenance record binding
+the source, output, generator, and renderer version. It intentionally fails until those assets are added. See
 [FONTS.md](./FONTS.md).
 
 Do not deploy this branch while `npm run verify:release` is failing.

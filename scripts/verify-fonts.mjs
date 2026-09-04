@@ -74,12 +74,27 @@ for (const [label, source] of [
 
 const assetManifestPath = 'brand-assets.json';
 if (!existsSync(assetManifestPath)) {
-  issues.push('outlined source and regenerated PNG digests have not been recorded');
+  issues.push('outlined-source and generated-PNG provenance has not been recorded');
 } else {
   try {
     const manifest = JSON.parse(readFileSync(assetManifestPath, 'utf8'));
     if (manifest.algorithm !== 'sha256') {
       issues.push('brand asset manifest must use sha256');
+    }
+
+    const generatorPath = 'scripts/build-brand-assets.mjs';
+    const sharpPackage = JSON.parse(readFileSync('node_modules/sharp/package.json', 'utf8'));
+    const generatorDigest = createHash('sha256')
+      .update(readFileSync(generatorPath))
+      .digest('hex');
+    if (
+      manifest.generator?.command !== 'npm run brand:build-assets' ||
+      manifest.generator?.script !== generatorPath ||
+      manifest.generator?.scriptDigest !== generatorDigest ||
+      manifest.generator?.renderer !== 'sharp' ||
+      manifest.generator?.rendererVersion !== sharpPackage.version
+    ) {
+      issues.push('brand asset provenance does not match the current deterministic generator');
     }
 
     const expectedPaths = [
