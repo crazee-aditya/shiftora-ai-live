@@ -5,7 +5,7 @@ export const SITE = {
   origin: 'https://www.shiftora.ai',
   defaultTitle: 'Shiftora — Integrated Strategy and Systems Firm',
   defaultDescription:
-    'Shiftora is an integrated strategy and systems firm working where institutional direction and operating reality diverge.',
+    'Shiftora is an integrated strategy and systems firm. It forms its own view and remains with consequential mandates through the work they require.',
   ogImage: 'https://www.shiftora.ai/og-image.png',
   logo: 'https://www.shiftora.ai/logo-512.png',
   email: 'info@shiftora.ai',
@@ -74,7 +74,6 @@ function organizationGraph(): object[] {
       areaServed: [
         { '@type': 'Country', name: 'United Arab Emirates' },
         { '@type': 'Country', name: 'India' },
-        { '@type': 'Place', name: 'Worldwide' },
       ],
       address: [
         { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },

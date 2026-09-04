@@ -1,11 +1,14 @@
-export const FIRM_DESCRIPTION =
-  'Shiftora is an integrated strategy and systems firm. Every institution is governed twice: formally by those responsible for its direction, and operationally by the systems through which it acts. The first establishes direction. The second determines what can be carried out. In governments and enterprises alike, structures built for earlier conditions often come to dictate present choices. Policy falters in delivery; strategy narrows to what inherited operations and technology will allow. Shiftora works where the two diverge. We begin with the judgment itself and remain with it through the organization and systems that must carry it out. When the necessary capability does not yet exist, we build it. This is sovereign capacity: the institution remains free to alter its course, and its systems remain capable of following.';
+export const FIRM_DESCRIPTION_BODY =
+  'Shiftora is an integrated strategy and systems firm. Every institution is governed twice: formally by those entrusted with its direction, and operationally by the systems through which it acts. Governments and enterprises may decide or be required to do more than they can presently carry out. Shiftora forms its own view and advises those who hold the relevant authority. We remain with the mandate through the work it requires. When the necessary capacity does not exist, we build it.';
+
+export const FIRM_DESCRIPTION_CLOSE =
+  'An institution has sovereign capacity when its systems are answerable to its lawful authority and equal to its responsibilities.';
 
 export const MANDATES_INTRO =
   "A Shiftora mandate begins where an institution's direction or responsibility exceeds its present capacity to act. The work takes the form that condition requires.";
 
 export const MANDATES_CLOSE =
-  "A Shiftora mandate holds a consequential direction or responsibility intact until the institution can act and govern the capability on which action depends.";
+  'A Shiftora mandate carries a consequential direction or responsibility through the work required to put it into effect.';
 
 export interface Mandate {
   title: string;
@@ -26,38 +29,38 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Carry a national priority into operation',
         description:
-          'Carry an adopted public objective through the funding, procurement, operating, and technical arrangements required for delivery across the institutions responsible, under their continuing authority.',
+          'Under continuing public authority, take an adopted objective through the funding, procurement, and institutions on which delivery depends.',
       },
       {
         title: 'Reposition an enterprise for its next phase',
         description:
-          "Identify where the next period of growth and advantage will come from, then carry leadership's chosen course through the business model, capital, partnerships, and the organization and systems that must support it.",
+          'Form a view of where the next period of growth and advantage may come from, then reshape the institution around the course it adopts.',
       },
       {
         title: 'Reallocate capital around a chosen course',
         description:
-          'Carry the chosen course into how capital, risk, and management attention are allocated—and into the information and controls used to govern those choices.',
+          'Advise the institution on how capital, risk capacity, and management attention should be committed to the chosen course. Establish the information required to govern each allocation.',
       },
     ],
   },
   {
     number: '02',
-    condition: 'When inherited structures resist',
+    condition: 'When inherited structures and present direction diverge',
     mandates: [
-      {
-        title: 'Build the organization a new strategy requires',
-        description:
-          'With leadership, define how organizational authority, capability, and workforce must change for the new strategy to take effect.',
-      },
-      {
-        title: 'Redesign an operating model that preserves the past',
-        description:
-          'Reconfigure how decisions, resources, and work move through the institution when the present model continues to reproduce an earlier strategy.',
-      },
       {
         title: 'Bring a transformation back under institutional direction',
         description:
-          'Establish why a major program, restructuring, or technical initiative has not altered the institution as intended, and give leadership the basis to stop, reorder, or rebuild it.',
+          'When a major transformation has not produced the intended change, give those with authority the basis to stop it, reorder it, or rebuild it.',
+      },
+      {
+        title: 'Replace an operating model built for an earlier strategy',
+        description:
+          'Change how decisions, resources, and work move through the institution when the present model keeps an earlier strategy in force.',
+      },
+      {
+        title: 'Build the organization a new strategy requires',
+        description:
+          'With those who hold the relevant authority, reshape leadership and organization so an adopted strategy can take effect.',
       },
     ],
   },
@@ -66,40 +69,35 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
     condition: 'When responsibility outruns capability',
     mandates: [
       {
-        title: 'Create capacity for a new institutional responsibility',
+        title: 'Establish a function for a new institutional responsibility',
         description:
-          "When an institution assumes a responsibility no existing function can carry, define the function's role and governance, then build the operating method, infrastructure, and systems required to discharge it.",
+          'When no existing part of the institution can discharge a new duty, advise the relevant authority on the function required, then build its operating capacity.',
       },
       {
-        title: 'Build the software through which critical work will run',
+        title: 'Build software for a critical institutional function',
         description:
-          "When existing products cannot embody the institution's established decision rights and operating logic, design and deploy the system that can.",
+          'When available products cannot serve the function as its obligations and operating conditions demand, build the software the mandate requires.',
       },
       {
-        title: 'Make fragmented data answer to a common decision',
+        title: 'Establish the information a consequential mandate requires',
         description:
-          'Establish the shared information a consequential decision requires, then build the architecture that preserves its meaning, provenance, permissions, and integrity as use grows across the institution.',
+          'When necessary data is divided across systems or jurisdictions, establish the common definitions, stewardship, and architecture by which the institution can rely on it.',
       },
     ],
   },
   {
     number: '04',
-    condition: 'When control cannot be ceded',
+    condition: 'When strategic dependence becomes unacceptable',
     mandates: [
       {
-        title: 'Determine what the institution must control',
+        title: 'Set the boundary of acceptable dependence',
         description:
-          "With the institution's accountable authorities, establish the boundary between what may be bought, shared, or delegated and what must remain under direct control because of security, jurisdiction, continuity, or strategic dependence.",
+          "With the institution's accountable authorities, determine which dependencies can be accepted and which cannot. Where continuity or lawful responsibility demands an alternative, establish it.",
       },
       {
-        title: 'Place models under operational authority',
+        title: 'Set the terms under which models may act',
         description:
-          "Within the institution's authority, define where models may enter live work, what must remain human judgment, and how performance will be assessed; then select or build what the mandate requires.",
-      },
-      {
-        title: 'Establish critical capability under institutional control',
-        description:
-          'When security, jurisdiction, continuity, or strategic dependence makes ordinary procurement insufficient, build or restructure the capability so the institution can govern its operation, change, transfer, and exit.',
+          'For consequential work, advise the responsible authorities on which judgments must remain human, what models may advise or execute, how performance will be assessed, and who answers for the result. Build or select only within the terms they establish.',
       },
     ],
   },

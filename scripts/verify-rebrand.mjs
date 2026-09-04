@@ -48,6 +48,7 @@ function assertJsonLd(document, label) {
   if (value['@context'] !== 'https://schema.org' || !Array.isArray(value['@graph'])) {
     throw new Error(`Verification failed: ${label} JSON-LD graph is malformed.`);
   }
+  return value['@graph'];
 }
 
 const checks = [
@@ -58,30 +59,30 @@ const checks = [
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
   [home, 'Shiftora is an integrated strategy and systems firm.', 'positioning'],
   [home, 'Every institution is governed twice:', 'governing thesis'],
-  [home, 'This is sovereign capacity:', 'sovereignty definition'],
+  [home, 'An institution has sovereign capacity when its systems are answerable', 'sovereignty definition'],
   [mandates, '<title>Mandates — Shiftora</title>', 'mandates title'],
   [mandates, '<meta name="theme-color" content="#090a0a" />', 'mandates browser color'],
   [mandates, '>Integrated strategy and systems firm</p>', 'direct-entry category'],
   [mandates, 'Shiftora mandates begin where consequential direction or responsibility exceeds', 'prospective mandate metadata'],
   [mandates, 'A Shiftora mandate begins where an institution&#x27;s direction or responsibility exceeds', 'mandate test'],
   [mandates, 'Carry a national priority into operation', 'public mandate'],
-  [mandates, 'under their continuing authority', 'public authority boundary'],
+  [mandates, 'Under continuing public authority', 'public authority boundary'],
   [mandates, 'Reallocate capital around a chosen course', 'capital mandate'],
   [mandates, 'Build the organization a new strategy requires', 'organization mandate'],
-  [mandates, 'With leadership, define how organizational authority', 'organizational-authority boundary'],
-  [mandates, 'give leadership the basis to stop, reorder, or rebuild it', 'transformation termination test'],
-  [mandates, 'When an institution assumes a responsibility', 'new-responsibility authority'],
-  [mandates, 'infrastructure, and systems required to discharge it', 'material capability construction'],
+  [mandates, 'With those who hold the relevant authority, reshape leadership and organization', 'organizational mandate'],
+  [mandates, 'give those with authority the basis to stop it, reorder it, or rebuild it', 'transformation termination test'],
+  [mandates, 'advise the relevant authority on the function required', 'new-responsibility authority'],
+  [mandates, 'then build its operating capacity', 'material capability construction'],
   [mandates, 'When responsibility outruns capability', 'responsibility-led capability chapter'],
-  [mandates, 'Build the software through which critical work will run', 'software mandate'],
-  [mandates, 'embody the institution&#x27;s established decision rights', 'software decision-rights boundary'],
-  [mandates, 'Make fragmented data answer to a common decision', 'data mandate'],
-  [mandates, 'Establish the shared information a consequential decision requires', 'decision-led data mandate'],
-  [mandates, 'Place models under operational authority', 'models mandate'],
-  [mandates, 'Within the institution&#x27;s authority, define where models may enter live work', 'model authority boundary'],
-  [mandates, 'Establish critical capability under institutional control', 'sovereign mandate'],
+  [mandates, 'Build software for a critical institutional function', 'software mandate'],
+  [mandates, 'cannot serve the function as its obligations and operating conditions demand', 'software authority boundary'],
+  [mandates, 'Establish the information a consequential mandate requires', 'data mandate'],
+  [mandates, 'When necessary data is divided across systems or jurisdictions', 'mandate-led data work'],
+  [mandates, 'Set the terms under which models may act', 'models mandate'],
+  [mandates, 'advise the responsible authorities on which judgments must remain human', 'model authority boundary'],
+  [mandates, 'When strategic dependence becomes unacceptable', 'sovereign-dependence condition'],
   [mandates, 'With the institution&#x27;s accountable authorities', 'control-boundary authority'],
-  [mandates, 'A Shiftora mandate holds a consequential direction or responsibility intact', 'mandate close'],
+  [mandates, 'A Shiftora mandate carries a consequential direction or responsibility', 'mandate close'],
   [mandates, 'Discuss a mandate.', 'contact action'],
   [notFound, '<title>Page not found — Shiftora</title>', '404 title'],
 ];
@@ -105,6 +106,9 @@ for (const retiredPhrase of [
   'Available for engagements worldwide',
   'Keep critical knowledge under institutional control',
   'A mandate belongs within Shiftora&#x27;s remit when',
+  'This is sovereign capacity:',
+  'holds a consequential direction or responsibility intact',
+  'govern the capability on which action depends',
 ]) {
   if (home.includes(retiredPhrase) || mandates.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -119,7 +123,9 @@ for (const [label, pattern] of [
   ['unsupported prestige', /\b(?:world[- ]class|best[- ]in[- ]class|preeminent|unmatched|industry[- ]leading|trusted by|most consequential)\b/i],
   ['generic promotional language', /\b(?:game[- ]changing|cutting[- ]edge|revolution(?:ary|ize|izing)|future[- ]proof|next[- ]generation|transformative solutions?|AI[- ]powered solutions?|bespoke digital solutions?|transformation journeys?|end[- ]to[- ]end transformation)\b/i],
   ['low-status audience suffix', /\b(?:firm|company|consultancy|agency)\s+for\s+(?:governments?|companies|enterprises|organizations?)\b/i],
-  ['source-company signature language', /\b(?:machinery of execution|foundational layer|build to the mission|software that works|ontology of the enterprise|where new capability is required, we build it)\b/i],
+  ['source-company signature language', /\b(?:machinery of execution|foundational layer|build to the mission|software that works|ontology of the enterprise|where new capability is required, we build it|dignified parts?|efficient parts?)\b/i],
+  ['extended double-government metaphor', /\b(?:first|second|real|hidden|concealed) government of (?:an?|the) institution\b/i],
+  ['regulated independence language', /\b(?:an |our )?independent view\b/i],
   ['non-American house style', /\b(?:programmes?|organisations?|prioritis(?:e|ed|es|ing)|labour|behaviours?|modelling|centres?)\b/i],
   ['AI-copy cliché', /\b(?:unlock|empower|leverage|harness|seamless|holistic|ever[- ]evolving|drive innovation)\b/i],
 ]) {
@@ -133,10 +139,11 @@ assertInOrder(
   [
     'Shiftora is an integrated strategy and systems firm.',
     'Every institution is governed twice:',
-    'In governments and enterprises alike,',
-    'Shiftora works where the two diverge.',
-    'When the necessary capability does not yet exist, we build it.',
-    'This is sovereign capacity:',
+    'Governments and enterprises may decide or be required to do more than they can presently carry out.',
+    'Shiftora forms its own view and advises those who hold the relevant authority.',
+    'We remain with the mandate through the work it requires.',
+    'When the necessary capacity does not exist, we build it.',
+    'An institution has sovereign capacity when its systems are answerable to its lawful authority',
   ],
   'description argument'
 );
@@ -149,12 +156,37 @@ if (count(mandates, /<section class="mandate-chapter">/g) !== 4) {
   throw new Error('Verification failed: Mandates must contain exactly four institutional conditions.');
 }
 
-if (count(mandates, /<article class="mandate-item">/g) !== 12) {
-  throw new Error('Verification failed: Mandates must contain exactly twelve records.');
+if (count(mandates, /<article class="mandate-item">/g) !== 11) {
+  throw new Error('Verification failed: Mandates must contain exactly eleven selected records.');
 }
 
-assertJsonLd(home, 'description page');
-assertJsonLd(mandates, 'mandates page');
+const homeGraph = assertJsonLd(home, 'description page');
+const mandatesGraph = assertJsonLd(mandates, 'mandates page');
+
+const homeOrganization = homeGraph.find((node) => node['@type'] === 'Organization');
+if (!homeOrganization || homeOrganization.description === undefined) {
+  throw new Error('Verification failed: description page has no described Organization node.');
+}
+if (JSON.stringify(homeOrganization).includes('Worldwide')) {
+  throw new Error('Verification failed: structured data contains an unsupported worldwide claim.');
+}
+
+const mandatesCollection = mandatesGraph.find((node) => node['@type'] === 'CollectionPage');
+const mandateRecords = mandatesCollection?.mainEntity?.itemListElement;
+if (!Array.isArray(mandateRecords) || mandateRecords.length !== 11) {
+  throw new Error('Verification failed: Mandates JSON-LD must contain exactly eleven records.');
+}
+if (
+  mandateRecords.some(
+    (record, index) =>
+      record['@type'] !== 'ListItem' ||
+      record.position !== index + 1 ||
+      typeof record.name !== 'string' ||
+      record.name.trim().length === 0,
+  )
+) {
+  throw new Error('Verification failed: Mandates JSON-LD records must be named and sequential.');
+}
 
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
 if (sitemapUrls !== 2 || !sitemap.includes('/mandates</loc>')) {

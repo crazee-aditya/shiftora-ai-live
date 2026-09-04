@@ -6,15 +6,15 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Category:** Shiftora is an integrated strategy and systems firm.
 
-**Worldview:** Every institution is governed twice: formally by those responsible for its direction, and operationally by the systems through which it acts.
+**Worldview:** Every institution is governed twice: formally by those entrusted with its direction, and operationally by the systems through which it acts. The phrase is used once and immediately defined; it is not extended into first, second, real, or hidden governments.
 
 **Domain:** The passage from institutional direction or responsibility to operating capability.
 
-**Responsibility:** Hold a consequential mandate intact as it crosses strategy, authority, organization, operations, capital, information, and technology.
+**Responsibility:** Carry a consequential mandate through the forms of work it requires while every reserved decision right remains with the relevant client authority.
 
-**Completion condition:** The institution can carry out the direction or discharge the responsibility at stake and retains the authority and knowledge required to govern and adapt the capability created for it.
+**Completion condition:** The institution's systems are answerable to its lawful authority and equal to its responsibilities.
 
-**Sovereign capacity:** The institution retains authority over its course and can govern and adapt the means on which action depends. For durable commitments, agency may take the form of oversight, intervention, transfer, or eventual exit rather than immediate reversibility. This is not a claim to public authority, national status, or complete technical independence.
+**Sovereign capacity:** The institution's systems are answerable to its lawful authority and equal to its responsibilities. This is not a claim to public authority by Shiftora, national status, total technical independence, ownership of every component, or a Palantir-like digital decision system.
 
 ## Direction of reasoning
 
@@ -35,7 +35,7 @@ Work belongs within Shiftora only when all four statements are true:
 1. A consequential institutional decision or responsibility is at stake.
 2. The work crosses boundaries that ordinarily divide judgment from execution.
 3. Advice alone cannot make the course executable.
-4. The resulting capability must remain under effective institutional governance as direction or responsibility changes, whether it is operated by Shiftora, transferred, or retained by another party.
+4. The resulting arrangements can be made answerable to the relevant institutional authority and adequate to the direction or responsibility, whether they are operated by Shiftora, transferred, or retained by another party.
 
 Routine staff augmentation, undifferentiated software delivery, generic strategy reports, product resale, isolated process improvement, and ordinary managed services do not qualify by themselves.
 
@@ -43,7 +43,7 @@ Apply three counterfactual screens before admitting the work:
 
 1. **Integrity:** If Shiftora delivered only the requested artifact or labor, would the governing judgment still fragment before it became operational? If no, the work is ordinary delivery.
 2. **Consequence:** Would failure materially alter a public duty, strategic position, allocation of authority, capital or risk, or control of a critical capability—not merely a deadline, budget, or departmental KPI? If no, consequence has been inflated.
-3. **Agency:** At completion, can the institution understand, direct, change, replace, and where relevant exit the capability without Shiftora's permission or inaccessible knowledge? If no, the capability is not governable.
+3. **Answerability:** Can the institution identify who may direct, approve, inspect, intervene in, change, replace, and where relevant exit the resulting arrangements without depending on Shiftora's inaccessible knowledge or permission? If no, the systems do not answer to institutional authority.
 
 ## External principal
 
@@ -57,11 +57,11 @@ The client retains every decision right reserved to it by law, regulation, fiduc
 
 - Use American English in public copy, except where an official name or quoted source requires otherwise.
 - Use **firm** once to name the institution.
-- Use **mandate** for a consequential engagement held intact across boundaries.
+- Use **mandate** for a consequential engagement carried across boundaries. Do not imply resistance to lawful revision, change control, reprocurement, or termination through *intact* or *whole* language.
 - Use **systems** to include organizational, operating, financial, informational, technical, physical, and industrial arrangements—not software alone.
 - Use **institution** to include an authorized arrangement among several institutions when necessary. Integration must not centralize authority that should remain distributed.
 - Use **integrated** for the architecture of responsibility, not as a decorative adjective.
-- Use **sovereign** only when the sentence identifies the authority, asset, dependency, or range of action that remains governable.
+- Use **sovereign** only when the sentence identifies the lawful authority to which a system must answer, the responsibility it must be equal to, or the dependency that threatens either condition.
 - Use **AI** and **machine learning** only for technical instruments, never the category.
 - Do not add an audience suffix such as “for governments and companies” to the identity sentence.
 - Do not imply client history, government credentials, clearances, outcomes, or operating scale without evidence.
@@ -69,6 +69,7 @@ The client retains every decision right reserved to it by law, regulation, fiduc
 ## Public architecture
 
 - `/` states the worldview and the firm's place within it.
-- `/mandates` shows the institutional conditions that can call the firm into the work.
+- `/mandates` shows eleven selected mandates under four institutional conditions. Its 3–3–3–2
+  asymmetry is deliberate; do not restore a twelfth item merely to complete the visual field.
 
 If either page can be reorganized as a service catalogue without losing its argument, the copy has been derived from the wrong end.

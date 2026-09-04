@@ -8,6 +8,7 @@ const requirements = {
   Söhne: [400, 500],
   'Alliance No. 2': [400, 500, 700],
 };
+const issues = [];
 
 function declaredWeights(block) {
   const match = block.match(/font-weight\s*:\s*(\d{3})(?:\s+(\d{3}))?/);
@@ -22,7 +23,8 @@ for (const [family, requiredWeights] of Object.entries(requirements)) {
   const familyPattern = new RegExp(`font-family\\s*:\\s*['\"]${escapedFamily}['\"]`);
   const familyBlocks = faceBlocks.filter((block) => familyPattern.test(block));
   if (familyBlocks.length === 0) {
-    throw new Error(`Release blocked: licensed ${family} webfonts have not been declared.`);
+    issues.push(`licensed ${family} webfonts have not been declared`);
+    continue;
   }
 
   for (const requiredWeight of requiredWeights) {
@@ -31,7 +33,7 @@ for (const [family, requiredWeights] of Object.entries(requirements)) {
       return first <= requiredWeight && last >= requiredWeight;
     });
     if (!covered) {
-      throw new Error(`Release blocked: ${family} does not cover weight ${requiredWeight}.`);
+      issues.push(`${family} does not cover weight ${requiredWeight}`);
     }
   }
 }
@@ -41,16 +43,17 @@ const woff2Urls = faceBlocks.flatMap((block) =>
 );
 
 if (woff2Urls.length === 0) {
-  throw new Error('Release blocked: no licensed WOFF2 assets are declared.');
+  issues.push('no licensed WOFF2 assets are declared');
 }
 
 for (const url of woff2Urls) {
   if (!url.startsWith('/fonts/')) {
-    throw new Error(`Release blocked: font must be self-hosted from /fonts/ (${url}).`);
+    issues.push(`font must be self-hosted from /fonts/ (${url})`);
+    continue;
   }
   const path = resolve('public', url.slice(1));
   if (!existsSync(path)) {
-    throw new Error(`Release blocked: declared font file is missing (${path}).`);
+    issues.push(`declared font file is missing (${path})`);
   }
 }
 
@@ -64,8 +67,13 @@ for (const [label, source] of [
   ['favicon', faviconSource],
 ]) {
   if (/<text\b/i.test(source)) {
-    throw new Error(`Release blocked: ${label} lettering must be converted to licensed vector outlines.`);
+    issues.push(`${label} lettering must be converted to licensed vector outlines`);
   }
+}
+
+if (issues.length > 0) {
+  const detail = issues.map((issue) => `- ${issue}`).join('\n');
+  throw new Error(`Release blocked:\n${detail}`);
 }
 
 console.log('Verified licensed Shiftora webfont declarations and assets.');

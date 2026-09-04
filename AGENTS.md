@@ -6,14 +6,17 @@ technical services. Preserve that distinction in every change.
 ## Public identity
 
 - The category is **integrated strategy and systems firm**.
-- The governing thesis is **Every institution is governed twice.**
+- The governing thesis is **Every institution is governed twice.** Use it once, define it immediately,
+  and never extend it into first, second, real, hidden, or concealed governments.
 - Shiftora works in the passage from institutional direction or responsibility to operating capability.
 - AI, software, data, models, organization, capital, and operations are possible forms of a
   mandate. None is the umbrella identity.
 - A client institution or authorized coalition remains the principal in a Shiftora mandate. A
   business governed by Shiftora's own product or investment thesis requires a separate category.
-- “Sovereign” must name retained institutional control or freedom of action; never use it as an
-  ornamental synonym for premium, private, or local.
+- “Sovereign” must name systems answerable to lawful institutional authority and equal to the
+  institution's responsibilities; never use it as an ornamental synonym for premium, private, or local.
+- Do not define sovereignty through ownership, preservation, portability, or improvement of a digital
+  decision system; that route is now materially adjacent to Palantir's public position.
 
 ## Information architecture
 
@@ -21,6 +24,8 @@ technical services. Preserve that distinction in every change.
 - `/` is **The firm**: one continuous institutional thesis, not a capabilities page.
 - `/mandates` organizes work by the condition that creates a mandate, not by sector, department,
   buyer, or technology.
+- Preserve the intentionally asymmetric eleven-record 3–3–3–2 field. Do not add a twelfth mandate
+  merely to complete the grid.
 - Do not restore careers, blog, FAQ, pricing, process, or generic service pages without an explicit
   product decision and corresponding change to the sitemap and verification gate.
 - `src/content.ts` is the single source of truth for the working public description, mandate chapters,

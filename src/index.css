@@ -217,6 +217,15 @@ a:focus-visible {
   animation: reveal-copy 760ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
+.description-copy p {
+  margin: 0;
+}
+
+.description-copy__close {
+  margin-top: 0.7em !important;
+  max-width: 48ch;
+}
+
 @keyframes reveal-copy {
   from {
     opacity: 0;
