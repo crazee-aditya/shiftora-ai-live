@@ -62,6 +62,11 @@ technical services. Preserve that distinction in every change.
 
 ## Release gates
 
+- Git tag `version-1` is the permanent baseline for the approved Firm and Engagements pair.
+- Before replacing Page 01, apply the blind comparison protocol in `VERSION_1_AUDIT.md`. A successor
+  must preserve every Version 1 strength and materially improve at least two recorded dimensions.
+- Treat new language as a candidate until it earns a new numbered version. Never overwrite the
+  meaning of an existing version tag.
 - Run `npm run verify` after every content, route, metadata, or layout change.
 - Run `npm run verify:visual` after any copy-length, typography, spacing, or responsive-layout change;
   inspect the generated 390px and 1440px screenshots rather than trusting fit metrics alone. The
