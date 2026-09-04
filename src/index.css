@@ -105,6 +105,9 @@ a:focus-visible {
 }
 
 .brand-wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   font-family: var(--display);
   font-size: clamp(2.8rem, 5.4vw, 6.6rem);
   font-weight: 700;
