@@ -154,15 +154,11 @@ a:focus-visible {
 
 .directional-arrow {
   display: block;
-  width: 1em;
-  height: 1em;
+  width: 0.78em;
+  height: 0.78em;
   flex: 0 0 auto;
   overflow: visible;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.1;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
+  fill: currentColor;
 }
 
 .brand-header__next .directional-arrow,
