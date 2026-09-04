@@ -13,7 +13,7 @@ The repository does not contain either licensed font file. The current CSS names
 families and falls back to Helvetica Neue/Helvetica/Arial, so the site remains usable without
 shipping unlicensed assets.
 
-Before production release, obtain webfont licences and WOFF2 files from the respective foundries.
+Before production release, obtain webfont licenses and WOFF2 files from the respective foundries.
 Place the files in `public/fonts/`, add the matching `@font-face` declarations at the top of
 `src/index.css`, and use `font-display: swap`. Preserve the existing family names in the CSS:
 `Alliance No. 2` and `Söhne`.
