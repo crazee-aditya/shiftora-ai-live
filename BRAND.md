@@ -28,6 +28,19 @@ Public copy is derived in this order:
 
 Never infer the identity upward from a list of present services. Software, data, models, infrastructure, capital, organization, and advice are instruments; none is the protagonist or the ceiling.
 
+### Capability-blind gate
+
+Every proposed Page-one revision must pass all six tests before it enters the site:
+
+1. Remove every present method, technology, offer, desired client, and credential. The proposition must still explain why Shiftora should exist.
+2. Introduce a future instrument not named in the repository. The identity must admit it without revision when the responsibility and completion condition still hold.
+3. Remove one present capability entirely. The doctrine must remain true.
+4. Distinguish a client mandate from a product, investment, or operating company governed by Shiftora's own commercial judgment; *mandate* cannot be stretched to contain every future business.
+5. Delete *government*, *enterprise*, *sovereign*, and other status-bearing nouns. A causal institutional argument must remain.
+6. Reintroduce methods only after the institutional condition, legitimate authority, and Shiftora's responsibility are clear. If the result can be rearranged into a service menu without loss, reject it.
+
+The gate is deliberately subtractive. It proves that the identity was derived from an institutional proposition rather than allowing the copy to claim that after the fact.
+
 ## Admission test
 
 Work belongs within Shiftora only when all four statements are true:
