@@ -8,7 +8,7 @@
 
 ## Challenger copy
 
-> Shiftora is an integrated strategy and systems firm. Its domain is the direction and capacity of government and enterprise. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.
+> Shiftora is an integrated strategy and systems firm. Its domain is the direction and capacity of government and enterprise. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
 >
 > An institution is sovereign when its decisions command the means of action.
 

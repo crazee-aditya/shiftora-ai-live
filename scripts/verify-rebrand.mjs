@@ -64,7 +64,7 @@ const checks = [
   [home, 'Shiftora is an integrated strategy and systems firm.', 'positioning'],
   [home, 'Its domain is the direction and capacity of government and enterprise.', 'institutional domain'],
   [home, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
-  [home, 'Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.', 'operating responsibility'],
+  [home, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
   [home, 'An institution is sovereign when its decisions command the means of action.', 'sovereignty definition'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
@@ -125,6 +125,7 @@ for (const retiredPhrase of [
   'We build the systems that carry those decisions into effect.',
   'Its domain is the decisions that determine the course of governments and enterprises',
   'The measure of the work is an institution whose judgment is matched by its means.',
+  'Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -160,7 +161,7 @@ assertInOrder(
     'Shiftora is an integrated strategy and systems firm.',
     'Its domain is the direction and capacity of government and enterprise.',
     'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',
-    'Shiftora advises the course, builds the capacity to carry it, and remains through operation until the intended result is in force.',
+    'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.',
     'An institution is sovereign when its decisions command the means of action.',
   ],
   'description argument',
