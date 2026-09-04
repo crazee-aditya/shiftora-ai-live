@@ -2,10 +2,10 @@
 
 The rebrand specifies two licensed commercial families:
 
-- **Alliance No. 2** for the Shiftora wordmark and major display type. Licence it through
+- **Alliance No. 2** for the Shiftora wordmark and major display type. License it through
   [MyFonts](https://www.myfonts.com/collections/alliance-font-degarism-studio). The family page
   includes the Alliance No. 2 Regular, Medium, and Bold styles required here.
-- **Söhne** for paragraphs, navigation, labels, and supporting type. Licence it from
+- **Söhne** for paragraphs, navigation, labels, and supporting type. License it from
   [Klim Type Foundry](https://klim.co.nz/fonts/soehne/). The corresponding styles are Söhne Buch
   (400) and Söhne Kräftig (500).
 
