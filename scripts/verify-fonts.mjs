@@ -84,4 +84,4 @@ if (issues.length > 0) {
   throw new Error(`Release blocked:\n${detail}`);
 }
 
-console.log('Verified the required Shiftora webfont declarations, files, and brand assets. Human licence evidence remains required.');
+console.log('Verified the required Shiftora webfont declarations, files, and brand assets. Human license evidence remains required.');

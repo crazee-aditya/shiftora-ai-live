@@ -45,6 +45,6 @@ outlined-source/raster digest record is absent or stale. The browser check expli
 not infer success merely because a fallback rendered the page. It also verifies the computed family
 and weight on representative display, paragraph, label, and wordmark elements.
 
-The automated checks cannot establish ownership of a font licence. Retain the foundry invoices or
-agreements that cover web use and desktop conversion to outlines, and record a human licence sign-off
+The automated checks cannot establish ownership of a font license. Retain the foundry invoices or
+agreements that cover web use and desktop conversion to outlines, and record a human license sign-off
 with the release evidence.

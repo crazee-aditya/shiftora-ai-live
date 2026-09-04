@@ -21,7 +21,7 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 1. Choose Page-one Option A, B, or C in the rebrand copy system.
 2. If the choice changes from A, update visible copy, metadata, social-image wording, machine-readable copy, and verification expectations together.
 3. License Söhne Buch/Kräftig and Alliance No. 2 Regular/Medium/Bold for web use.
-4. Retain the foundry licence evidence and record manual approval for web use and desktop-generated outlines; the automated gate cannot prove legal ownership.
+4. Retain the foundry license evidence and record manual approval for web use and desktop-generated outlines; the automated gate cannot prove legal ownership.
 5. Add the WOFF2 files and `@font-face` declarations described in `FONTS.md`.
 6. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, then run `npm run brand:build-assets` to generate the PNGs deterministically and record their provenance.
 7. Run `npm run verify:release`; it includes the full dependency audit and the 22-case visual suite in strict licensed-font mode.

@@ -85,7 +85,7 @@ The client retains every decision right reserved to it by law, regulation, fiduc
 - `/mandates` shows eleven selected mandates under four institutional conditions. Its 3–3–3–2
   asymmetry is deliberate; do not restore a twelfth item merely to complete the visual field.
 
-If either page can be reorganized as a service catalogue without losing its argument, the copy has been derived from the wrong end.
+If either page can be reorganized as a service catalog without losing its argument, the copy has been derived from the wrong end.
 
 ### Admission test for a future mandate record
 
