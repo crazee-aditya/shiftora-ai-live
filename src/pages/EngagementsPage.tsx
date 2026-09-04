@@ -1,5 +1,10 @@
 import { BrandFooter, BrandHeader } from '../components/BrandFrame';
-import { ENGAGEMENT_CHAPTERS, ENGAGEMENTS_CLOSE, ENGAGEMENTS_INTRO } from '../content';
+import {
+  ENGAGEMENT_CHAPTERS,
+  ENGAGEMENTS_CLOSE,
+  ENGAGEMENTS_INTRO,
+  ENGAGEMENTS_LEGAL_NOTICE,
+} from '../content';
 
 export default function EngagementsPage() {
   let itemNumber = 0;
@@ -11,7 +16,10 @@ export default function EngagementsPage() {
         <section className="mandates-hero">
           <p className="page-kicker page-kicker--ink">Integrated strategy and systems firm</p>
           <h1 className="engagements-title">Engagements</h1>
-          <p className="mandates-hero__intro">{ENGAGEMENTS_INTRO}</p>
+          <p className="mandates-hero__intro">
+            <span className="mandates-hero__legal-notice">{ENGAGEMENTS_LEGAL_NOTICE}</span>
+            <span>{ENGAGEMENTS_INTRO}</span>
+          </p>
         </section>
 
         <div className="mandate-book">

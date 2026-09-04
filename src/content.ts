@@ -4,8 +4,11 @@ export const FIRM_DESCRIPTION_BODY =
 export const FIRM_DESCRIPTION_CLOSE =
   'Shiftora brings the vantage to see the whole—and the means to make ambition executable.';
 
+export const ENGAGEMENTS_LEGAL_NOTICE =
+  'The following disclosure remains subject to continuing legal duties of confidence.';
+
 export const ENGAGEMENTS_INTRO =
-  'Selected systems for public authority and enterprise. Architecture alone is disclosed; all else remains subject to continuing legal duties of confidence.';
+  'Selected systems for public authority and enterprise. Architecture alone is disclosed.';
 
 export const ENGAGEMENTS_CLOSE =
   "A Shiftora system is complete when the institution's capacity to decide and act is equal to the responsibility it carries.";
