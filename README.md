@@ -47,3 +47,10 @@ webfonts at every weight used by the design. It intentionally fails until those 
 See [FONTS.md](./FONTS.md).
 
 Do not deploy this branch while `npm run verify:release` is failing.
+
+```sh
+npm run audit:prod
+```
+
+The production dependency audit is kept separate because it queries the current advisory registry.
+Run it before deployment and after dependency changes.
