@@ -10,7 +10,7 @@
 
 > Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
 >
-> The vantage to see the whole and the means to change it.
+> Strategy at institutional scale demands the vantage to see the whole and the means to change it.
 
 ## Reference lock
 
@@ -33,6 +33,6 @@
 
 ## Decision
 
-Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation. The close now names the two conditions Shiftora brings to the work without defining the client by an internal limitation: a vantage across the whole and the means to convert what it reveals into change. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
+Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation. The close now establishes a strategic premise at institutional scale, then preserves the two conditions Shiftora brings to the work: a vantage across the whole and the means to convert what it reveals into change. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
 
-The closing line preserves E76's perspective-and-execution logic while removing the comparison with what a client can generate internally. “Vantage” supplies perspective; “means” makes clear that Shiftora does not stop at diagnosis or advice.
+The closing line preserves E76's perspective-and-execution logic while removing the comparison with what a client can generate internally. “Strategy at institutional scale” supplies the non-accusatory premise; “vantage” supplies perspective; “means” makes clear that Shiftora does not stop at diagnosis or advice.

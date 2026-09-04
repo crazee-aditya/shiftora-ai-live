@@ -65,7 +65,7 @@ const checks = [
   [home, 'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.', 'positioning and institutional scale'],
   [home, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
   [home, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
-  [home, 'The vantage to see the whole and the means to change it.', 'institutional outcome'],
+  [home, 'Strategy at institutional scale demands the vantage to see the whole and the means to change it.', 'institutional outcome'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
@@ -133,6 +133,7 @@ for (const retiredPhrase of [
   'We advise the course, build the capacity to carry it, and remain through operation.',
   'The result is an institution capable of acting at the full scale of its ambition.',
   'Shiftora brings what institutions cannot create from within: the vantage to see the whole and the means to change it.',
+  'The vantage to see the whole and the means to change it.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -168,7 +169,7 @@ assertInOrder(
     'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.',
     'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',
     'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.',
-    'The vantage to see the whole and the means to change it.',
+    'Strategy at institutional scale demands the vantage to see the whole and the means to change it.',
   ],
   'description argument',
 );

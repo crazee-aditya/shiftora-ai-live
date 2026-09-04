@@ -85,7 +85,7 @@ try {
   );
 
   for (const [label, response, expectedStatus, text, marker] of [
-    ['home', home, 200, homeText, 'The vantage to see the whole and the means to change it.'],
+    ['home', home, 200, homeText, 'Strategy at institutional scale demands the vantage to see the whole and the means to change it.'],
     ['engagements', engagements, 200, engagementsText, 'Command across a sovereign logistics network'],
     ['404', notFound, 404, notFoundText, 'This page does not exist.'],
   ]) {
