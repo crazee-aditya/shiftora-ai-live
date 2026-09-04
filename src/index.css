@@ -15,6 +15,10 @@
   --display: 'Alliance No. 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --text: 'Söhne', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --gutter: clamp(1.25rem, 3.5vw, 4.75rem);
+  --firm-gutter: clamp(1.25rem, 3.5vw, 1.455rem);
+  --firm-header-height: 6.7125rem;
+  --firm-measure: 38.65rem;
+  --firm-rhythm: 3.835rem;
 }
 
 *,
@@ -203,18 +207,39 @@ a:focus-visible {
   background: var(--paper);
 }
 
+.description-page {
+  --gutter: var(--firm-gutter);
+}
+
+.description-page .brand-header {
+  min-height: var(--firm-header-height);
+}
+
+.description-page .brand-wordmark {
+  font-size: 2.8rem;
+}
+
+.description-page .brand-header__meta {
+  gap: 1.165rem;
+}
+
+.description-page .brand-footer span:first-child {
+  display: none;
+}
+
 .description-page__main {
   display: grid;
   align-content: end;
-  gap: clamp(2.5rem, 8vh, 7rem);
-  padding: clamp(4rem, 10vh, 9rem) var(--gutter) clamp(3.5rem, 8vh, 7rem);
+  gap: var(--firm-rhythm);
+  padding: 4.795rem var(--gutter) var(--firm-rhythm);
 }
 
 .description-copy {
-  max-width: 43ch;
+  width: 100%;
+  max-width: var(--firm-measure);
   margin: 0;
   font-family: var(--text);
-  font-size: clamp(1.7rem, 3.4vw, 4rem);
+  font-size: 1.7rem;
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.18;
@@ -447,6 +472,14 @@ a:focus-visible {
   }
 
   .brand-wordmark {
+    font-size: 2.65rem;
+  }
+
+  .description-page .brand-header {
+    min-height: 5.5rem;
+  }
+
+  .description-page .brand-wordmark {
     font-size: 2.65rem;
   }
 

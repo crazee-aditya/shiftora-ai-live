@@ -240,6 +240,7 @@ try {
     { route: '/engagements', width: 600, height: 900, screenshot: 'engagements-600.png' },
     { route: '/', width: 601, height: 900 },
     { route: '/engagements', width: 601, height: 900 },
+    { route: '/', width: 665, height: 767, screenshot: 'home-reference-665x767.png' },
     { route: '/', width: 768, height: 1024, screenshot: 'home-768.png' },
     { route: '/engagements', width: 768, height: 1024, screenshot: 'engagements-768.png' },
     { route: '/', width: 1100, height: 1000, screenshot: 'home-1100.png' },
@@ -339,6 +340,17 @@ try {
           });
           const firstMandateTitle = document.querySelector('.mandate-item h3');
           const firstMandateRect = firstMandateTitle?.getBoundingClientRect();
+          const descriptionCopy = document.querySelector('.description-copy');
+          const descriptionRect = descriptionCopy?.getBoundingClientRect();
+          const descriptionStyle = descriptionCopy ? getComputedStyle(descriptionCopy) : null;
+          const descriptionMain = document.querySelector('.description-page__main');
+          const descriptionMainStyle = descriptionMain ? getComputedStyle(descriptionMain) : null;
+          const descriptionHeader = document.querySelector('.description-page .brand-header');
+          const descriptionHeaderStyle = descriptionHeader ? getComputedStyle(descriptionHeader) : null;
+          const descriptionWordmark = document.querySelector('.description-page .brand-wordmark');
+          const descriptionWordmarkStyle = descriptionWordmark ? getComputedStyle(descriptionWordmark) : null;
+          const descriptionLocation = document.querySelector('.description-page .brand-footer span:first-child');
+          const descriptionLocationStyle = descriptionLocation ? getComputedStyle(descriptionLocation) : null;
           const mandatesHero = document.querySelector('.mandates-hero');
           const mandatesHeroHeading = document.querySelector('.mandates-hero h1');
           const mandatesHeroStyle = mandatesHero ? getComputedStyle(mandatesHero) : null;
@@ -373,6 +385,15 @@ try {
             fontRoleFailures,
             fontSetStatus: document.fonts.status,
             descriptionFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.description-copy') ?? document.body).fontSize),
+            descriptionLineHeight: Number.parseFloat(descriptionStyle?.lineHeight ?? '0'),
+            descriptionWidth: descriptionRect?.width ?? 0,
+            descriptionMainGap: Number.parseFloat(descriptionMainStyle?.rowGap ?? '0'),
+            descriptionMainPaddingTop: Number.parseFloat(descriptionMainStyle?.paddingTop ?? '0'),
+            descriptionMainPaddingBottom: Number.parseFloat(descriptionMainStyle?.paddingBottom ?? '0'),
+            descriptionGutter: Number.parseFloat(descriptionHeaderStyle?.paddingLeft ?? '0'),
+            descriptionHeaderHeight: descriptionHeader?.getBoundingClientRect().height ?? 0,
+            descriptionWordmarkFontSize: Number.parseFloat(descriptionWordmarkStyle?.fontSize ?? '0'),
+            descriptionLocationVisible: descriptionLocationStyle?.display !== 'none',
             mandatesHeroFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.mandates-hero h1') ?? document.body).fontSize),
             mandateTitleFontSize: Number.parseFloat(getComputedStyle(firstMandateTitle ?? document.body).fontSize),
             firstMandateTitleWidth: firstMandateRect?.width ?? 0,
@@ -473,6 +494,33 @@ try {
   assertMonotonic('/engagements', 1100, 1101, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
   assertMonotonic('/engagements', 1279, 1280, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
   assertMonotonic('/engagements', 1439, 1440, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+
+  const lockedFirmMetrics = [
+    'descriptionFontSize',
+    'descriptionLineHeight',
+    'descriptionWidth',
+    'descriptionMainGap',
+    'descriptionMainPaddingTop',
+    'descriptionMainPaddingBottom',
+    'descriptionGutter',
+    'descriptionHeaderHeight',
+    'descriptionWordmarkFontSize',
+  ];
+  const firmMaster = measuredCases.get('/:665');
+  for (const width of [768, 1100, 1280, 1304, 1440, 1920, 2560]) {
+    const candidate = measuredCases.get(`/:${width}`);
+    if (!firmMaster || !candidate) continue;
+    for (const metric of lockedFirmMetrics) {
+      if (Math.abs(candidate[metric] - firmMaster[metric]) > 0.25) {
+        failures.push(
+          `/ ${metric} drifts between the 665px master and ${width}px (${firmMaster[metric]}px to ${candidate[metric]}px).`,
+        );
+      }
+    }
+    if (candidate.descriptionLocationVisible) {
+      failures.push(`/ reveals the location footer item at ${width}px; the 665px master keeps a two-part footer.`);
+    }
+  }
 
   const beforeDesktop = measuredCases.get('/engagements:1439');
   const afterDesktop = measuredCases.get('/engagements:1440');
