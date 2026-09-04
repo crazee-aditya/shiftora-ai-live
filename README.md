@@ -56,3 +56,6 @@ npm run audit:prod
 
 The production dependency audit is kept separate because it queries the current advisory registry.
 Run it before deployment and after dependency changes.
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for the current domain, repository-access, release-hold, and
+handoff state.
