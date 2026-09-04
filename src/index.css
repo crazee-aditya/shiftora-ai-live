@@ -154,7 +154,6 @@ a:focus-visible {
 
 .directional-arrow {
   position: relative;
-  top: -0.34em;
   left: 0;
   display: block;
   width: 1em;

@@ -107,8 +107,8 @@ for (const [document, phrase, label] of checks) {
   }
 }
 
-if (count(home, /class="description-copy__emphasis"/g) !== 5) {
-  throw new Error('Verification failed: the Firm page must contain exactly five underlined phrases.');
+if (count(home, /class="description-copy__emphasis"/g) !== 6) {
+  throw new Error('Verification failed: the Firm page must contain exactly six underlined phrases.');
 }
 
 for (const retiredPhrase of [

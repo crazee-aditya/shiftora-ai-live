@@ -9,6 +9,7 @@ export const FIRM_DESCRIPTION_HIGHLIGHTS = [
   'systems',
   'world governments',
   'enterprises',
+  'result',
   'vantage',
 ] as const;
 

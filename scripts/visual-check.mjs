@@ -354,6 +354,13 @@ try {
           const mandatesHeroHeadroom = mandatesHeroHeading
             ? mandatesHeroWidth - mandatesHeroRange.getBoundingClientRect().width
             : 0;
+          const arrowAlignmentOffsets = [...document.querySelectorAll('.directional-arrow')].map((arrow) => {
+            const link = arrow.closest('a');
+            if (!link) return Number.POSITIVE_INFINITY;
+            const arrowRect = arrow.getBoundingClientRect();
+            const linkRect = link.getBoundingClientRect();
+            return (arrowRect.top + arrowRect.height / 2) - (linkRect.top + linkRect.height / 2);
+          });
 
           return JSON.stringify({
             title: document.title,
@@ -390,6 +397,7 @@ try {
             firstMandateTitleWidth: firstMandateRect?.width ?? 0,
             firstMandateTitleHeight: firstMandateRect?.height ?? 0,
             mandatesHeroHeadroom,
+            arrowAlignmentOffsets,
           });
         })()`,
         returnByValue: true,
@@ -417,9 +425,11 @@ try {
     );
     const validDocument = !metrics.headingSkip && metrics.duplicateIdCount === 0;
     const validFonts = !requireApprovedTypography || metrics.fontRoleFailures.length === 0;
+    const validArrowAlignment = metrics.arrowAlignmentOffsets.length > 0 &&
+      metrics.arrowAlignmentOffsets.every((offset) => Math.abs(offset) <= 1);
     const label = `${testCase.route} at ${testCase.width}px`;
     console.log(
-      `${overflow || !validStructure || !validMetadata || !validIndexing || !validNavigation || !validDocument || !validFonts ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
+      `${overflow || !validStructure || !validMetadata || !validIndexing || !validNavigation || !validDocument || !validFonts || !validArrowAlignment ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,
     );
 
     if (overflow) failures.push(`${label} overflows horizontally.`);
@@ -433,6 +443,9 @@ try {
       failures.push(`${label} has an invalid skip target, unlabeled link, or sub-44px mobile target.${targetDetail}`);
     }
     if (!validDocument) failures.push(`${label} has a skipped heading level or duplicate id.`);
+    if (!validArrowAlignment) {
+      failures.push(`${label} has a directional arrow outside the navigation baseline (${metrics.arrowAlignmentOffsets.join(', ')}px).`);
+    }
     if (testCase.route === '/engagements' && testCase.width === 320 && metrics.mandatesHeroHeadroom < 16) {
       failures.push(`${label} leaves only ${metrics.mandatesHeroHeadroom.toFixed(2)}px of heading headroom.`);
     }
