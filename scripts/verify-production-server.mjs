@@ -2,7 +2,7 @@
 
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
-import { resolve } from 'node:path';
+import { RETIRED_PATHS, SITE_CSP } from './site-policy.mjs';
 
 async function reservePort() {
   const probe = createServer();
@@ -37,11 +37,17 @@ function assertHeader(response, name, expected) {
   }
 }
 
+function assertExactHeader(response, name, expected) {
+  const actual = response.headers.get(name) ?? '';
+  if (actual !== expected) {
+    throw new Error(`${response.url} has invalid ${name}: expected “${expected}”, received “${actual}”.`);
+  }
+}
+
 const port = await reservePort();
 const baseUrl = `http://127.0.0.1:${port}`;
-const serveBin = resolve('node_modules/serve/build/main.js');
-const child = spawn(process.execPath, [serveBin, 'dist', '-l', String(port)], {
-  env: { ...process.env, NO_UPDATE_CHECK: '1' },
+const child = spawn(process.execPath, ['scripts/start-server.mjs'], {
+  env: { ...process.env, PORT: String(port) },
   stdio: ['ignore', 'ignore', 'pipe'],
 });
 
@@ -60,6 +66,9 @@ try {
   const mandatesText = await mandates.text();
   const notFound = await fetch(`${baseUrl}/not-a-page`);
   const notFoundText = await notFound.text();
+  const retiredResponses = await Promise.all(
+    RETIRED_PATHS.map(async (path) => [path, await fetch(`${baseUrl}${path}`)]),
+  );
 
   for (const [label, response, expectedStatus, text, marker] of [
     ['home', home, 200, homeText, 'Every institution is governed twice:'],
@@ -74,6 +83,33 @@ try {
     assertHeader(response, 'x-content-type-options', 'nosniff');
     assertHeader(response, 'referrer-policy', 'strict-origin-when-cross-origin');
     assertHeader(response, 'permissions-policy', 'camera=(), microphone=(), geolocation=()');
+    assertExactHeader(response, 'content-security-policy', SITE_CSP);
+    assertHeader(response, 'x-frame-options', 'DENY');
+  }
+
+  for (const [path, response] of retiredResponses) {
+    const text = await response.text();
+    if (response.status !== 410) {
+      throw new Error(`retired route ${path} returned ${response.status}; expected 410.`);
+    }
+    if (!text.includes('This page does not exist.')) {
+      throw new Error(`retired route ${path} is missing the branded retirement response.`);
+    }
+    if (!text.includes('<meta name="robots" content="noindex, follow" />')) {
+      throw new Error(`retired route ${path} is missing the noindex directive.`);
+    }
+    assertExactHeader(response, 'content-security-policy', SITE_CSP);
+    assertHeader(response, 'x-frame-options', 'DENY');
+  }
+
+  const retiredTrailingSlash = await fetch(`${baseUrl}/careers/`, { redirect: 'manual' });
+  if (retiredTrailingSlash.status !== 410) {
+    throw new Error(`retired trailing-slash route returned ${retiredTrailingSlash.status}; expected 410.`);
+  }
+
+  const retiredHead = await fetch(`${baseUrl}/blog`, { method: 'HEAD' });
+  if (retiredHead.status !== 410 || (await retiredHead.text()) !== '') {
+    throw new Error('retired HEAD response must return 410 without a body.');
   }
 
   if (!notFoundText.includes('<meta name="robots" content="noindex, follow" />')) {
@@ -86,7 +122,7 @@ try {
   if (!asset.ok) throw new Error(`Built asset returned ${asset.status}: ${assetPath}`);
   assertHeader(asset, 'cache-control', 'max-age=31536000, immutable');
 
-  console.log('Verified production routing, branded 404, cache policy, and security headers.');
+  console.log('Verified production routing, explicit retired routes, cache policy, and security headers.');
 } finally {
   child.kill('SIGTERM');
   await new Promise((accept) => {

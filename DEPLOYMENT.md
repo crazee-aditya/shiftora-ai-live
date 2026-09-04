@@ -22,8 +22,8 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 2. If the choice changes from A, update visible copy, metadata, social-image wording, machine-readable copy, and verification expectations together.
 3. License Söhne Buch/Kräftig and Alliance No. 2 Regular/Medium/Bold for web use.
 4. Add the WOFF2 files and `@font-face` declarations described in `FONTS.md`.
-5. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines and regenerate the PNG assets.
-6. Run `npm run verify:release`, `npm run verify:visual`, and `npm run audit:prod`.
+5. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, regenerate the PNG assets, and run `npm run brand:record-assets` to bind the committed outputs to those outlined sources.
+6. Run `npm run verify:release` and `npm run verify:visual`; the release check includes the full dependency audit.
 7. Inspect the licensed-font screenshots at phone, tablet, and desktop widths.
 8. Confirm the public meaning of the Dubai and Mumbai locations and send a real test message through `info@shiftora.ai`.
 9. Push the rebrand branch, review the remote diff and deployment preview, then merge deliberately.
@@ -38,7 +38,9 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 - Branded `404` with a real `404` status and `noindex, follow`.
 - Static-asset and HTML cache policies plus configured security headers.
 - Browser structure, overflow, hydration, and console health across 320–1440px.
-- Current production dependency audit: zero known vulnerabilities.
+- Current full build-toolchain and production dependency audits: zero known vulnerabilities (registry network permitting).
+- The previous `/careers`, `/blog`, and six article routes have an explicit `410 Gone` policy; they are not redirected to an unrelated successor.
+- Railway runs `npm run verify:release`, so fallback typography or stale/unrecorded brand assets cannot reach a deployable build through the repository configuration.
 
 ## Expected failing check
 
@@ -48,3 +50,4 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 - missing licensed Alliance No. 2 declarations;
 - no declared licensed WOFF2 assets; or
 - text remaining in the social card, organization logo, or favicon SVG sources.
+- an absent or stale `brand-assets.json` digest record for the outlined sources and regenerated PNGs.

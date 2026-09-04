@@ -24,7 +24,14 @@ may cover the range. Convert all lettering in `scripts/og-image.svg`, `scripts/l
 External SVGs cannot inherit the page's webfonts, and a bitmap rendered from unresolved SVG text can
 silently preserve the development fallback.
 
+After regenerating `public/og-image.png` and `public/logo-512.png`, run
+`npm run brand:record-assets`. This records SHA-256 digests of the three outlined SVG sources and
+the two raster outputs in `brand-assets.json`. Commit that file with the assets. The release gate
+will fail if any source or output changes afterward, preventing an old fallback-rendered PNG from
+surviving a later SVG update.
+
 Do not substitute similarly named downloads from unofficial font sites.
 
 Run `npm run verify:release` after installing the fonts. That check intentionally fails while the
-licensed faces are absent, and also fails if a declared WOFF2 file is missing.
+licensed faces are absent, if a declared WOFF2 file is missing, or if the outlined-source/raster
+digest record is absent or stale.

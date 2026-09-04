@@ -5,6 +5,7 @@ import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
 import { extname, join, resolve, sep } from 'node:path';
+import { SITE_CSP } from './site-policy.mjs';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const distRoot = join(projectRoot, 'dist');
@@ -45,6 +46,8 @@ const server = createServer(async (request, response) => {
         response.writeHead(200, {
           'content-type': mimeTypes.get(extname(candidate)) ?? 'application/octet-stream',
           'cache-control': 'no-store',
+          'content-security-policy': SITE_CSP,
+          'x-frame-options': 'DENY',
         });
         response.end(body);
         return;

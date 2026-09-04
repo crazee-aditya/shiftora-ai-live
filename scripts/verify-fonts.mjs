@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -68,6 +69,39 @@ for (const [label, source] of [
 ]) {
   if (/<text\b/i.test(source)) {
     issues.push(`${label} lettering must be converted to licensed vector outlines`);
+  }
+}
+
+const assetManifestPath = 'brand-assets.json';
+if (!existsSync(assetManifestPath)) {
+  issues.push('outlined source and regenerated PNG digests have not been recorded');
+} else {
+  try {
+    const manifest = JSON.parse(readFileSync(assetManifestPath, 'utf8'));
+    if (manifest.algorithm !== 'sha256') {
+      issues.push('brand asset manifest must use sha256');
+    }
+
+    const expectedPaths = [
+      'scripts/og-image.svg',
+      'scripts/logo-512.svg',
+      'public/favicon.svg',
+      'public/og-image.png',
+      'public/logo-512.png',
+    ];
+    for (const path of expectedPaths) {
+      const expected = manifest.sources?.[path] ?? manifest.outputs?.[path];
+      if (typeof expected !== 'string') {
+        issues.push(`brand asset manifest is missing ${path}`);
+        continue;
+      }
+      const actual = createHash('sha256').update(readFileSync(path)).digest('hex');
+      if (actual !== expected) {
+        issues.push(`brand asset changed after its release digest was recorded (${path})`);
+      }
+    }
+  } catch (error) {
+    issues.push(`brand asset manifest is invalid (${error.message})`);
   }
 }
 

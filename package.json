@@ -7,10 +7,12 @@
     "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "verify": "npm run build && node scripts/verify-rebrand.mjs && node scripts/verify-production-server.mjs",
     "verify:visual": "npm run build && node scripts/visual-check.mjs",
-    "verify:release": "npm run verify && node scripts/verify-fonts.mjs",
+    "verify:release": "npm run verify && npm run audit:all && node scripts/verify-fonts.mjs",
+    "brand:record-assets": "node scripts/record-brand-assets.mjs",
+    "audit:all": "npm audit --audit-level=high",
     "audit:prod": "npm audit --omit=dev --audit-level=high",
     "preview": "vite preview",
-    "start": "serve dist -l ${PORT:-3000}"
+    "start": "node scripts/start-server.mjs"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +24,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "serve": "^14.2.6"
+    "serve-handler": "^6.1.6"
   },
   "devDependencies": {
     "@types/react": "^18.3.31",
@@ -30,6 +32,10 @@
     "@vitejs/plugin-react": "^6.0.2",
     "typescript": "^6.0.3",
     "vite": "^8.0.16"
+  },
+  "overrides": {
+    "nanoid": "3.3.18",
+    "postcss": "8.5.28"
   },
   "private": true
 }
