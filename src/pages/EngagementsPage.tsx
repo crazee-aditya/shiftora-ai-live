@@ -1,4 +1,5 @@
 import { BrandFooter, BrandHeader } from '../components/BrandFrame';
+import { DirectionalArrow } from '../components/DirectionalArrow';
 import {
   ENGAGEMENT_CHAPTERS,
   ENGAGEMENTS_CLOSE,
@@ -51,7 +52,7 @@ export default function EngagementsPage() {
           <p>{ENGAGEMENTS_CLOSE}</p>
           <a href="mailto:info@shiftora.ai">
             Discuss an engagement.
-            <span aria-hidden="true">↗</span>
+            <DirectionalArrow />
           </a>
         </section>
       </main>

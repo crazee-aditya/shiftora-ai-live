@@ -1,3 +1,5 @@
+import { DirectionalArrow } from './DirectionalArrow';
+
 interface BrandFrameProps {
   active: 'description' | 'engagements' | 'none';
   tone?: 'paper' | 'ink';
@@ -26,7 +28,7 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
         )}
         <a className="brand-header__next" href={nextHref}>
           {nextLabel}
-          <span aria-hidden="true">↗</span>
+          <DirectionalArrow />
         </a>
       </nav>
     </header>
@@ -39,7 +41,7 @@ export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
       <a href="mailto:info@shiftora.ai">info@shiftora.ai</a>
       <a href={active === 'description' ? '/engagements' : '/'}>
         {active === 'description' ? 'View engagements' : 'Read about the firm'}
-        <span aria-hidden="true">↗</span>
+        <DirectionalArrow />
       </a>
     </footer>
   );

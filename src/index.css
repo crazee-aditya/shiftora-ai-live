@@ -152,17 +152,30 @@ a:focus-visible {
   padding-block: 0.6rem;
 }
 
-.brand-header__next span,
-.brand-footer a span,
-.not-found-page__main a span,
-.mandates-close a span {
+.directional-arrow {
+  display: block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.brand-header__next .directional-arrow,
+.brand-footer a .directional-arrow,
+.not-found-page__main a .directional-arrow,
+.mandates-close a .directional-arrow {
   transition: transform 180ms ease;
 }
 
-.brand-header__next:hover span,
-.brand-footer a:hover span,
-.not-found-page__main a:hover span,
-.mandates-close a:hover span {
+.brand-header__next:hover .directional-arrow,
+.brand-footer a:hover .directional-arrow,
+.not-found-page__main a:hover .directional-arrow,
+.mandates-close a:hover .directional-arrow {
   transform: translate(0.16rem, -0.16rem);
 }
 

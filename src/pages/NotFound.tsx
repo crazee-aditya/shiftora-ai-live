@@ -1,4 +1,5 @@
 import { BrandFooter, BrandHeader } from '../components/BrandFrame';
+import { DirectionalArrow } from '../components/DirectionalArrow';
 
 export default function NotFound() {
   return (
@@ -9,7 +10,7 @@ export default function NotFound() {
         <h1>This page does not exist.</h1>
         <a href="/">
           Return to Shiftora
-          <span aria-hidden="true">↗</span>
+          <DirectionalArrow />
         </a>
       </main>
       <BrandFooter active="none" />
