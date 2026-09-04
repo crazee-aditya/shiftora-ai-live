@@ -343,8 +343,6 @@ try {
           const descriptionHeaderStyle = descriptionHeader ? getComputedStyle(descriptionHeader) : null;
           const descriptionWordmark = document.querySelector('.description-page .brand-wordmark');
           const descriptionWordmarkStyle = descriptionWordmark ? getComputedStyle(descriptionWordmark) : null;
-          const descriptionLocation = document.querySelector('.description-page .brand-footer span:first-child');
-          const descriptionLocationStyle = descriptionLocation ? getComputedStyle(descriptionLocation) : null;
           const mandatesHero = document.querySelector('.mandates-hero');
           const mandatesHeroHeading = document.querySelector('.mandates-hero h1');
           const mandatesHeroStyle = mandatesHero ? getComputedStyle(mandatesHero) : null;
@@ -387,7 +385,6 @@ try {
             descriptionGutter: Number.parseFloat(descriptionHeaderStyle?.paddingLeft ?? '0'),
             descriptionHeaderHeight: descriptionHeader?.getBoundingClientRect().height ?? 0,
             descriptionWordmarkFontSize: Number.parseFloat(descriptionWordmarkStyle?.fontSize ?? '0'),
-            descriptionLocationVisible: descriptionLocationStyle?.display !== 'none',
             mandatesHeroFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.mandates-hero h1') ?? document.body).fontSize),
             mandateTitleFontSize: Number.parseFloat(getComputedStyle(firstMandateTitle ?? document.body).fontSize),
             firstMandateTitleWidth: firstMandateRect?.width ?? 0,
@@ -506,9 +503,6 @@ try {
           `/ ${metric} drifts between the 665px master and ${width}px (${firmMaster[metric]}px to ${candidate[metric]}px).`,
         );
       }
-    }
-    if (candidate.descriptionLocationVisible) {
-      failures.push(`/ reveals the location footer item at ${width}px; the 665px master keeps a two-part footer.`);
     }
   }
 

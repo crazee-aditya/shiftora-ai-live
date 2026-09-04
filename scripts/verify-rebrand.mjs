@@ -7,6 +7,7 @@ const notFound = readFileSync('dist/404.html', 'utf8');
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
 const visibleHome = home.slice(home.indexOf('<body'));
 const visibleEngagements = engagements.slice(engagements.indexOf('<body'));
+const visibleHomeText = visibleHome.replace(/<[^>]+>/g, '');
 
 function readSourceTree(directory) {
   return readdirSync(directory, { withFileTypes: true })
@@ -62,10 +63,10 @@ const checks = [
   [home, '<meta name="theme-color" content="#eeece5" />', 'home browser color'],
   [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
-  [home, 'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.', 'positioning and institutional scale'],
-  [home, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
-  [home, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
-  [home, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.', 'institutional outcome'],
+  [visibleHomeText, 'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.', 'positioning and institutional scale'],
+  [visibleHomeText, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
+  [visibleHomeText, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
+  [visibleHomeText, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.', 'institutional outcome'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
@@ -104,6 +105,10 @@ for (const [document, phrase, label] of checks) {
   if (!document.includes(phrase)) {
     throw new Error(`Verification failed: missing ${label} (${phrase})`);
   }
+}
+
+if (count(home, /class="description-copy__emphasis"/g) !== 5) {
+  throw new Error('Verification failed: the Firm page must contain exactly five underlined phrases.');
 }
 
 for (const retiredPhrase of [
@@ -182,7 +187,7 @@ for (const [label, pattern] of [
 }
 
 assertInOrder(
-  visibleHome,
+  visibleHomeText,
   [
     'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.',
     'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',

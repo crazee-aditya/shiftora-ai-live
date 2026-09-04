@@ -4,6 +4,14 @@ export const FIRM_DESCRIPTION_BODY =
 export const FIRM_DESCRIPTION_CLOSE =
   'Shiftora brings the vantage to see the whole—and the means to make ambition executable.';
 
+export const FIRM_DESCRIPTION_HIGHLIGHTS = [
+  'integrated strategy and systems firm',
+  'world governments',
+  'enterprises',
+  'institutional architecture',
+  'vantage to see the whole',
+] as const;
+
 export const ENGAGEMENTS_LEGAL_NOTICE =
   'The following disclosure remains subject to continuing legal duties of confidence.';
 

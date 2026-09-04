@@ -223,10 +223,6 @@ a:focus-visible {
   gap: 1.165rem;
 }
 
-.description-page .brand-footer span:first-child {
-  display: none;
-}
-
 .description-page__main {
   display: grid;
   align-content: end;
@@ -248,6 +244,13 @@ a:focus-visible {
 
 .description-copy p {
   margin: 0;
+}
+
+.description-copy__emphasis {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+  text-decoration-skip-ink: auto;
 }
 
 .description-copy__close {
@@ -426,10 +429,6 @@ a:focus-visible {
 }
 
 @media (max-width: 1439px) {
-  .brand-footer span:first-child {
-    display: none;
-  }
-
   .mandate-chapter {
     grid-template-columns: 1fr;
   }

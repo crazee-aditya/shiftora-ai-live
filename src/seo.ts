@@ -71,10 +71,6 @@ function organizationGraph(): object[] {
       slogan: 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.',
       email: SITE.email,
       founder: { '@id': `${SITE.origin}/#shreshth-daga` },
-      address: [
-        { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
-        { '@type': 'PostalAddress', addressLocality: 'Mumbai', addressCountry: 'IN' },
-      ],
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'business inquiries',

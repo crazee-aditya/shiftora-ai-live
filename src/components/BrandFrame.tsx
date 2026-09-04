@@ -36,7 +36,6 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
 export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
   return (
     <footer className={`brand-footer brand-footer--${tone}`}>
-      <span>Dubai · Mumbai</span>
       <a href="mailto:info@shiftora.ai">info@shiftora.ai</a>
       <a href={active === 'description' ? '/engagements' : '/'}>
         {active === 'description' ? 'View engagements' : 'Read about the firm'}
