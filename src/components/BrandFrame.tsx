@@ -1,5 +1,5 @@
 interface BrandFrameProps {
-  active: 'description' | 'mandates';
+  active: 'description' | 'mandates' | 'none';
   tone?: 'paper' | 'ink';
 }
 
@@ -21,7 +21,9 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
         shiftora
       </a>
       <nav className="brand-header__meta" aria-label="Primary navigation">
-        <span className="brand-header__index">{active === 'description' ? '01' : '02'} / 02</span>
+        {active !== 'none' && (
+          <span className="brand-header__index">{active === 'description' ? '01' : '02'} / 02</span>
+        )}
         <a className="brand-header__next" href={nextHref}>
           {nextLabel}
           <span aria-hidden="true">↗</span>
