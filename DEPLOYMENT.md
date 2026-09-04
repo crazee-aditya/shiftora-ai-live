@@ -10,6 +10,7 @@
 - The domain has a Google mail exchange record; the repository cannot verify that the individual `info@shiftora.ai` mailbox accepts mail.
 - GitHub CLI is authenticated as `crazee-aditya` with `repo` scope.
 - That account has `ADMIN` permission on `crazee-aditya/shiftora-ai-live`.
+- A dry-run push of `HEAD` to `refs/heads/shiftora-rebrand` succeeds, confirming remote write access without creating the branch.
 - The rebrand is committed only on the local `shiftora-rebrand` branch. It has not been pushed, merged, or deployed.
 - The previous public site remains recoverable on `origin/main`.
 
