@@ -23,13 +23,15 @@ technical services. Preserve that distinction in every change.
 
 ## Information architecture
 
-- The public site contains exactly two indexed routes: `/` and `/engagements`.
+- The public site contains exactly three indexed routes: `/`, `/engagements`, and `/careers`.
 - `/` is **The firm**: one continuous institutional thesis, not a capabilities page.
 - `/engagements` presents seven selected engagements by the institutional condition that made the work
   necessary, not by sector, department, buyer, or technology.
+- `/careers` is a role-agnostic invitation to people of uncommon judgment and technical depth; it
+  publishes no specific openings or titles.
 - Preserve the intentionally asymmetric seven-record 2–2–1–2 field. Do not add or inflate a record
   merely to complete the grid.
-- Do not restore careers, blog, FAQ, pricing, process, or generic service pages without an explicit
+- Do not restore blog, FAQ, pricing, process, or generic service pages without an explicit
   product decision and corresponding change to the sitemap and verification gate.
 - `src/content.ts` is the single source of truth for the working public description, work chapters,
   engagement records, and closing boundary. Pages and structured data must import from it rather than

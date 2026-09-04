@@ -3,11 +3,14 @@ import { join } from 'node:path';
 
 const home = readFileSync('dist/index.html', 'utf8');
 const engagements = readFileSync('dist/engagements/index.html', 'utf8');
+const careers = readFileSync('dist/careers/index.html', 'utf8');
 const notFound = readFileSync('dist/404.html', 'utf8');
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
 const visibleHome = home.slice(home.indexOf('<body'));
 const visibleEngagements = engagements.slice(engagements.indexOf('<body'));
+const visibleCareers = careers.slice(careers.indexOf('<body'));
 const visibleHomeText = visibleHome.replace(/<[^>]+>/g, '');
+const visibleCareersText = visibleCareers.replace(/<[^>]+>/g, '');
 
 function readSourceTree(directory) {
   return readdirSync(directory, { withFileTypes: true })
@@ -67,6 +70,8 @@ const checks = [
   [visibleHomeText, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
   [visibleHomeText, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
   [visibleHomeText, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.', 'institutional outcome'],
+  [home, 'href="/careers">Careers', 'careers navigation'],
+  [home, 'href="https://cal.com/shiftora.ai/30min" target="_blank" rel="noopener noreferrer">Request appointment', 'booking action'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
@@ -95,7 +100,14 @@ const checks = [
   [engagements, 'Put live judgment inside every commercial conversation', 'commercial record'],
   [engagements, 'market conditions, account history, institutional policy, and the conversation itself', 'commercial scope'],
   [engagements, 'A Shiftora system is complete when the institution&#x27;s capacity to decide and act', 'engagements close'],
-  [engagements, 'Discuss an engagement.', 'contact action'],
+  [engagements, 'href="https://cal.com/shiftora.ai/30min" target="_blank" rel="noopener noreferrer">Request appointment', 'booking action'],
+  [careers, '<title>Careers — Shiftora</title>', 'careers title'],
+  [careers, '<meta name="theme-color" content="#eeece5" />', 'careers browser color'],
+  [careers, '<h1>Careers</h1>', 'careers heading'],
+  [visibleCareersText, 'Appointment to Shiftora is reserved for people of uncommon judgment and technical depth', 'careers opening'],
+  [visibleCareersText, 'those fit to be entrusted with work on which institutions depend.', 'careers standard'],
+  [visibleCareersText, 'Email to apply', 'careers application instruction'],
+  [careers, 'href="mailto:info@shiftora.ai">info@shiftora.ai', 'careers application email'],
   [notFound, '<title>Page not found — Shiftora</title>', '404 title'],
   [notFound, '<meta name="robots" content="noindex, follow" />', '404 indexing policy'],
   [notFound, 'href="/">The firm', '404 route back to the firm'],
@@ -109,6 +121,10 @@ for (const [document, phrase, label] of checks) {
 
 if (count(home, /class="description-copy__emphasis"/g) !== 6) {
   throw new Error('Verification failed: the Firm page must contain exactly six underlined phrases.');
+}
+
+if (visibleHome.includes('View engagements')) {
+  throw new Error('Verification failed: the Firm footer must not repeat the Engagements navigation.');
 }
 
 for (const retiredPhrase of [
@@ -129,6 +145,7 @@ for (const retiredPhrase of [
   'Its domain is the architecture of government and enterprise:',
   'strategy, organization, capital, operations, data, and technology.',
   'An institution is sovereign when it can act at the scale of its responsibility.',
+  'cal.com/shreshth-daga-rxfhkj',
   'We advise governments and enterprises on the decisions that determine their course.',
   'We build the systems that carry those decisions into effect.',
   'Its domain is the decisions that determine the course of governments and enterprises',
@@ -158,12 +175,12 @@ for (const retiredPhrase of [
   'Built a decision system joining forecasts',
   'Built a real-time commercial system',
 ]) {
-  if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
+  if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || careers.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
   }
 }
 
-if (/"knowsAbout"/.test(`${home}\n${engagements}`)) {
+if (/"knowsAbout"/.test(`${home}\n${engagements}\n${careers}`)) {
   throw new Error('Verification failed: structured data must not reduce the firm to a service inventory.');
 }
 
@@ -181,7 +198,7 @@ for (const [label, pattern] of [
   ['non-American house style', /\b(?:programmes?|organisations?|prioritis(?:e|ed|es|ing)|labour|behaviours?|modelling|centres?)\b/i],
   ['AI-copy cliché', /\b(?:unlock|empower|leverage|harness|seamless|holistic|ever[- ]evolving|drive innovation)\b/i],
 ]) {
-  if (pattern.test(`${home}\n${engagements}`)) {
+  if (pattern.test(`${home}\n${engagements}\n${careers}`)) {
     throw new Error(`Verification failed: public copy contains ${label}.`);
   }
 }
@@ -211,7 +228,7 @@ assertInOrder(
   'engagement hierarchy',
 );
 
-if (count(home, /<h1\b/g) !== 1 || count(engagements, /<h1\b/g) !== 1) {
+if (count(home, /<h1\b/g) !== 1 || count(engagements, /<h1\b/g) !== 1 || count(careers, /<h1\b/g) !== 1) {
   throw new Error('Verification failed: each public page must contain exactly one H1.');
 }
 if (count(engagements, /<section class="mandate-chapter">/g) !== 4) {
@@ -223,6 +240,7 @@ if (count(engagements, /<article class="mandate-item">/g) !== 7) {
 
 const homeGraph = assertJsonLd(home, 'description page');
 const engagementsGraph = assertJsonLd(engagements, 'engagements page');
+const careersGraph = assertJsonLd(careers, 'careers page');
 const homeOrganization = homeGraph.find((node) => node['@type'] === 'Organization');
 if (!homeOrganization || homeOrganization.description !== expectedDefaultDescription) {
   throw new Error('Verification failed: Organization description omits or alters the approved authority sequence.');
@@ -248,9 +266,14 @@ if (
   throw new Error('Verification failed: Engagements JSON-LD records must be named and sequential.');
 }
 
+const careersPage = careersGraph.find((node) => node['@type'] === 'WebPage' && node.name === 'Careers at Shiftora');
+if (!careersPage || careersPage.url !== 'https://www.shiftora.ai/careers') {
+  throw new Error('Verification failed: Careers JSON-LD page is missing or malformed.');
+}
+
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 2 || !sitemap.includes('/engagements</loc>') || sitemap.includes('/mandates</loc>') || sitemap.includes('/work</loc>')) {
-  throw new Error('Verification failed: sitemap must contain exactly the two current public pages.');
+if (sitemapUrls !== 3 || !sitemap.includes('/engagements</loc>') || !sitemap.includes('/careers</loc>') || sitemap.includes('/mandates</loc>') || sitemap.includes('/work</loc>')) {
+  throw new Error('Verification failed: sitemap must contain exactly the three current public pages.');
 }
 if (sitemap.includes('<lastmod>')) {
   throw new Error('Verification failed: sitemap lastmod must be omitted until true per-route revision dates are available.');
@@ -268,4 +291,4 @@ if (logoSize.width !== 512 || logoSize.height !== 512) {
   throw new Error('Verification failed: organization logo must be 512×512.');
 }
 
-console.log('Verified the two-page Shiftora rebrand output.');
+console.log('Verified the three-page Shiftora rebrand output.');

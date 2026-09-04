@@ -1,7 +1,7 @@
 {
   "name": "shiftora-site",
   "version": "0.1.0",
-  "description": "The two-page institutional site for Shiftora.",
+  "description": "The three-page institutional site for Shiftora.",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",

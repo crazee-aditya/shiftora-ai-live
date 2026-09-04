@@ -78,6 +78,8 @@ try {
   const homeText = await home.text();
   const engagements = await fetch(`${baseUrl}/engagements`);
   const engagementsText = await engagements.text();
+  const careers = await fetch(`${baseUrl}/careers`);
+  const careersText = await careers.text();
   const notFound = await fetch(`${baseUrl}/not-a-page`);
   const notFoundText = await notFound.text();
   const retiredResponses = await Promise.all(
@@ -87,6 +89,7 @@ try {
   for (const [label, response, expectedStatus, text, marker] of [
     ['home', home, 200, homeText, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.'],
     ['engagements', engagements, 200, engagementsText, 'Command across a sovereign logistics network'],
+    ['careers', careers, 200, careersText, 'Email to apply'],
     ['404', notFound, 404, notFoundText, 'This page does not exist.'],
   ]) {
     if (response.status !== expectedStatus) {
@@ -111,7 +114,7 @@ try {
     assertCommonHeaders(response);
   }
 
-  const retiredTrailingSlash = await fetch(`${baseUrl}/careers/`, { redirect: 'manual' });
+  const retiredTrailingSlash = await fetch(`${baseUrl}/blog/`, { redirect: 'manual' });
   if (retiredTrailingSlash.status !== 410) {
     throw new Error(`retired trailing-slash route returned ${retiredTrailingSlash.status}; expected 410.`);
   }
@@ -143,6 +146,12 @@ try {
     throw new Error(`canonical trailing-slash redirect returned ${redirect.status}; expected 301.`);
   }
   assertCommonHeaders(redirect);
+
+  const careersRedirect = await fetch(`${baseUrl}/careers/`, { redirect: 'manual' });
+  if (careersRedirect.status !== 301) {
+    throw new Error(`careers trailing-slash redirect returned ${careersRedirect.status}; expected 301.`);
+  }
+  assertCommonHeaders(careersRedirect);
 
   const malformed = await fetch(`${baseUrl}/%E0%A4%A`, { redirect: 'manual' });
   if (malformed.status !== 400 || (await malformed.text()) !== 'Bad Request') {

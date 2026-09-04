@@ -50,8 +50,12 @@ export default function EngagementsPage() {
 
         <section className="mandates-close">
           <p>{ENGAGEMENTS_CLOSE}</p>
-          <a href="mailto:info@shiftora.ai">
-            Discuss an engagement.
+          <a
+            href="https://cal.com/shiftora.ai/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Request appointment
             <DirectionalArrow />
           </a>
         </section>

@@ -28,6 +28,12 @@ const fontRolesByRoute = {
     { selector: '.mandate-item p', family: 'Helvetica Neue', weight: 400 },
     { selector: '.page-kicker', family: 'Helvetica Neue', weight: 500 },
   ],
+  '/careers': [
+    { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
+    { selector: '.careers-page h1', family: 'Helvetica Neue', weight: 500 },
+    { selector: '.careers-page__body', family: 'Helvetica Neue', weight: 400 },
+    { selector: '.page-kicker', family: 'Helvetica Neue', weight: 500 },
+  ],
   '/404': [
     { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
     { selector: '.not-found-page__main h1', family: 'Helvetica Neue', weight: 500 },
@@ -227,35 +233,48 @@ try {
   const cases = [
     { route: '/', width: 320, height: 844, screenshot: 'home-320.png' },
     { route: '/engagements', width: 320, height: 844, screenshot: 'engagements-320.png' },
+    { route: '/careers', width: 320, height: 844, screenshot: 'careers-320.png' },
     { route: '/404', width: 390, height: 844, expectNoIndex: true, screenshot: '404-390.png' },
     { route: '/', width: 390, height: 844, screenshot: 'home-390.png' },
     { route: '/engagements', width: 390, height: 844, screenshot: 'engagements-390.png' },
+    { route: '/careers', width: 390, height: 844, screenshot: 'careers-390.png' },
     { route: '/', width: 600, height: 900, screenshot: 'home-600.png' },
     { route: '/engagements', width: 600, height: 900, screenshot: 'engagements-600.png' },
+    { route: '/careers', width: 600, height: 900, screenshot: 'careers-600.png' },
     { route: '/', width: 601, height: 900 },
     { route: '/engagements', width: 601, height: 900 },
+    { route: '/careers', width: 601, height: 900 },
     { route: '/', width: 665, height: 767, screenshot: 'home-reference-665x767.png' },
+    { route: '/careers', width: 665, height: 767, screenshot: 'careers-665x767.png' },
     { route: '/', width: 768, height: 1024, screenshot: 'home-768.png' },
     { route: '/engagements', width: 768, height: 1024, screenshot: 'engagements-768.png' },
+    { route: '/careers', width: 768, height: 1024, screenshot: 'careers-768.png' },
+    { route: '/careers', width: 900, height: 1000 },
+    { route: '/careers', width: 901, height: 1000 },
     { route: '/', width: 1100, height: 1000, screenshot: 'home-1100.png' },
     { route: '/engagements', width: 1100, height: 1000, screenshot: 'engagements-1100.png' },
+    { route: '/careers', width: 1100, height: 1000 },
     { route: '/', width: 1101, height: 1000 },
     { route: '/engagements', width: 1101, height: 1000 },
     { route: '/', width: 1279, height: 1000 },
     { route: '/engagements', width: 1279, height: 1000 },
     { route: '/', width: 1280, height: 1000, screenshot: 'home-1280.png' },
     { route: '/engagements', width: 1280, height: 1000, screenshot: 'engagements-1280.png' },
+    { route: '/careers', width: 1280, height: 1000, screenshot: 'careers-1280.png' },
     { route: '/', width: 1304, height: 768, screenshot: 'home-1304x768.png' },
     { route: '/engagements', width: 1304, height: 768, screenshot: 'engagements-1304x768.png' },
     { route: '/', width: 1439, height: 1000 },
     { route: '/engagements', width: 1439, height: 1000 },
     { route: '/', width: 1440, height: 1000, screenshot: 'home-1440.png' },
     { route: '/engagements', width: 1440, height: 1000, screenshot: 'engagements-1440.png' },
+    { route: '/careers', width: 1440, height: 1000, screenshot: 'careers-1440.png' },
     { route: '/404', width: 1440, height: 1000, expectNoIndex: true, screenshot: '404-1440.png' },
     { route: '/', width: 1920, height: 1080, screenshot: 'home-1920.png' },
     { route: '/engagements', width: 1920, height: 1080, screenshot: 'engagements-1920.png' },
+    { route: '/careers', width: 1920, height: 1080, screenshot: 'careers-1920.png' },
     { route: '/', width: 2560, height: 1440, screenshot: 'home-2560.png' },
     { route: '/engagements', width: 2560, height: 1440, screenshot: 'engagements-2560.png' },
+    { route: '/careers', width: 2560, height: 1440, screenshot: 'careers-2560.png' },
   ];
 
   for (const testCase of cases) {
@@ -366,6 +385,16 @@ try {
             const style = getComputedStyle(link);
             return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
           });
+          const careersTitleRect = document.querySelector('.careers-page h1')?.getBoundingClientRect();
+          const careersBodyRect = document.querySelector('.careers-page__body')?.getBoundingClientRect();
+          const careersTitleBodyOverlap = Boolean(
+            careersTitleRect &&
+            careersBodyRect &&
+            careersTitleRect.left < careersBodyRect.right - 1 &&
+            careersTitleRect.right > careersBodyRect.left + 1 &&
+            careersTitleRect.top < careersBodyRect.bottom - 1 &&
+            careersTitleRect.bottom > careersBodyRect.top + 1
+          );
 
           return JSON.stringify({
             title: document.title,
@@ -404,6 +433,7 @@ try {
             mandatesHeroHeadroom,
             arrowAlignmentOffsets,
             visibleFooterLinkCount: visibleFooterLinks.length,
+            careersTitleBodyOverlap,
           });
         })()`,
         returnByValue: true,
@@ -457,6 +487,9 @@ try {
     }
     if (testCase.route === '/engagements' && testCase.width <= 600 && metrics.visibleFooterLinkCount !== 2) {
       failures.push(`${label} exposes ${metrics.visibleFooterLinkCount} footer actions; expected 2.`);
+    }
+    if (testCase.route === '/careers' && metrics.careersTitleBodyOverlap) {
+      failures.push(`${label} allows the Careers title to overlap the application content.`);
     }
     if (!validFonts) {
       const fontDetail = metrics.loadedFontFailures.length > 0

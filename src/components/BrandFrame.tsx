@@ -1,7 +1,7 @@
 import { DirectionalArrow } from './DirectionalArrow';
 
 interface BrandFrameProps {
-  active: 'description' | 'engagements' | 'none';
+  active: 'description' | 'engagements' | 'careers' | 'none';
   tone?: 'paper' | 'ink';
 }
 
@@ -23,7 +23,7 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
         shiftora
       </a>
       <nav className="brand-header__meta" aria-label="Primary navigation">
-        {active !== 'none' && (
+        {(active === 'description' || active === 'engagements') && (
           <span className="brand-header__index">{active === 'description' ? '01' : '02'} / 02</span>
         )}
         <a className="brand-header__next" href={nextHref}>
@@ -36,11 +36,41 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
 }
 
 export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
+  if (active === 'description') {
+    return (
+      <footer className={`brand-footer brand-footer--${tone} brand-footer--description`}>
+        <a href="/careers">
+          Careers
+          <DirectionalArrow />
+        </a>
+        <a
+          href="https://cal.com/shiftora.ai/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Request appointment
+          <DirectionalArrow />
+        </a>
+      </footer>
+    );
+  }
+
+  if (active === 'careers') {
+    return (
+      <footer className={`brand-footer brand-footer--${tone} brand-footer--careers`}>
+        <a href="/engagements">
+          View engagements
+          <DirectionalArrow />
+        </a>
+      </footer>
+    );
+  }
+
   return (
     <footer className={`brand-footer brand-footer--${tone}`}>
       <a href="mailto:info@shiftora.ai">info@shiftora.ai</a>
-      <a href={active === 'description' ? '/engagements' : '/'}>
-        {active === 'description' ? 'View engagements' : 'Read about the firm'}
+      <a href="/">
+        Read about the firm
         <DirectionalArrow />
       </a>
     </footer>

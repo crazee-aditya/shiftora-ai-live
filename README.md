@@ -2,14 +2,15 @@
 
 Shiftora is an integrated strategy and systems firm.
 
-This branch contains the two-page institutional rebrand:
+This branch contains the three-page institutional rebrand:
 
 - `/` — **The firm**
 - `/engagements` — **Engagements**
+- `/careers` — **Careers**
 
 The upstream positioning and language rules are recorded in [BRAND.md](./BRAND.md). Public copy must be derived from that institutional charter rather than from a list of present services.
 
-The site is prerendered for search and answer engines, with a real branded 404, a two-URL sitemap,
+The site is prerendered for search and answer engines, with a real branded 404, a three-URL sitemap,
 route-specific metadata, structured data, and a restrained paper/ink visual system.
 
 ## Working locally
@@ -29,7 +30,7 @@ This builds the site and verifies the public copy, route metadata, structured da
 structure, retired-positioning exclusions, and image dimensions. It then launches the production
 server on an isolated local port and checks route status, the branded 404, cache behavior, and the
 configured security headers, including HSTS on success, redirects, retirements, and malformed-request
-responses. It also verifies the explicit `410 Gone` policy for the retired careers, blog-index, and
+responses. It also verifies the explicit `410 Gone` policy for the retired blog index and
 six legacy article URLs, plus the superseded `/mandates` and `/work` routes. Sitemap modification dates remain omitted until true per-route revision
 dates are available.
 

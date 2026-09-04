@@ -13,7 +13,9 @@
 
 ## Approved release
 
-- The Firm and Engagements pages are the complete public site.
+- The Firm, Engagements, and Careers pages are the complete public site.
+- Careers is a role-agnostic invitation with applications directed to `info@shiftora.ai`; no specific
+  openings or titles are published.
 - The accepted 665 × 767 Codex rendering is the Firm-page visual master.
 - Helvetica Neue is the explicit first family because it is the face rendered in that accepted view;
   Helvetica and Arial remain compatibility fallbacks on platforms without Helvetica Neue.
@@ -31,7 +33,7 @@
 - Railway runs `npm run verify:deploy`, which repeats production-safe checks without requiring a
   desktop Chrome installation inside its build container.
 - The latest local release verification passed with zero dependency vulnerabilities.
-- The superseded `/mandates` and `/work`, previous `/careers`, `/blog`, and six article routes return
+- The superseded `/mandates` and `/work`, `/blog`, and six article routes return
   explicit `410 Gone` responses rather than redirecting to unrelated pages.
 - The branded unknown-route page returns a real `404` with `noindex, follow`.
 - HTML, assets, redirects, retired routes, and malformed requests receive the configured cache and

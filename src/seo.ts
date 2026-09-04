@@ -149,6 +149,30 @@ export function getRouteMeta(route: string): RouteMeta {
     };
   }
 
+  if (path === '/careers') {
+    const description =
+      'Appointment to Shiftora is reserved for people of uncommon judgment and technical depth fit to be entrusted with work on which institutions depend.';
+    return {
+      title: 'Careers — Shiftora',
+      description,
+      canonical: `${SITE.origin}/careers`,
+      ogType: 'website',
+      themeColor: '#eeece5',
+      jsonLd: [
+        ...organizationGraph(),
+        {
+          '@type': 'WebPage',
+          '@id': `${SITE.origin}/careers#page`,
+          name: 'Careers at Shiftora',
+          description,
+          url: `${SITE.origin}/careers`,
+          isPartOf: { '@id': `${SITE.origin}/#website` },
+          about: { '@id': `${SITE.origin}/#organization` },
+        },
+      ],
+    };
+  }
+
   return {
     title: SITE.defaultTitle,
     description: SITE.defaultDescription,
@@ -203,12 +227,13 @@ export function renderHead(meta: RouteMeta): string {
 }
 
 export function allRoutes(): string[] {
-  return ['/', '/engagements'];
+  return ['/', '/engagements', '/careers'];
 }
 
 export function sitemapEntries(): Array<{ loc: string; priority: string }> {
   return [
     { loc: `${SITE.origin}/`, priority: '1.0' },
     { loc: `${SITE.origin}/engagements`, priority: '0.9' },
+    { loc: `${SITE.origin}/careers`, priority: '0.7' },
   ];
 }
