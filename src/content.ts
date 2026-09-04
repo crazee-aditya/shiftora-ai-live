@@ -5,7 +5,7 @@ export const FIRM_DESCRIPTION_CLOSE =
   'An institution has sovereign capacity when its systems are answerable to its lawful authority and equal to its responsibilities.';
 
 export const MANDATES_INTRO =
-  "A Shiftora mandate begins where an institution's direction or responsibility exceeds its present capacity to act. The work takes the form that condition requires.";
+  "A Shiftora mandate begins where an institution's direction or responsibility exceeds its present capacity to act. Its form follows that condition, within the authority and scope entrusted to us.";
 
 export const MANDATES_CLOSE =
   'A Shiftora mandate carries a consequential direction or responsibility through the work required to put it into effect.';
@@ -34,12 +34,12 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Reposition an enterprise for its next phase',
         description:
-          'Form a view of the position the enterprise should seek in its next phase, then reshape the institution around the course it adopts.',
+          'Form a view of the position the enterprise should seek in its next phase. Advise its leadership on the changes that position would entail, then carry into effect the arrangements it approves.',
       },
       {
-        title: 'Reallocate capital around a chosen course',
+        title: 'Determine the capital requirements of a chosen course',
         description:
-          'Advise the institution on how capital, risk capacity, and management attention should be committed to the chosen course. Establish the information required to govern each allocation.',
+          'Form our own view of the capital, risk capacity, and management attention the chosen course will require. Give the institution the information needed to govern each allocation.',
       },
     ],
   },
@@ -55,7 +55,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Replace an operating model built for an earlier strategy',
         description:
-          'Change how decisions, resources, and work move through the institution when the present model keeps an earlier strategy in force.',
+          'Form a view of how decisions, resources, and work should move through the institution. Design and implement the operating arrangements it approves for the adopted strategy.',
       },
       {
         title: 'Build the organization a new strategy requires',
@@ -71,7 +71,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Establish a function for a new institutional responsibility',
         description:
-          'When no existing part of the institution can discharge a new duty, advise the relevant authority on the function required, then build its operating capacity.',
+          'When no existing part of the institution can discharge a new duty, advise the relevant authority on the function required and build the operating capacity it approves.',
       },
       {
         title: 'Build software for a critical institutional function',
@@ -90,12 +90,12 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
     condition: 'When strategic dependence becomes unacceptable',
     mandates: [
       {
-        title: 'Set the boundary of acceptable dependence',
+        title: 'Bring strategic dependence under institutional judgment',
         description:
           "Advise the institution's accountable authorities on which dependencies can be accepted and which cannot. Where those authorities determine that continuity or lawful responsibility demands an alternative, establish it under the terms they set.",
       },
       {
-        title: 'Set the terms under which models may act',
+        title: 'Make model action answerable to institutional authority',
         description:
           'For consequential work, advise the responsible authorities on which judgments must remain human, what models may advise or execute, how performance will be assessed, and who answers for the result. Build or select only within the terms they establish.',
       },
