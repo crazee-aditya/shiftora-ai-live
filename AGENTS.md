@@ -5,9 +5,11 @@ technical services. Preserve that distinction in every change.
 
 ## Public identity
 
-- The category is **integrated strategy and systems firm**.
+- The category is **integrated strategy and systems firm**; its public scale statement is **operating across
+  world governments and enterprises**.
 - The governing thesis is **An institution is sovereign when its decisions command the means of action.**
-- Shiftora's domain is the direction and capacity of government and enterprise.
+- Shiftora's domain spans world governments and enterprises without treating government as a separate
+  practice or prospective audience.
 - Strategy, organization, capital, operations, data, and technology are expressed as one institutional
   architecture; do not collapse this architecture into a service list.
 - AI, software, data, models, organization, capital, and operations are possible forms of a

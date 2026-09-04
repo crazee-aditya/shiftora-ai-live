@@ -8,7 +8,7 @@
 
 ## Challenger copy
 
-> Shiftora is an integrated strategy and systems firm. Its domain is the direction and capacity of government and enterprise. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
+> Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
 >
 > An institution is sovereign when its decisions command the means of action.
 
@@ -26,7 +26,7 @@
 | Category clarity | Preserved: the exact category remains the opening sentence. |
 | Brevity | Balanced: longer than the short challenger and materially tighter than the rejected long version. |
 | Commanding nature | Improved: four declarative movements establish domain, architecture, responsibility, and result. |
-| Institutional scale | Preserved: direction and capacity place the firm above any individual discipline. |
+| Institutional scale | Improved: world governments and enterprises appear as established operating territory inside the category sentence. |
 | Distinctiveness | Improved: “ordered as one institutional architecture” states why strategy and systems belong in one firm. |
 | Executive comprehension | Improved: the reader sees advisory responsibility, implementation, and staying power on the first read. |
 | Transition to Engagements | Improved: remaining through operation creates the direct reason to examine the record. |

@@ -4,11 +4,11 @@ This file is the upstream control for public copy on this branch. It defines the
 
 ## Fixed identity
 
-**Category:** Shiftora is an integrated strategy and systems firm.
+**Category:** Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.
 
 **Worldview:** An institution is sovereign when its decisions command the means of action.
 
-**Domain:** The direction and capacity of government and enterprise, ordered through one institutional architecture.
+**Domain:** Across world governments and enterprises, strategy, organization, capital, operations, data, and technology are ordered through one institutional architecture.
 
 **Responsibility:** Carry a consequential mandate through the forms of work it requires while every reserved decision right remains with the relevant client authority.
 
