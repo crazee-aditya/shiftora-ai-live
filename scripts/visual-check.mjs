@@ -251,6 +251,12 @@ try {
           const unlabeledLinks = [...document.querySelectorAll('a')].filter((link) =>
             !(link.textContent?.trim() || link.getAttribute('aria-label'))
           ).length;
+          const undersizedLinks = [...document.querySelectorAll('a:not(.skip-link)')].filter((link) => {
+            const rect = link.getBoundingClientRect();
+            const style = getComputedStyle(link);
+            const visible = style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+            return visible && (rect.width < 44 || rect.height < 44);
+          }).map((link) => link.textContent?.trim() || link.getAttribute('aria-label') || 'unlabeled');
           const headingSkip = headings.some((level, index) => index > 0 && level > headings[index - 1] + 1);
           const skipLink = document.querySelector('.skip-link');
 
@@ -266,6 +272,7 @@ try {
             headingSkip,
             duplicateIdCount: new Set(duplicateIds).size,
             unlabeledLinks,
+            undersizedLinks,
             skipTarget: skipLink?.getAttribute('href') ?? '',
             mainTargetExists: Boolean(document.querySelector('main#main-content')),
             innerWidth: window.innerWidth,
@@ -292,7 +299,8 @@ try {
     const validNavigation = Boolean(
       metrics.skipTarget === '#main-content' &&
       metrics.mainTargetExists &&
-      metrics.unlabeledLinks === 0
+      metrics.unlabeledLinks === 0 &&
+      (testCase.width >= 768 || metrics.undersizedLinks.length === 0)
     );
     const validDocument = !metrics.headingSkip && metrics.duplicateIdCount === 0;
     const label = `${testCase.route} at ${testCase.width}px`;
@@ -304,7 +312,12 @@ try {
     if (!validStructure) failures.push(`${label} has invalid heading or main structure.`);
     if (!validMetadata) failures.push(`${label} is missing required title, description, canonical, viewport, or language metadata.`);
     if (!validIndexing) failures.push(`${label} is missing the required noindex directive.`);
-    if (!validNavigation) failures.push(`${label} has an invalid skip target or an unlabeled link.`);
+    if (!validNavigation) {
+      const targetDetail = metrics.undersizedLinks.length > 0
+        ? ` Undersized links: ${metrics.undersizedLinks.join(', ')}.`
+        : '';
+      failures.push(`${label} has an invalid skip target, unlabeled link, or sub-44px mobile target.${targetDetail}`);
+    }
     if (!validDocument) failures.push(`${label} has a skipped heading level or duplicate id.`);
 
     if (testCase.screenshot) {

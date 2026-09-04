@@ -38,7 +38,7 @@ npm run verify:visual
 The visual check opens the production build from 320 through 1440 pixels, including both sides of
 the 600px and 1100px layout boundaries and the branded 404 at mobile and desktop sizes. It verifies
 page structure, horizontal fit, metadata, indexing controls, hydration, and browser-console health,
-then saves full-page review images to a temporary directory. Set
+plus 44px minimum mobile link targets, then saves full-page review images to a temporary directory. Set
 `SHIFTORA_CHROME_PATH` if Chrome is installed somewhere other than the standard macOS location.
 
 ```sh
