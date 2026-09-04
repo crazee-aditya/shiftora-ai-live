@@ -361,6 +361,11 @@ try {
             const linkRect = link.getBoundingClientRect();
             return (arrowRect.top + arrowRect.height / 2) - (linkRect.top + linkRect.height / 2);
           });
+          const visibleFooterLinks = [...document.querySelectorAll('.brand-footer a')].filter((link) => {
+            const rect = link.getBoundingClientRect();
+            const style = getComputedStyle(link);
+            return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+          });
 
           return JSON.stringify({
             title: document.title,
@@ -398,6 +403,7 @@ try {
             firstMandateTitleHeight: firstMandateRect?.height ?? 0,
             mandatesHeroHeadroom,
             arrowAlignmentOffsets,
+            visibleFooterLinkCount: visibleFooterLinks.length,
           });
         })()`,
         returnByValue: true,
@@ -448,6 +454,9 @@ try {
     }
     if (testCase.route === '/engagements' && testCase.width === 320 && metrics.mandatesHeroHeadroom < 16) {
       failures.push(`${label} leaves only ${metrics.mandatesHeroHeadroom.toFixed(2)}px of heading headroom.`);
+    }
+    if (testCase.route === '/engagements' && testCase.width <= 600 && metrics.visibleFooterLinkCount !== 2) {
+      failures.push(`${label} exposes ${metrics.visibleFooterLinkCount} footer actions; expected 2.`);
     }
     if (!validFonts) {
       const fontDetail = metrics.loadedFontFailures.length > 0

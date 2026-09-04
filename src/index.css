@@ -502,6 +502,16 @@ a:focus-visible {
     justify-content: flex-end;
   }
 
+  .mandates-page .brand-footer {
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: clamp(0.62rem, 2.8vw, 0.7rem);
+  }
+
+  .mandates-page .brand-footer a:last-child {
+    display: inline-flex;
+  }
+
   .description-page__main {
     gap: 4rem;
     padding-top: 5rem;
