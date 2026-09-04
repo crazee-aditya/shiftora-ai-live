@@ -86,3 +86,16 @@ The client retains every decision right reserved to it by law, regulation, fiduc
   asymmetry is deliberate; do not restore a twelfth item merely to complete the visual field.
 
 If either page can be reorganized as a service catalogue without losing its argument, the copy has been derived from the wrong end.
+
+### Admission test for a future mandate record
+
+A prospective record may enter `/mandates` only when:
+
+1. the chapter names the institutional condition that gives rise to the work;
+2. the title names a consequential institutional object or change rather than a fashionable method;
+3. the body identifies the responsible authority, operative constraint, or standard the work must serve;
+4. technology remains a possible instrument unless technology is itself the capability the institution lacks;
+5. the language is clearly prospective and contains no unsupported history, result, qualification, or client standing; and
+6. the record adds a genuinely different mandate rather than filling a visual grid or advertising another practice.
+
+The question is never “which capability have we failed to mention?” It is “which materially different institutional condition or responsibility remains invisible?”
