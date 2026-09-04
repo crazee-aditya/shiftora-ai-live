@@ -59,9 +59,9 @@ export const ENGAGEMENT_CHAPTERS: EngagementChapter[] = [
     condition: 'Where capital takes physical form',
     records: [
       {
-        title: 'Govern a billion-dollar urban estate',
+        title: 'Govern the making of a city',
         description:
-          'Built the operating system through which a major developer governs property, inventory, agents, commercial assets, and sales across a billion-dollar urban portfolio.',
+          'Built the operating system through which a major developer governs land, construction, inventory, agents, commercial assets, and sales as one urban estate.',
       },
     ],
   },
