@@ -65,7 +65,7 @@ const checks = [
   [home, 'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.', 'positioning and institutional scale'],
   [home, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
   [home, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
-  [home, 'Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.', 'institutional outcome'],
+  [home, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.', 'institutional outcome'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
@@ -138,6 +138,7 @@ for (const retiredPhrase of [
   'Shiftora brings what is rarely generated internally: the vantage to see the whole and the means to change it.',
   'Shiftora brings what is rarely generated internally: the vantage to see the whole and the means to shape what comes next.',
   'Shiftora brings the vantage to see the whole—and the means to shape what comes next.',
+  'Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -173,7 +174,7 @@ assertInOrder(
     'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.',
     'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',
     'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.',
-    'Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.',
+    'Shiftora brings the vantage to see the whole—and the means to make ambition executable.',
   ],
   'description argument',
 );

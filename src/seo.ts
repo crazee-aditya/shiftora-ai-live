@@ -68,7 +68,7 @@ function organizationGraph(): object[] {
       logo: { '@id': `${SITE.origin}/#logo` },
       image: { '@id': `${SITE.origin}/#og-image` },
       description: SITE.defaultDescription,
-      slogan: 'Shiftora brings the vantage to see the whole—and the means to turn new capability into operational advantage.',
+      slogan: 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.',
       email: SITE.email,
       founder: { '@id': `${SITE.origin}/#shreshth-daga` },
       address: [
