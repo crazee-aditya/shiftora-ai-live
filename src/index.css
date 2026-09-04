@@ -153,9 +153,12 @@ a:focus-visible {
 }
 
 .directional-arrow {
+  position: relative;
+  top: -0.34em;
+  left: 0;
   display: block;
-  width: 0.78em;
-  height: 0.78em;
+  width: 1em;
+  height: 1em;
   flex: 0 0 auto;
   overflow: visible;
   fill: currentColor;

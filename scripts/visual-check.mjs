@@ -265,7 +265,7 @@ try {
       {
         width: testCase.width,
         height: testCase.height,
-        deviceScaleFactor: 1,
+        deviceScaleFactor: Number(process.env.SHIFTORA_DEVICE_SCALE_FACTOR ?? 1),
         mobile: testCase.width < 768,
         screenWidth: testCase.width,
         screenHeight: testCase.height,
