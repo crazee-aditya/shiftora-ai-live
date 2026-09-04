@@ -1,50 +1,23 @@
-# Shiftora type assets
+# Shiftora typography
 
-The rebrand specifies two licensed commercial families:
+The approved visual master is the rendering reviewed in the 665 × 767 Codex browser view. That
+view resolves to **Helvetica Neue**, so the production CSS names Helvetica Neue explicitly for both
+display and text roles:
 
-- **Alliance No. 2** for the Shiftora wordmark and major display type. License it through
-  [MyFonts](https://www.myfonts.com/collections/alliance-font-degarism-studio). The family page
-  includes the Alliance No. 2 Regular, Medium, and Bold styles required here.
-- **Söhne** for paragraphs, navigation, labels, and supporting type. License it from
-  [Klim Type Foundry](https://klim.co.nz/fonts/soehne/). The corresponding styles are Söhne Buch
-  (400) and Söhne Kräftig (500).
+```css
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+```
 
-The repository does not contain either licensed font file. The current CSS names the intended
-families and falls back to Helvetica Neue/Helvetica/Arial, so the site remains usable without
-shipping unlicensed assets.
+No commercial font files are bundled or distributed by this repository. Apple platforms render the
+master with the operating-system Helvetica Neue installation. Platforms without Helvetica Neue use
+Helvetica or Arial as the declared compatibility fallbacks.
 
-Before production release, obtain webfont licenses and WOFF2 files from the respective foundries.
-Place the files in `public/fonts/`, add the matching `@font-face` declarations at the top of
-`src/index.css`, and use `font-display: swap`. Preserve the existing family names in the CSS:
-`Alliance No. 2` and `Söhne`.
+The release policy rejects undeclared webfonts and rejects references to Söhne or Alliance No. 2
+unless a future, separately approved change introduces properly licensed assets. It also verifies
+that representative wordmark, display, paragraph, and label roles resolve to the approved first
+family and that the committed brand sources and PNG outputs match their provenance record.
 
-Files under `/fonts/` use a one-day revalidation policy rather than year-long immutable caching,
-because the release process does not require content-hashed font filenames. Do not change the policy
-to `immutable` unless filename versioning is enforced at the same time.
-
-Required web weights are Söhne 400/500 and Alliance No. 2 400/500/700. A licensed variable file
-may cover the range. Convert all lettering in `scripts/og-image.svg`, `scripts/logo-512.svg`, and
-`public/favicon.svg` to paths using the licensed desktop faces, then regenerate the PNG assets.
-External SVGs cannot inherit the page's webfonts, and a bitmap rendered from unresolved SVG text can
-silently preserve the development fallback.
-
-After the three SVGs contain licensed outlines, run `npm run brand:build-assets`. The command refuses
-live text, deterministically renders `public/og-image.png` and `public/logo-512.png` from their SVG
-sources, then records SHA-256 digests of the sources, outputs, generator, and Sharp renderer version
-in `brand-assets.json`. Commit the manifest with the assets. The release gate fails if a source,
-output, generator, or renderer version changes afterward, so an old fallback-rendered PNG cannot be
-blessed merely by recording whatever file happens to exist.
-
-Do not substitute similarly named downloads from unofficial font sites.
-
-Run `npm run verify:release` after installing the fonts. That check intentionally fails while the
-licensed faces are absent, if a face omits `font-display: swap`, if a declared WOFF2 file is missing,
-if any required family-and-weight combination does not load in the browser, or if the
-outlined-source/raster digest record is absent or stale. The browser check explicitly loads Söhne
-400/500 and Alliance No. 2 400/500/700 before evaluating the 22 route-and-viewport cases; it does
-not infer success merely because a fallback rendered the page. It also verifies the computed family
-and weight on representative display, paragraph, label, and wordmark elements.
-
-The automated checks cannot establish ownership of a font license. Retain the foundry invoices or
-agreements that cover web use and desktop conversion to outlines, and record a human license sign-off
-with the release evidence.
+Run `npm run brand:build-assets` on the approved design machine after changing a brand SVG. Run
+`npm run verify:release` before publication. Railway runs `npm run verify:deploy`, which repeats the
+production-safe build, security, dependency, typography, and brand-asset checks without requiring a
+desktop browser inside the build container.

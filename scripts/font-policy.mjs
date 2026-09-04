@@ -1,52 +1,33 @@
-export const requiredFontWeights = {
-  Söhne: [400, 500],
-  'Alliance No. 2': [400, 500, 700],
-};
+export const approvedFontStack = "'Helvetica Neue', Helvetica, Arial, sans-serif";
 
 export function extractFontFaceBlocks(css) {
   return css.match(/@font-face\s*\{[\s\S]*?\}/g) ?? [];
 }
 
-export function declaredWeights(block) {
-  const match = block.match(/font-weight\s*:\s*(\d{3})(?:\s+(\d{3}))?/);
-  if (!match) return [];
-  const first = Number(match[1]);
-  const last = Number(match[2] ?? match[1]);
-  return [first, last];
-}
-
-export function inspectFontPolicy(css, requirements = requiredFontWeights) {
+export function inspectFontPolicy(css) {
   const faceBlocks = extractFontFaceBlocks(css);
   const issues = [];
+  const requiredDeclarations = [
+    `font-family: ${approvedFontStack};`,
+    `--display: ${approvedFontStack};`,
+    `--text: ${approvedFontStack};`,
+  ];
 
-  for (const [family, requiredWeights] of Object.entries(requirements)) {
-    const escapedFamily = family.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const familyPattern = new RegExp(`font-family\\s*:\\s*['"]${escapedFamily}['"]`);
-    const familyBlocks = faceBlocks.filter((block) => familyPattern.test(block));
-    if (familyBlocks.length === 0) {
-      issues.push(`required ${family} webfont faces have not been declared`);
-      continue;
-    }
-
-    for (const block of familyBlocks) {
-      if (!/font-display\s*:\s*swap\s*;/i.test(block)) {
-        issues.push(`${family} font face must declare font-display: swap`);
-      }
-    }
-
-    for (const requiredWeight of requiredWeights) {
-      const covered = familyBlocks.some((block) => {
-        const [first, last] = declaredWeights(block);
-        return first <= requiredWeight && last >= requiredWeight;
-      });
-      if (!covered) issues.push(`${family} does not cover weight ${requiredWeight}`);
+  for (const declaration of requiredDeclarations) {
+    if (!css.includes(declaration)) {
+      issues.push(`approved typography declaration is missing (${declaration})`);
     }
   }
 
-  const woff2Urls = faceBlocks.flatMap((block) =>
-    [...block.matchAll(/url\(['"]?([^'")]+\.woff2)['"]?\)/g)].map((match) => match[1]),
-  );
-  if (woff2Urls.length === 0) issues.push('no self-hosted WOFF2 assets are declared');
+  for (const family of ['Söhne', 'Alliance No. 2']) {
+    if (css.includes(family)) {
+      issues.push(`${family} must not appear in the active CSS without licensed webfont assets`);
+    }
+  }
 
-  return { faceBlocks, issues, woff2Urls };
+  if (faceBlocks.length > 0) {
+    issues.push('the approved system-font release must not bundle webfont faces');
+  }
+
+  return { faceBlocks, issues, woff2Urls: [] };
 }

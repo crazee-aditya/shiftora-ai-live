@@ -2,11 +2,11 @@
   <rect width="1200" height="630" fill="#090a0a"/>
   <path d="M56 55H1144M56 575H1144" stroke="#f1efe7" stroke-opacity="0.24"/>
 
-  <text x="56" y="105" font-family="Söhne, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="3.4" fill="#a6a59f">INTEGRATED STRATEGY AND SYSTEMS FIRM</text>
-  <text x="55" y="326" font-family="Alliance No. 2, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="160" font-weight="700" letter-spacing="-3" fill="#f1efe7">shiftora</text>
+  <text x="56" y="105" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="3.4" fill="#a6a59f">INTEGRATED STRATEGY AND SYSTEMS FIRM</text>
+  <text x="55" y="326" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="160" font-weight="700" letter-spacing="-3" fill="#f1efe7">shiftora</text>
 
-  <text x="58" y="422" font-family="Söhne, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="38" font-weight="400" letter-spacing="-1.3" fill="#f1efe7">Every institution is governed twice.</text>
+  <text x="58" y="422" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="38" font-weight="400" letter-spacing="-1.3" fill="#f1efe7">Every institution is governed twice.</text>
 
-  <text x="56" y="547" font-family="Söhne, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="1.7" fill="#a6a59f">DUBAI · MUMBAI</text>
-  <text x="1144" y="547" text-anchor="end" font-family="Söhne, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="1.7" fill="#a6a59f">SHIFTORA.AI</text>
+  <text x="56" y="547" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="1.7" fill="#a6a59f">DUBAI · MUMBAI</text>
+  <text x="1144" y="547" text-anchor="end" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" letter-spacing="1.7" fill="#a6a59f">SHIFTORA.AI</text>
 </svg>

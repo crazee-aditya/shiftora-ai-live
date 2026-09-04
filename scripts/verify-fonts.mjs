@@ -1,21 +1,9 @@
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { inspectFontPolicy } from './font-policy.mjs';
 
 const css = readFileSync('src/index.css', 'utf8');
-const { issues, woff2Urls } = inspectFontPolicy(css);
-
-for (const url of woff2Urls) {
-  if (!url.startsWith('/fonts/')) {
-    issues.push(`font must be self-hosted from /fonts/ (${url})`);
-    continue;
-  }
-  const path = resolve('public', url.slice(1));
-  if (!existsSync(path)) {
-    issues.push(`declared font file is missing (${path})`);
-  }
-}
+const { issues } = inspectFontPolicy(css);
 
 const ogSource = readFileSync('scripts/og-image.svg', 'utf8');
 const logoSource = readFileSync('scripts/logo-512.svg', 'utf8');
@@ -26,14 +14,17 @@ for (const [label, source] of [
   ['organization logo', logoSource],
   ['favicon', faviconSource],
 ]) {
-  if (/<text\b/i.test(source)) {
-    issues.push(`${label} lettering must be converted to the required vector outlines`);
+  if (!/Helvetica Neue/.test(source)) {
+    issues.push(`${label} does not declare the approved Helvetica Neue-first stack`);
+  }
+  if (/Söhne|Alliance No\. 2/.test(source)) {
+    issues.push(`${label} still references an unavailable commercial family`);
   }
 }
 
 const assetManifestPath = 'brand-assets.json';
 if (!existsSync(assetManifestPath)) {
-  issues.push('outlined-source and generated-PNG provenance has not been recorded');
+  issues.push('brand-source and generated-PNG provenance has not been recorded');
 } else {
   try {
     const manifest = JSON.parse(readFileSync(assetManifestPath, 'utf8'));
@@ -84,4 +75,4 @@ if (issues.length > 0) {
   throw new Error(`Release blocked:\n${detail}`);
 }
 
-console.log('Verified the required Shiftora webfont declarations, files, and brand assets. Human license evidence remains required.');
+console.log('Verified the approved Helvetica Neue-first typography and brand assets.');

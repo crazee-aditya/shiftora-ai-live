@@ -37,26 +37,23 @@ dates are available.
 npm run verify:visual
 ```
 
-The visual check opens the production build in 22 route-and-viewport combinations from 320 through
-1440 pixels, including both sides of the 600px, 1100px, and 1279/1280px layout transitions and the
-branded 404 at mobile and desktop sizes. It verifies page structure, horizontal fit, metadata,
-indexing controls, hydration, browser errors, minimum mobile target sizes, heading headroom, and
-continuity of the responsive type scale, then saves full-page review images to a temporary directory.
+The visual check opens the production build across a route-and-viewport matrix from 320 through
+2560 pixels, including both sides of each layout transition, the locked 665 × 767 Firm reference,
+and the branded 404 at mobile and desktop sizes. It verifies page structure, horizontal fit, metadata,
+indexing controls, hydration, browser errors, minimum mobile target sizes, heading headroom, the
+Firm typography lock, and continuity of the responsive Engagements scale, then saves full-page
+review images to a temporary directory.
 Set `SHIFTORA_CHROME_PATH` if Chrome is installed somewhere other than the standard macOS location.
 
 ```sh
 npm run verify:release
 ```
 
-The release check additionally runs the full dependency audit and requires properly licensed,
-self-hosted Söhne and Alliance No. 2 webfonts at every weight used by the design. Each face must use
-`font-display: swap`, and the release-mode visual suite force-loads every required face and verifies
-the computed family and weight of representative display, body, label, and wordmark elements so
-fallback or selector regressions cannot pass. The check also requires outlined brand lettering plus
-deterministic social/organization PNGs and a provenance record binding the source, output, generator,
-and renderer version. Licensing itself requires retained human evidence; the automated gate proves
-technical integrity, not ownership of rights. It intentionally fails until those assets are added.
-See [FONTS.md](./FONTS.md).
+The release check additionally runs the full dependency audit, verifies the approved Helvetica
+Neue-first system stack on representative display, body, label, and wordmark elements, and rejects
+unapproved or undeclared webfonts. It also requires deterministic social/organization PNGs and a
+provenance record binding the source, output, generator, and renderer version. See
+[FONTS.md](./FONTS.md).
 
 Do not deploy this branch while `npm run verify:release` is failing.
 

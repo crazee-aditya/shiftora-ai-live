@@ -1,7 +1,7 @@
 :root {
   color: #11110f;
   background: #eeece5;
-  font-family: 'Söhne', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -12,8 +12,8 @@
   --night-text: #f1efe7;
   --night-muted: #a6a59f;
   --night-line: rgba(241, 239, 231, 0.24);
-  --display: 'Alliance No. 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --text: 'Söhne', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --text: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --gutter: clamp(1.25rem, 3.5vw, 4.75rem);
   --firm-gutter: clamp(1.25rem, 3.5vw, 1.455rem);
   --firm-header-height: 6.7125rem;

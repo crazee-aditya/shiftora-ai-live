@@ -25,13 +25,6 @@ const outputs = [
   },
 ];
 
-for (const path of sources) {
-  const source = readFileSync(path, 'utf8');
-  if (/<text\b/i.test(source)) {
-    throw new Error(`${path} still contains live text; convert the lettering to the required outlines first.`);
-  }
-}
-
 for (const asset of outputs) {
   await sharp(readFileSync(asset.source))
     .resize(asset.width, asset.height, { fit: 'fill' })
@@ -58,4 +51,4 @@ const manifest = {
 };
 
 writeFileSync('brand-assets.json', `${JSON.stringify(manifest, null, 2)}\n`);
-console.log('Generated the raster brand assets from outlined SVG sources and recorded their provenance.');
+console.log('Generated the raster brand assets from the approved Helvetica Neue-first sources and recorded their provenance.');

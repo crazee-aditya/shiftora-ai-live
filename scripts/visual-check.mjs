@@ -12,32 +12,26 @@ const distRoot = join(projectRoot, 'dist');
 const chromePath =
   process.env.SHIFTORA_CHROME_PATH ??
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const requireLicensedFonts = process.env.SHIFTORA_REQUIRE_LICENSED_FONTS === '1';
-const requiredFonts = [
-  { family: 'Söhne', weight: 400 },
-  { family: 'Söhne', weight: 500 },
-  { family: 'Alliance No. 2', weight: 400 },
-  { family: 'Alliance No. 2', weight: 500 },
-  { family: 'Alliance No. 2', weight: 700 },
-];
+const requireApprovedTypography = process.env.SHIFTORA_REQUIRE_APPROVED_TYPOGRAPHY === '1';
+const requiredFonts = [];
 const fontRolesByRoute = {
   '/': [
-    { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
-    { selector: '.description-copy', family: 'Söhne', weight: 400 },
-    { selector: '.page-kicker', family: 'Söhne', weight: 500 },
+    { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
+    { selector: '.description-copy', family: 'Helvetica Neue', weight: 400 },
+    { selector: '.page-kicker', family: 'Helvetica Neue', weight: 500 },
   ],
   '/engagements': [
-    { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
-    { selector: '.mandates-hero h1', family: 'Alliance No. 2', weight: 500 },
-    { selector: '.mandate-item h3', family: 'Alliance No. 2', weight: 400 },
-    { selector: '.mandates-close p', family: 'Alliance No. 2', weight: 400 },
-    { selector: '.mandate-item p', family: 'Söhne', weight: 400 },
-    { selector: '.page-kicker', family: 'Söhne', weight: 500 },
+    { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
+    { selector: '.mandates-hero h1', family: 'Helvetica Neue', weight: 500 },
+    { selector: '.mandate-item h3', family: 'Helvetica Neue', weight: 400 },
+    { selector: '.mandates-close p', family: 'Helvetica Neue', weight: 400 },
+    { selector: '.mandate-item p', family: 'Helvetica Neue', weight: 400 },
+    { selector: '.page-kicker', family: 'Helvetica Neue', weight: 500 },
   ],
   '/404': [
-    { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
-    { selector: '.not-found-page__main h1', family: 'Alliance No. 2', weight: 500 },
-    { selector: '.page-kicker', family: 'Söhne', weight: 500 },
+    { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
+    { selector: '.not-found-page__main h1', family: 'Helvetica Neue', weight: 500 },
+    { selector: '.page-kicker', family: 'Helvetica Neue', weight: 500 },
   ],
 };
 
@@ -425,11 +419,7 @@ try {
       (testCase.width >= 768 || metrics.undersizedLinks.length === 0)
     );
     const validDocument = !metrics.headingSkip && metrics.duplicateIdCount === 0;
-    const validFonts = !requireLicensedFonts || (
-      metrics.fontSetStatus === 'loaded' &&
-      metrics.loadedFontFailures.length === 0 &&
-      metrics.fontRoleFailures.length === 0
-    );
+    const validFonts = !requireApprovedTypography || metrics.fontRoleFailures.length === 0;
     const label = `${testCase.route} at ${testCase.width}px`;
     console.log(
       `${overflow || !validStructure || !validMetadata || !validIndexing || !validNavigation || !validDocument || !validFonts ? 'FAIL' : 'PASS'} ${label}: viewport ${metrics.innerWidth}px; document ${Math.max(metrics.scrollWidth, metrics.bodyScrollWidth)}px; h1 ${metrics.h1Count}; main ${metrics.mainCount}.`,

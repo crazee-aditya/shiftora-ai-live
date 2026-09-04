@@ -56,9 +56,11 @@ technical services. Preserve that distinction in every change.
 
 ## Visual system
 
-- Alliance No. 2 is the display face; Söhne is the text face.
-- Both are commercial fonts. Use properly licensed, self-hosted WOFF2 files only. Helvetica is a
-  development fallback, not an approved substitute.
+- Helvetica Neue is the approved display and text master because it is the face used by the accepted
+  665 × 767 reference rendering. Preserve the declared Helvetica Neue, Helvetica, Arial, sans-serif
+  order; do not bundle the macOS font file.
+- Söhne or Alliance No. 2 may be introduced only through a separately approved typography change
+  with properly licensed, self-hosted webfont assets.
 - Page 1 uses warm paper; Page 2 uses near-black ink. Preserve the relationship between thesis and
   field record.
 - Prefer typography, scale, negative space, and rules. Do not add cards, pills, icons, gradients,
@@ -78,7 +80,8 @@ technical services. Preserve that distinction in every change.
   inspect the generated 390px and 1440px screenshots rather than trusting fit metrics alone. The
   check must continue to cover both sides of every responsive boundary and preserve its metadata,
   landmark, heading-order, unique-id, labeled-link, and skip-navigation checks.
-- Run `npm run verify:release` before production deployment. It must not pass until the licensed
-  Söhne and Alliance No. 2 assets are installed and declared.
+- Run `npm run verify:release` before production deployment. It verifies the approved system-font
+  stack, brand-asset provenance, the complete visual matrix, and the production build.
 - Keep the page copy, metadata, `llms.txt`, social assets, and sitemap aligned.
-- The production site must not be deployed from a build that only uses fallback type.
+- The production site must preserve the accepted Helvetica Neue-first rendering and its declared
+  cross-platform Helvetica/Arial compatibility fallbacks.

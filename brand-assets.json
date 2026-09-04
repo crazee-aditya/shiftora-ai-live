@@ -1,0 +1,19 @@
+{
+  "algorithm": "sha256",
+  "generator": {
+    "command": "npm run brand:build-assets",
+    "script": "scripts/build-brand-assets.mjs",
+    "scriptDigest": "7416793d7fb3f56384817abdba24457b5325e9f601fcbec00ea24479f2e1bdc2",
+    "renderer": "sharp",
+    "rendererVersion": "0.35.4"
+  },
+  "sources": {
+    "scripts/og-image.svg": "78fdafb90a324e0560f3030f014f6a8fe55cc6fadeed44e646479930d8ba7148",
+    "scripts/logo-512.svg": "0b8f399412d4507e2d3d2ecd6f89efc73a7aa58a6f2765d65538c8e3660a31c8",
+    "public/favicon.svg": "ecb0b60a82274f8c90de732c5aa4a9b1beafbcd515ed89587f0c7c2bbb844afe"
+  },
+  "outputs": {
+    "public/og-image.png": "f0eba170f6bb6ed433f7887be12c3574c698b496cc82aa091f519892a236ff21",
+    "public/logo-512.png": "9e5f48e2b390424f23cd07b4cda9e8bee3088b998bf378db5fca161f8cd0bc94"
+  }
+}
