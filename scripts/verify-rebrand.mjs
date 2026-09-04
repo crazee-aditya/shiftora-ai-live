@@ -53,7 +53,7 @@ function assertJsonLd(document, label) {
 }
 
 const expectedDefaultDescription =
-  'Shiftora is an integrated strategy and systems firm. It forms its own view, advises those who hold authority, and undertakes the work they entrust to it.';
+  'Shiftora is an integrated strategy and systems firm. It advises the course, builds the capacity, and carries both into operation.';
 
 const checks = [
   [home, '<title>Shiftora — Integrated Strategy and Systems Firm</title>', 'home title'],
@@ -62,8 +62,10 @@ const checks = [
   [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
   [home, 'Shiftora is an integrated strategy and systems firm.', 'positioning'],
-  [home, 'Every institution is governed twice:', 'governing thesis'],
-  [home, 'An institution has sovereign capacity when its systems are answerable', 'sovereignty definition'],
+  [home, 'Its domain is the architecture of government and enterprise:', 'institutional domain'],
+  [home, 'strategy, organization, capital, operations, data, and technology', 'integrated field'],
+  [home, 'Shiftora advises the course, builds the capacity, and carries both into operation.', 'responsibility'],
+  [home, 'An institution is sovereign when it can act at the scale of its responsibility.', 'sovereignty definition'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
@@ -111,6 +113,11 @@ for (const retiredPhrase of [
   'Available for engagements worldwide',
   'Carry a national priority into operation',
   'When strategic dependence becomes unacceptable',
+  'Every institution is governed twice:',
+  'Governments and enterprises may decide or be required to do more than they can presently carry out.',
+  'Shiftora forms its own view and advises those who hold the relevant authority.',
+  'We remain with the mandate through the work it requires.',
+  'When the necessary capacity does not exist, we build it.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -144,12 +151,10 @@ assertInOrder(
   home,
   [
     'Shiftora is an integrated strategy and systems firm.',
-    'Every institution is governed twice:',
-    'Governments and enterprises may decide or be required to do more than they can presently carry out.',
-    'Shiftora forms its own view and advises those who hold the relevant authority.',
-    'We remain with the mandate through the work it requires.',
-    'When the necessary capacity does not exist, we build it.',
-    'An institution has sovereign capacity when its systems are answerable to its lawful authority',
+    'Its domain is the architecture of government and enterprise:',
+    'strategy, organization, capital, operations, data, and technology.',
+    'Shiftora advises the course, builds the capacity, and carries both into operation.',
+    'An institution is sovereign when it can act at the scale of its responsibility.',
   ],
   'description argument',
 );

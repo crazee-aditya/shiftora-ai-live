@@ -6,9 +6,9 @@ technical services. Preserve that distinction in every change.
 ## Public identity
 
 - The category is **integrated strategy and systems firm**.
-- The governing thesis is **Every institution is governed twice.** Use it once, define it immediately,
-  and never extend it into first, second, real, hidden, or concealed governments.
-- Shiftora works in the passage from institutional direction or responsibility to operating capability.
+- The governing thesis is **An institution is sovereign when it can act at the scale of its responsibility.**
+- Shiftora's domain is the architecture of government and enterprise: strategy, organization, capital,
+  operations, data, and technology.
 - AI, software, data, models, organization, capital, and operations are possible forms of a
   mandate. None is the umbrella identity.
 - A client institution or authorized coalition remains the principal in a Shiftora mandate. A
@@ -39,7 +39,7 @@ technical services. Preserve that distinction in every change.
 - Treat the current capability set as proof, never premise or ceiling. A Page-one revision must remain
   coherent after every named method and desired client is removed, after a present capability is
   subtracted, and after an unknown future instrument is introduced under the same mandate doctrine.
-- Governments and enterprises are institutional arenas, never an audience suffix such as “a firm
+- Government and enterprise are institutional domains, never an audience suffix such as “a firm
   for governments and companies.”
 - Every public engagement claim must preserve its recorded stage: designed, built, stress-tested,
   pilot, or production. Do not upgrade one stage into another, imply exclusive authorship, or name a

@@ -6,13 +6,13 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Category:** Shiftora is an integrated strategy and systems firm.
 
-**Worldview:** Every institution is governed twice: formally by those entrusted with its direction, and operationally by the systems through which it acts. The phrase is used once and immediately defined; it is not extended into first, second, real, or hidden governments.
+**Worldview:** An institution is sovereign when it can act at the scale of its responsibility.
 
-**Domain:** The passage from institutional direction or responsibility to operating capability.
+**Domain:** The architecture of government and enterprise: strategy, organization, capital, operations, data, and technology.
 
 **Responsibility:** Carry a consequential mandate through the forms of work it requires while every reserved decision right remains with the relevant client authority.
 
-**Completion condition:** The institution's systems are answerable to its lawful authority and equal to its responsibilities.
+**Completion condition:** The institution can act at the scale of its responsibility.
 
 **Sovereign capacity:** The institution's systems are answerable to its lawful authority and equal to its responsibilities. This is not a claim to public authority by Shiftora, national status, total technical independence, ownership of every component, or a Palantir-like digital decision system.
 

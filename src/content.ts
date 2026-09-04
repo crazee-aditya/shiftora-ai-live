@@ -1,8 +1,8 @@
 export const FIRM_DESCRIPTION_BODY =
-  'Shiftora is an integrated strategy and systems firm. Every institution is governed twice: formally by those entrusted with its direction, and operationally by the systems through which it acts. Governments and enterprises may decide or be required to do more than they can presently carry out. Shiftora forms its own view and advises those who hold the relevant authority. We remain with the mandate through the work it requires. When the necessary capacity does not exist, we build it.';
+  'Shiftora is an integrated strategy and systems firm. Its domain is the architecture of government and enterprise: strategy, organization, capital, operations, data, and technology. Shiftora advises the course, builds the capacity, and carries both into operation.';
 
 export const FIRM_DESCRIPTION_CLOSE =
-  'An institution has sovereign capacity when its systems are answerable to its lawful authority and equal to its responsibilities.';
+  'An institution is sovereign when it can act at the scale of its responsibility.';
 
 export const ENGAGEMENTS_INTRO =
   'Selected systems built for public authority and enterprise. Only the architecture may be described here. The principals, jurisdictions, and operating particulars remain protected by obligations that survive the engagement.';
