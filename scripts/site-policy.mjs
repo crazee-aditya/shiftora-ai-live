@@ -1,4 +1,6 @@
 export const RETIRED_PATHS = Object.freeze([
+  '/mandates',
+  '/work',
   '/careers',
   '/blog',
   '/blog/custom-ai-vs-off-the-shelf-tools',

@@ -20,16 +20,16 @@ technical services. Preserve that distinction in every change.
 
 ## Information architecture
 
-- The public site contains exactly two indexed routes: `/` and `/mandates`.
+- The public site contains exactly two indexed routes: `/` and `/engagements`.
 - `/` is **The firm**: one continuous institutional thesis, not a capabilities page.
-- `/mandates` organizes work by the condition that creates a mandate, not by sector, department,
-  buyer, or technology.
-- Preserve the intentionally asymmetric eleven-record 3–3–3–2 field. Do not add a twelfth mandate
+- `/engagements` presents seven selected engagements by the institutional condition that made the work
+  necessary, not by sector, department, buyer, or technology.
+- Preserve the intentionally asymmetric seven-record 2–2–1–2 field. Do not add or inflate a record
   merely to complete the grid.
 - Do not restore careers, blog, FAQ, pricing, process, or generic service pages without an explicit
   product decision and corresponding change to the sitemap and verification gate.
-- `src/content.ts` is the single source of truth for the working public description, mandate chapters,
-  mandate records, and closing boundary. Pages and structured data must import from it rather than
+- `src/content.ts` is the single source of truth for the working public description, work chapters,
+  engagement records, and closing boundary. Pages and structured data must import from it rather than
   duplicating public copy.
 
 ## Language
@@ -41,8 +41,9 @@ technical services. Preserve that distinction in every change.
   subtracted, and after an unknown future instrument is introduced under the same mandate doctrine.
 - Governments and enterprises are institutional arenas, never an audience suffix such as “a firm
   for governments and companies.”
-- Do not imply completed client work, government access, quantified outcomes, scale, or trust
-  without a proof record.
+- Every public engagement claim must preserve its recorded stage: designed, built, stress-tested,
+  pilot, or production. Do not upgrade one stage into another, imply exclusive authorship, or name a
+  confidential institution without a proof record and permission.
 - Avoid AI-copy defaults: unlock, leverage, empower, seamless, cutting-edge, future-proof,
   transformation, world-class, and “not just X, but Y.”
 - Do not reuse distinctive language from E76, Palantir, Varick, or another reference company.

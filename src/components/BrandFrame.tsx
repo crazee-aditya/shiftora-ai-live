@@ -1,11 +1,11 @@
 interface BrandFrameProps {
-  active: 'description' | 'mandates' | 'none';
+  active: 'description' | 'engagements' | 'none';
   tone?: 'paper' | 'ink';
 }
 
 export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
-  const nextHref = active === 'description' ? '/mandates' : '/';
-  const nextLabel = active === 'description' ? 'Mandates' : 'The firm';
+  const nextHref = active === 'description' ? '/engagements' : '/';
+  const nextLabel = active === 'description' ? 'Engagements' : 'The firm';
 
   return (
     <header className={`brand-header brand-header--${tone}`}>
@@ -38,8 +38,8 @@ export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
     <footer className={`brand-footer brand-footer--${tone}`}>
       <span>Dubai · Mumbai</span>
       <a href="mailto:info@shiftora.ai">info@shiftora.ai</a>
-      <a href={active === 'description' ? '/mandates' : '/'}>
-        {active === 'description' ? 'Read the mandates' : 'Read about the firm'}
+      <a href={active === 'description' ? '/engagements' : '/'}>
+        {active === 'description' ? 'View engagements' : 'Read about the firm'}
         <span aria-hidden="true">↗</span>
       </a>
     </footer>

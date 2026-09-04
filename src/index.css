@@ -467,6 +467,11 @@ a:focus-visible {
     font-size: clamp(4rem, 20vw, 5.4rem);
   }
 
+  .mandates-hero h1.engagements-title {
+    font-size: clamp(3rem, 15.2vw, 5.4rem);
+    white-space: nowrap;
+  }
+
   .mandates-hero__intro {
     font-size: 1.3rem;
   }

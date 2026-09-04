@@ -7,7 +7,7 @@ Shiftora forms its own view, advises those who hold the relevant authority, and 
 ## Pages
 
 - [The firm](https://www.shiftora.ai/): The institutional thesis and the role Shiftora assumes.
-- [Mandates](https://www.shiftora.ai/mandates): The institutional conditions that may give rise to a Shiftora mandate.
+- [Engagements](https://www.shiftora.ai/engagements): Seven selected systems across public authority and enterprise.
 
 ## Contact
 

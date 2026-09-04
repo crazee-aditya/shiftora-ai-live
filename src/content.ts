@@ -4,105 +4,85 @@ export const FIRM_DESCRIPTION_BODY =
 export const FIRM_DESCRIPTION_CLOSE =
   'An institution has sovereign capacity when its systems are answerable to its lawful authority and equal to its responsibilities.';
 
-export const MANDATES_INTRO =
-  "A Shiftora mandate begins where an institution's direction or responsibility exceeds its present capacity to act. Its form follows that condition, within the authority and scope entrusted to us.";
+export const ENGAGEMENTS_INTRO =
+  'Selected systems built for public authority and enterprise. Only the architecture may be described here. The principals, jurisdictions, and operating particulars remain protected by obligations that survive the engagement.';
 
-export const MANDATES_CLOSE =
-  'A Shiftora mandate carries a consequential direction or responsibility through the work required to put it into effect.';
+export const ENGAGEMENTS_CLOSE =
+  "A Shiftora system is complete when the institution's capacity to decide and act is equal to the responsibility it carries.";
 
-export interface Mandate {
+export interface EngagementRecord {
   title: string;
   description: string;
 }
 
-export interface MandateChapter {
+export interface EngagementChapter {
   number: string;
   condition: string;
-  mandates: Mandate[];
+  records: EngagementRecord[];
 }
 
-export const MANDATE_CHAPTERS: MandateChapter[] = [
+export const ENGAGEMENT_CHAPTERS: EngagementChapter[] = [
   {
     number: '01',
-    condition: 'When direction changes',
-    mandates: [
+    condition: 'Where nations move',
+    records: [
       {
-        title: 'Carry a national priority into operation',
+        title: 'Command across a sovereign logistics network',
         description:
-          'Under continuing public authority, advise the bodies responsible for funding, procurement, and delivery, then undertake the work they entrust to us in carrying the adopted objective into operation.',
+          'Built for a government logistics institution, the intelligence layer through which ports, freight, customs, suppliers, and public authority act against one operating picture.',
       },
       {
-        title: 'Reposition an enterprise for its next phase',
+        title: 'Govern passage across borders',
         description:
-          'Form a view of the position the enterprise should seek in its next phase. Advise its leadership on the changes that position would entail, then carry into effect the arrangements it approves.',
-      },
-      {
-        title: 'Determine the capital requirements of a chosen course',
-        description:
-          'Form our own view of the capital, risk capacity, and management attention the chosen course will require. Give the institution the information needed to govern each allocation.',
+          'Built the infrastructure for visa discovery, eligibility, documentation, pricing, payment, and fulfillment across jurisdictions.',
       },
     ],
   },
   {
     number: '02',
-    condition: 'When inherited structures and present direction diverge',
-    mandates: [
+    condition: 'Where institutional knowledge cannot be divided',
+    records: [
       {
-        title: 'Bring a transformation back under institutional direction',
+        title: "Place a legal institution's memory beside every decision",
         description:
-          'When a major transformation has not produced the intended change, give those with authority the basis to stop it, reorder it, or rebuild it.',
+          'Built a governed intelligence system joining matters, precedent, clients, communications, and commercial knowledge into a common field of action for counsel.',
       },
       {
-        title: 'Replace an operating model built for an earlier strategy',
+        title: 'Keep frontier intelligence inside the institution',
         description:
-          'Form a view of how decisions, resources, and work should move through the institution. Design and implement the operating arrangements it approves for the adopted strategy.',
-      },
-      {
-        title: 'Build the organization a new strategy requires',
-        description:
-          'Advise those who hold the relevant authority on leadership and organization, then carry into effect the organizational arrangements they approve for the adopted strategy.',
+          'Built private models and data infrastructure that reason across sensitive institutional knowledge without surrendering custody, authority, or control.',
       },
     ],
   },
   {
     number: '03',
-    condition: 'When responsibility outruns capability',
-    mandates: [
+    condition: 'Where capital takes physical form',
+    records: [
       {
-        title: 'Establish a function for a new institutional responsibility',
+        title: 'Govern a billion-dollar urban estate',
         description:
-          'When no existing part of the institution can discharge a new duty, advise the relevant authority on the function required and build the operating capacity it approves.',
-      },
-      {
-        title: 'Build software for a critical institutional function',
-        description:
-          'When available products cannot serve the function as its obligations and operating conditions demand, build the software the mandate requires.',
-      },
-      {
-        title: 'Establish the information a consequential mandate requires',
-        description:
-          "When necessary data is divided across systems or jurisdictions, advise the relevant authorities on common definitions and stewardship. Build the architecture they approve for the institution's specified purposes.",
+          'Built the operating system through which a major developer governs property, inventory, agents, commercial assets, and sales across a billion-dollar urban portfolio.',
       },
     ],
   },
   {
     number: '04',
-    condition: 'When strategic dependence becomes unacceptable',
-    mandates: [
+    condition: 'Where scale exceeds human attention',
+    records: [
       {
-        title: 'Bring strategic dependence under institutional judgment',
+        title: 'Make capital answer to strategy',
         description:
-          "Advise the institution's accountable authorities on which dependencies can be accepted and which cannot. Where those authorities determine that continuity or lawful responsibility demands an alternative, establish it under the terms they set.",
+          'Built a decision system joining forecasts, obligations, operating plans, and resource allocation so the next quarter can be governed without losing sight of the next decade.',
       },
       {
-        title: 'Make model action answerable to institutional authority',
+        title: 'Put live judgment inside every commercial conversation',
         description:
-          'For consequential work, advise the responsible authorities on which judgments must remain human, what models may advise or execute, how performance will be assessed, and who answers for the result. Build or select only within the terms they establish.',
+          'Built a real-time commercial system that reads the market, recalls the account, interprets the conversation, and places the next decision beside the representative as it happens.',
       },
     ],
   },
 ];
 
-export const MANDATE_NAMES = MANDATE_CHAPTERS.flatMap((chapter) =>
-  chapter.mandates.map((mandate) => mandate.title)
+export const ENGAGEMENT_NAMES = ENGAGEMENT_CHAPTERS.flatMap((chapter) =>
+  chapter.records.map((record) => record.title)
 );

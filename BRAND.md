@@ -82,20 +82,21 @@ The client retains every decision right reserved to it by law, regulation, fiduc
 ## Public architecture
 
 - `/` states the worldview and the firm's place within it.
-- `/mandates` shows eleven selected mandates under four institutional conditions. Its 3–3–3–2
-  asymmetry is deliberate; do not restore a twelfth item merely to complete the visual field.
+- `/engagements` shows seven selected engagements under four institutional conditions. Its 2–2–1–2
+  asymmetry is deliberate; do not add or inflate an item merely to complete the visual field.
 
 If either page can be reorganized as a service catalog without losing its argument, the copy has been derived from the wrong end.
 
-### Admission test for a future mandate record
+### Admission test for a future work record
 
-A prospective record may enter `/mandates` only when:
+A record may enter `/engagements` only when:
 
 1. the chapter names the institutional condition that gives rise to the work;
 2. the title names a consequential institutional object or change rather than a fashionable method;
 3. the body identifies the responsible authority, operative constraint, or standard the work must serve;
 4. technology remains a possible instrument unless technology is itself the capability the institution lacks;
-5. the language is clearly prospective and contains no unsupported history, result, qualification, or client standing; and
-6. the record adds a genuinely different mandate rather than filling a visual grid or advertising another practice.
+5. its verbs exactly preserve the substantiated stage of the work—designed, built, stress-tested,
+   pilot, or production—and contain no unsupported result, qualification, or client standing; and
+6. the record adds genuinely different evidence rather than filling a visual grid or advertising another practice.
 
 The question is never “which capability have we failed to mention?” It is “which materially different institutional condition or responsibility remains invisible?”

@@ -2,9 +2,10 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const home = readFileSync('dist/index.html', 'utf8');
-const mandates = readFileSync('dist/mandates/index.html', 'utf8');
+const engagements = readFileSync('dist/engagements/index.html', 'utf8');
 const notFound = readFileSync('dist/404.html', 'utf8');
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
+const visibleEngagements = engagements.slice(engagements.indexOf('<body'));
 
 function readSourceTree(directory) {
   return readdirSync(directory, { withFileTypes: true })
@@ -56,50 +57,39 @@ const expectedDefaultDescription =
 
 const checks = [
   [home, '<title>Shiftora — Integrated Strategy and Systems Firm</title>', 'home title'],
-  [home, `<meta name="description" content="${expectedDefaultDescription}" />`, 'authority-bounded home description'],
+  [home, `<meta name="description" content="${expectedDefaultDescription}" />`, 'home description'],
   [home, '<meta name="theme-color" content="#eeece5" />', 'home browser color'],
-  [home, '<meta property="og:image:alt" content="Shiftora — Every institution is governed twice." />', 'social image description'],
   [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
   [home, 'Shiftora is an integrated strategy and systems firm.', 'positioning'],
   [home, 'Every institution is governed twice:', 'governing thesis'],
   [home, 'An institution has sovereign capacity when its systems are answerable', 'sovereignty definition'],
-  [mandates, '<title>Mandates — Shiftora</title>', 'mandates title'],
-  [mandates, '<meta name="theme-color" content="#090a0a" />', 'mandates browser color'],
-  [mandates, '>Integrated strategy and systems firm</p>', 'direct-entry category'],
-  [mandates, 'Shiftora mandates begin where consequential direction or responsibility exceeds', 'prospective mandate metadata'],
-  [mandates, 'A Shiftora mandate begins where an institution&#x27;s direction or responsibility exceeds', 'mandate test'],
-  [mandates, 'within the authority and scope entrusted to us', 'mandate scope boundary'],
-  [mandates, 'Carry a national priority into operation', 'public mandate'],
-  [mandates, 'Under continuing public authority', 'public authority boundary'],
-  [mandates, 'advise the bodies responsible for funding, procurement, and delivery', 'public-process advisory boundary'],
-  [mandates, 'undertake the work they entrust to us', 'public implementation authority'],
-  [mandates, 'carry into effect the arrangements it approves', 'enterprise implementation authority'],
-  [mandates, 'Determine the capital requirements of a chosen course', 'capital mandate'],
-  [mandates, 'Give the institution the information needed to govern each allocation', 'capital governance boundary'],
-  [mandates, 'Build the organization a new strategy requires', 'organization mandate'],
-  [mandates, 'Advise those who hold the relevant authority on leadership and organization', 'leadership advisory boundary'],
-  [mandates, 'carry into effect the organizational arrangements they approve', 'organizational implementation authority'],
-  [mandates, 'give those with authority the basis to stop it, reorder it, or rebuild it', 'transformation termination test'],
-  [mandates, 'Design and implement the operating arrangements it approves', 'operating-model implementation authority'],
-  [mandates, 'advise the relevant authority on the function required', 'new-responsibility authority'],
-  [mandates, 'build the operating capacity it approves', 'material capability construction'],
-  [mandates, 'When responsibility outruns capability', 'responsibility-led capability chapter'],
-  [mandates, 'Build software for a critical institutional function', 'software mandate'],
-  [mandates, 'cannot serve the function as its obligations and operating conditions demand', 'software authority boundary'],
-  [mandates, 'Establish the information a consequential mandate requires', 'data mandate'],
-  [mandates, 'When necessary data is divided across systems or jurisdictions', 'mandate-led data work'],
-  [mandates, 'advise the relevant authorities on common definitions and stewardship', 'information-governance authority'],
-  [mandates, 'Build the architecture they approve', 'information-architecture authority'],
-  [mandates, 'Bring strategic dependence under institutional judgment', 'dependence mandate'],
-  [mandates, 'Make model action answerable to institutional authority', 'models mandate'],
-  [mandates, 'advise the responsible authorities on which judgments must remain human', 'model authority boundary'],
-  [mandates, 'When strategic dependence becomes unacceptable', 'sovereign-dependence condition'],
-  [mandates, 'Advise the institution&#x27;s accountable authorities on which dependencies can be accepted', 'control-boundary advice'],
-  [mandates, 'Where those authorities determine that continuity or lawful responsibility demands an alternative', 'reserved control-boundary decision'],
-  [mandates, 'establish it under the terms they set', 'control-boundary implementation authority'],
-  [mandates, 'A Shiftora mandate carries a consequential direction or responsibility', 'mandate close'],
-  [mandates, 'Discuss a mandate.', 'contact action'],
+  [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
+  [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
+  [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
+  [engagements, '>Integrated strategy and systems firm</p>', 'direct-entry category'],
+  [engagements, 'Selected systems built for public authority and enterprise.', 'engagements opening'],
+  [engagements, 'Only the architecture may be described here.', 'confidentiality boundary'],
+  [engagements, 'obligations that survive the engagement', 'confidentiality duration'],
+  [engagements, 'Where nations move', 'sovereign movement chapter'],
+  [engagements, 'Command across a sovereign logistics network', 'government logistics record'],
+  [engagements, 'Built for a government logistics institution', 'government identity'],
+  [engagements, 'ports, freight, customs, suppliers, and public authority', 'logistics scope'],
+  [engagements, 'Govern passage across borders', 'global mobility record'],
+  [engagements, 'visa discovery, eligibility, documentation, pricing, payment, and fulfillment', 'visa scope'],
+  [engagements, 'Where institutional knowledge cannot be divided', 'institutional knowledge chapter'],
+  [engagements, 'Place a legal institution&#x27;s memory beside every decision', 'legal record'],
+  [engagements, 'matters, precedent, clients, communications, and commercial knowledge', 'legal scope'],
+  [engagements, 'Keep frontier intelligence inside the institution', 'private intelligence record'],
+  [engagements, 'private models and data infrastructure', 'private model scope'],
+  [engagements, 'Where capital takes physical form', 'physical capital chapter'],
+  [engagements, 'Govern a billion-dollar urban estate', 'real-estate record'],
+  [engagements, 'major developer governs property, inventory, agents, commercial assets, and sales', 'real-estate scope'],
+  [engagements, 'Where scale exceeds human attention', 'scale chapter'],
+  [engagements, 'Make capital answer to strategy', 'capital record'],
+  [engagements, 'Put live judgment inside every commercial conversation', 'commercial record'],
+  [engagements, 'A Shiftora system is complete when the institution&#x27;s capacity to decide and act', 'engagements close'],
+  [engagements, 'Discuss an engagement.', 'contact action'],
   [notFound, '<title>Page not found — Shiftora</title>', '404 title'],
   [notFound, '<meta name="robots" content="noindex, follow" />', '404 indexing policy'],
   [notFound, 'href="/">The firm', '404 route back to the firm'],
@@ -117,23 +107,17 @@ for (const retiredPhrase of [
   'Representative Shiftora mandates',
   'Fields of action',
   'Recover a stalled transformation',
-  'accountable delivery across authority',
-  'Select or build models for live work',
-  'build the models and infrastructure required to use it while retaining institutional authority',
   'Sovereign technology systems',
   'Available for engagements worldwide',
-  'Keep critical knowledge under institutional control',
-  'A mandate belongs within Shiftora&#x27;s remit when',
-  'This is sovereign capacity:',
-  'holds a consequential direction or responsibility intact',
-  'govern the capability on which action depends',
+  'Carry a national priority into operation',
+  'When strategic dependence becomes unacceptable',
 ]) {
-  if (home.includes(retiredPhrase) || mandates.includes(retiredPhrase) || source.includes(retiredPhrase)) {
+  if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
   }
 }
 
-if (/"knowsAbout"/.test(`${home}\n${mandates}`)) {
+if (/"knowsAbout"/.test(`${home}\n${engagements}`)) {
   throw new Error('Verification failed: structured data must not reduce the firm to a service inventory.');
 }
 
@@ -151,7 +135,7 @@ for (const [label, pattern] of [
   ['non-American house style', /\b(?:programmes?|organisations?|prioritis(?:e|ed|es|ing)|labour|behaviours?|modelling|centres?)\b/i],
   ['AI-copy cliché', /\b(?:unlock|empower|leverage|harness|seamless|holistic|ever[- ]evolving|drive innovation)\b/i],
 ]) {
-  if (pattern.test(`${home}\n${mandates}`)) {
+  if (pattern.test(`${home}\n${engagements}`)) {
     throw new Error(`Verification failed: public copy contains ${label}.`);
   }
 }
@@ -167,42 +151,50 @@ assertInOrder(
     'When the necessary capacity does not exist, we build it.',
     'An institution has sovereign capacity when its systems are answerable to its lawful authority',
   ],
-  'description argument'
+  'description argument',
 );
 
-if (count(home, /<h1\b/g) !== 1 || count(mandates, /<h1\b/g) !== 1) {
+assertInOrder(
+  visibleEngagements,
+  [
+    'Command across a sovereign logistics network',
+    'Govern passage across borders',
+    'Place a legal institution&#x27;s memory beside every decision',
+    'Keep frontier intelligence inside the institution',
+    'Govern a billion-dollar urban estate',
+    'Make capital answer to strategy',
+    'Put live judgment inside every commercial conversation',
+  ],
+  'engagement hierarchy',
+);
+
+if (count(home, /<h1\b/g) !== 1 || count(engagements, /<h1\b/g) !== 1) {
   throw new Error('Verification failed: each public page must contain exactly one H1.');
 }
-
-if (count(mandates, /<section class="mandate-chapter">/g) !== 4) {
-  throw new Error('Verification failed: Mandates must contain exactly four institutional conditions.');
+if (count(engagements, /<section class="mandate-chapter">/g) !== 4) {
+  throw new Error('Verification failed: Engagements must contain exactly four institutional conditions.');
 }
-
-if (count(mandates, /<article class="mandate-item">/g) !== 11) {
-  throw new Error('Verification failed: Mandates must contain exactly eleven selected records.');
+if (count(engagements, /<article class="mandate-item">/g) !== 7) {
+  throw new Error('Verification failed: Engagements must contain exactly seven selected records.');
 }
 
 const homeGraph = assertJsonLd(home, 'description page');
-const mandatesGraph = assertJsonLd(mandates, 'mandates page');
-
+const engagementsGraph = assertJsonLd(engagements, 'engagements page');
 const homeOrganization = homeGraph.find((node) => node['@type'] === 'Organization');
-if (!homeOrganization || homeOrganization.description === undefined) {
-  throw new Error('Verification failed: description page has no described Organization node.');
-}
-if (homeOrganization.description !== expectedDefaultDescription) {
+if (!homeOrganization || homeOrganization.description !== expectedDefaultDescription) {
   throw new Error('Verification failed: Organization description omits or alters the approved authority sequence.');
 }
 if (JSON.stringify(homeOrganization).includes('Worldwide')) {
   throw new Error('Verification failed: structured data contains an unsupported worldwide claim.');
 }
 
-const mandatesCollection = mandatesGraph.find((node) => node['@type'] === 'CollectionPage');
-const mandateRecords = mandatesCollection?.mainEntity?.itemListElement;
-if (!Array.isArray(mandateRecords) || mandateRecords.length !== 11) {
-  throw new Error('Verification failed: Mandates JSON-LD must contain exactly eleven records.');
+const engagementsCollection = engagementsGraph.find((node) => node['@type'] === 'CollectionPage');
+const engagementRecords = engagementsCollection?.mainEntity?.itemListElement;
+if (!Array.isArray(engagementRecords) || engagementRecords.length !== 7) {
+  throw new Error('Verification failed: Engagements JSON-LD must contain exactly seven records.');
 }
 if (
-  mandateRecords.some(
+  engagementRecords.some(
     (record, index) =>
       record['@type'] !== 'ListItem' ||
       record.position !== index + 1 ||
@@ -210,18 +202,17 @@ if (
       record.name.trim().length === 0,
   )
 ) {
-  throw new Error('Verification failed: Mandates JSON-LD records must be named and sequential.');
+  throw new Error('Verification failed: Engagements JSON-LD records must be named and sequential.');
 }
 
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 2 || !sitemap.includes('/mandates</loc>')) {
-  throw new Error('Verification failed: sitemap must contain exactly the two public pages.');
+if (sitemapUrls !== 2 || !sitemap.includes('/engagements</loc>') || sitemap.includes('/mandates</loc>') || sitemap.includes('/work</loc>')) {
+  throw new Error('Verification failed: sitemap must contain exactly the two current public pages.');
 }
 if (sitemap.includes('<lastmod>')) {
   throw new Error('Verification failed: sitemap lastmod must be omitted until true per-route revision dates are available.');
 }
-
-if (home.includes('"areaServed"') || mandates.includes('"areaServed"')) {
+if (home.includes('"areaServed"') || engagements.includes('"areaServed"')) {
   throw new Error('Verification failed: office locations must not be inferred as an areaServed claim.');
 }
 

@@ -1,5 +1,5 @@
 import DescriptionPage from './pages/DescriptionPage';
-import MandatesPage from './pages/MandatesPage';
+import EngagementsPage from './pages/EngagementsPage';
 import NotFound from './pages/NotFound';
 
 /**
@@ -19,6 +19,6 @@ export default function App({ route }: { route?: string }) {
   const path = resolvePath(route);
 
   if (path === '/') return <DescriptionPage />;
-  if (path === '/mandates') return <MandatesPage />;
+  if (path === '/engagements') return <EngagementsPage />;
   return <NotFound />;
 }

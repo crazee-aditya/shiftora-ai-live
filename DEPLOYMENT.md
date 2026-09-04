@@ -34,8 +34,8 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 - Production build and prerendering.
 - Exact two-page sitemap.
 - Visible-copy, metadata, JSON-LD, crawler-copy, and retired-language controls.
-- Eleven sequential mandate records in the page and structured data.
-- Production responses for `/`, `/mandates`, and unknown routes.
+- Seven sequential engagement records in the page and structured data.
+- Production responses for `/`, `/engagements`, and unknown routes.
 - Branded `404` with a real `404` status and `noindex, follow`.
 - Static-asset and HTML cache policies plus configured security headers.
 - HSTS and the common security policy on public pages, redirects, retired routes, static assets, and malformed-request responses.
@@ -45,7 +45,7 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 - Sitemap modification dates are omitted until true per-route revision dates can be supplied.
 - Browser structure, overflow, hydration, error logging, minimum target size, type-scale continuity, and breakpoint stability across 22 route-and-viewport combinations from 320–1440px.
 - Dependency audits fail the release closed when the advisory registry is unavailable. The latest `npm run verify:release` on 4 September 2026 completed the ordinary verification and current full audit with zero vulnerabilities, then stopped at exactly the seven declared font, outline, and provenance conditions. The complete gate must run again after those assets are installed and immediately before deployment.
-- The previous `/careers`, `/blog`, and six article routes have an explicit `410 Gone` policy; they are not redirected to an unrelated successor.
+- The superseded `/mandates` and `/work`, previous `/careers`, `/blog`, and six article routes have an explicit `410 Gone` policy; they are not redirected to an unrelated successor.
 - Railway runs `npm run verify:release`, so fallback typography or stale/unrecorded brand assets cannot reach a deployable build through the repository configuration.
 
 ## Expected failing check

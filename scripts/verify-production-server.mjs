@@ -76,8 +76,8 @@ try {
 
   const home = await fetch(`${baseUrl}/`);
   const homeText = await home.text();
-  const mandates = await fetch(`${baseUrl}/mandates`);
-  const mandatesText = await mandates.text();
+  const engagements = await fetch(`${baseUrl}/engagements`);
+  const engagementsText = await engagements.text();
   const notFound = await fetch(`${baseUrl}/not-a-page`);
   const notFoundText = await notFound.text();
   const retiredResponses = await Promise.all(
@@ -86,7 +86,7 @@ try {
 
   for (const [label, response, expectedStatus, text, marker] of [
     ['home', home, 200, homeText, 'Every institution is governed twice:'],
-    ['mandates', mandates, 200, mandatesText, 'Carry a national priority into operation'],
+    ['engagements', engagements, 200, engagementsText, 'Command across a sovereign logistics network'],
     ['404', notFound, 404, notFoundText, 'This page does not exist.'],
   ]) {
     if (response.status !== expectedStatus) {
@@ -138,7 +138,7 @@ try {
   assertExactHeader(font, 'cache-control', 'public, max-age=86400, must-revalidate');
   assertCommonHeaders(font);
 
-  const redirect = await fetch(`${baseUrl}/mandates/`, { redirect: 'manual' });
+  const redirect = await fetch(`${baseUrl}/engagements/`, { redirect: 'manual' });
   if (redirect.status !== 301) {
     throw new Error(`canonical trailing-slash redirect returned ${redirect.status}; expected 301.`);
   }

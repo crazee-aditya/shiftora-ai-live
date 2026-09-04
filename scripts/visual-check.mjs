@@ -26,7 +26,7 @@ const fontRolesByRoute = {
     { selector: '.description-copy', family: 'Söhne', weight: 400 },
     { selector: '.page-kicker', family: 'Söhne', weight: 500 },
   ],
-  '/mandates': [
+  '/engagements': [
     { selector: '.brand-wordmark', family: 'Alliance No. 2', weight: 700 },
     { selector: '.mandates-hero h1', family: 'Alliance No. 2', weight: 500 },
     { selector: '.mandate-item h3', family: 'Alliance No. 2', weight: 400 },
@@ -232,26 +232,26 @@ try {
 
   const cases = [
     { route: '/', width: 320, height: 844 },
-    { route: '/mandates', width: 320, height: 844 },
+    { route: '/engagements', width: 320, height: 844 },
     { route: '/404', width: 390, height: 844, expectNoIndex: true, screenshot: '404-390.png' },
     { route: '/', width: 390, height: 844, screenshot: 'home-390.png' },
-    { route: '/mandates', width: 390, height: 844, screenshot: 'mandates-390.png' },
+    { route: '/engagements', width: 390, height: 844, screenshot: 'engagements-390.png' },
     { route: '/', width: 600, height: 900 },
-    { route: '/mandates', width: 600, height: 900 },
+    { route: '/engagements', width: 600, height: 900 },
     { route: '/', width: 601, height: 900 },
-    { route: '/mandates', width: 601, height: 900 },
+    { route: '/engagements', width: 601, height: 900 },
     { route: '/', width: 768, height: 1024 },
-    { route: '/mandates', width: 768, height: 1024 },
+    { route: '/engagements', width: 768, height: 1024 },
     { route: '/', width: 1100, height: 1000 },
-    { route: '/mandates', width: 1100, height: 1000 },
+    { route: '/engagements', width: 1100, height: 1000 },
     { route: '/', width: 1101, height: 1000 },
-    { route: '/mandates', width: 1101, height: 1000 },
+    { route: '/engagements', width: 1101, height: 1000 },
     { route: '/', width: 1279, height: 1000 },
-    { route: '/mandates', width: 1279, height: 1000 },
+    { route: '/engagements', width: 1279, height: 1000 },
     { route: '/', width: 1280, height: 1000 },
-    { route: '/mandates', width: 1280, height: 1000 },
+    { route: '/engagements', width: 1280, height: 1000 },
     { route: '/', width: 1440, height: 1000, screenshot: 'home-1440.png' },
-    { route: '/mandates', width: 1440, height: 1000, screenshot: 'mandates-1440.png' },
+    { route: '/engagements', width: 1440, height: 1000, screenshot: 'engagements-1440.png' },
     { route: '/404', width: 1440, height: 1000, expectNoIndex: true, screenshot: '404-1440.png' },
   ];
 
@@ -417,7 +417,7 @@ try {
       failures.push(`${label} has an invalid skip target, unlabeled link, or sub-44px mobile target.${targetDetail}`);
     }
     if (!validDocument) failures.push(`${label} has a skipped heading level or duplicate id.`);
-    if (testCase.route === '/mandates' && testCase.width === 320 && metrics.mandatesHeroHeadroom < 16) {
+    if (testCase.route === '/engagements' && testCase.width === 320 && metrics.mandatesHeroHeadroom < 16) {
       failures.push(`${label} leaves only ${metrics.mandatesHeroHeadroom.toFixed(2)}px of heading headroom.`);
     }
     if (!validFonts) {
@@ -461,12 +461,12 @@ try {
   };
 
   assertMonotonic('/', 600, 601, ['descriptionFontSize']);
-  assertMonotonic('/mandates', 600, 601, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
-  assertMonotonic('/mandates', 1100, 1101, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
-  assertMonotonic('/mandates', 1279, 1280, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+  assertMonotonic('/engagements', 600, 601, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+  assertMonotonic('/engagements', 1100, 1101, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+  assertMonotonic('/engagements', 1279, 1280, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
 
-  const beforeDesktop = measuredCases.get('/mandates:1279');
-  const afterDesktop = measuredCases.get('/mandates:1280');
+  const beforeDesktop = measuredCases.get('/engagements:1279');
+  const afterDesktop = measuredCases.get('/engagements:1280');
   if (beforeDesktop && afterDesktop) {
     const widthRatio = afterDesktop.firstMandateTitleWidth / beforeDesktop.firstMandateTitleWidth;
     const heightRatio = afterDesktop.firstMandateTitleHeight / beforeDesktop.firstMandateTitleHeight;
@@ -475,7 +475,7 @@ try {
     );
     if (widthRatio < 0.7 || heightRatio > 1.5) {
       failures.push(
-        `/mandates has an unstable 1279/1280px desktop transition (width ratio ${widthRatio.toFixed(2)}, height ratio ${heightRatio.toFixed(2)}).`,
+        `/engagements has an unstable 1279/1280px desktop transition (width ratio ${widthRatio.toFixed(2)}, height ratio ${heightRatio.toFixed(2)}).`,
       );
     }
   }

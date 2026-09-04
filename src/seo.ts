@@ -1,4 +1,4 @@
-import { MANDATE_NAMES } from './content';
+import { ENGAGEMENT_NAMES } from './content';
 
 export const SITE = {
   name: 'Shiftora',
@@ -109,28 +109,28 @@ export function getRouteMeta(route: string): RouteMeta {
     };
   }
 
-  if (path === '/mandates') {
+  if (path === '/engagements') {
     const description =
-      "Shiftora mandates begin where consequential direction or responsibility exceeds an institution's present capacity to act.";
+      'Selected Shiftora engagements across public and enterprise institutions, from sovereign logistics and cross-border infrastructure to governed intelligence systems.';
     return {
-      title: 'Mandates — Shiftora',
+      title: 'Engagements — Shiftora',
       description,
-      canonical: `${SITE.origin}/mandates`,
+      canonical: `${SITE.origin}/engagements`,
       ogType: 'website',
       themeColor: '#090a0a',
       jsonLd: [
         ...organizationGraph(),
         {
           '@type': 'CollectionPage',
-          '@id': `${SITE.origin}/mandates#page`,
-          name: 'Shiftora Mandates',
+          '@id': `${SITE.origin}/engagements#page`,
+          name: 'Shiftora Engagements',
           description,
-          url: `${SITE.origin}/mandates`,
+          url: `${SITE.origin}/engagements`,
           isPartOf: { '@id': `${SITE.origin}/#website` },
           about: { '@id': `${SITE.origin}/#organization` },
           mainEntity: {
             '@type': 'ItemList',
-            itemListElement: MANDATE_NAMES.map((name, index) => ({
+            itemListElement: ENGAGEMENT_NAMES.map((name, index) => ({
               '@type': 'ListItem',
               position: index + 1,
               name,
@@ -144,8 +144,8 @@ export function getRouteMeta(route: string): RouteMeta {
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Mandates',
-              item: `${SITE.origin}/mandates`,
+              name: 'Engagements',
+              item: `${SITE.origin}/engagements`,
             },
           ],
         },
@@ -207,12 +207,12 @@ export function renderHead(meta: RouteMeta): string {
 }
 
 export function allRoutes(): string[] {
-  return ['/', '/mandates'];
+  return ['/', '/engagements'];
 }
 
 export function sitemapEntries(): Array<{ loc: string; priority: string }> {
   return [
     { loc: `${SITE.origin}/`, priority: '1.0' },
-    { loc: `${SITE.origin}/mandates`, priority: '0.9' },
+    { loc: `${SITE.origin}/engagements`, priority: '0.9' },
   ];
 }
