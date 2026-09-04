@@ -19,8 +19,8 @@
   Helvetica and Arial remain compatibility fallbacks on platforms without Helvetica Neue.
 - Firm-page typography, measure, gutters, header proportions, and internal rhythm are locked from the
   master through 2560px.
-- Page 01 contains exactly five restrained underlines: the category, world governments, enterprises,
-  institutional architecture, and the vantage to see the whole.
+- Page 01 contains exactly five restrained keyword underlines: strategy, systems, world governments,
+  enterprises, and vantage.
 - No physical-office location is published in the footer, structured data, crawler copy, or social
   artwork.
 
