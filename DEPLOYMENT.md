@@ -25,7 +25,7 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 5. Add the WOFF2 files and `@font-face` declarations described in `FONTS.md`.
 6. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines, then run `npm run brand:build-assets` to generate the PNGs deterministically and record their provenance.
 7. Run `npm run verify:release`; it includes the full dependency audit and the 22-case visual suite in strict licensed-font mode.
-8. Inspect the licensed-font screenshots at phone, tablet, and desktop widths, including the 600/601px, 1100/1101px, and 1279/1280px transitions.
+8. Inspect the saved licensed-font screenshots at 390px and 1440px, then review the visual-suite measurements at 320px and across the 600/601px, 1100/1101px, and 1279/1280px transitions.
 9. Confirm the public meaning of the Dubai and Mumbai locations and send a real test message through `info@shiftora.ai`.
 10. Push the rebrand branch, review the remote diff and deployment preview, then merge deliberately.
 
@@ -52,10 +52,10 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 
 `npm run verify:release` must fail until it reports none of the following:
 
-- missing licensed Söhne declarations;
-- missing licensed Alliance No. 2 declarations;
+- missing required Söhne declarations;
+- missing required Alliance No. 2 declarations;
 - a required face without `font-display: swap`;
-- no declared licensed WOFF2 assets;
+- no declared self-hosted WOFF2 assets;
 - a required face that does not actually load in the browser;
 - a display, body, label, or wordmark element using the wrong computed family or weight;
 - text remaining in the social card, organization logo, or favicon SVG sources; or

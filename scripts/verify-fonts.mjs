@@ -27,7 +27,7 @@ for (const [label, source] of [
   ['favicon', faviconSource],
 ]) {
   if (/<text\b/i.test(source)) {
-    issues.push(`${label} lettering must be converted to licensed vector outlines`);
+    issues.push(`${label} lettering must be converted to the required vector outlines`);
   }
 }
 
@@ -84,4 +84,4 @@ if (issues.length > 0) {
   throw new Error(`Release blocked:\n${detail}`);
 }
 
-console.log('Verified licensed Shiftora webfont declarations and assets.');
+console.log('Verified the required Shiftora webfont declarations, files, and brand assets. Human licence evidence remains required.');

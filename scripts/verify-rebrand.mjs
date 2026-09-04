@@ -51,8 +51,12 @@ function assertJsonLd(document, label) {
   return value['@graph'];
 }
 
+const expectedDefaultDescription =
+  'Shiftora is an integrated strategy and systems firm. It forms its own view, advises those who hold authority, and undertakes the work they entrust to it.';
+
 const checks = [
   [home, '<title>Shiftora — Integrated Strategy and Systems Firm</title>', 'home title'],
+  [home, `<meta name="description" content="${expectedDefaultDescription}" />`, 'authority-bounded home description'],
   [home, '<meta name="theme-color" content="#eeece5" />', 'home browser color'],
   [home, '<meta property="og:image:alt" content="Shiftora — Every institution is governed twice." />', 'social image description'],
   [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
@@ -179,6 +183,9 @@ const mandatesGraph = assertJsonLd(mandates, 'mandates page');
 const homeOrganization = homeGraph.find((node) => node['@type'] === 'Organization');
 if (!homeOrganization || homeOrganization.description === undefined) {
   throw new Error('Verification failed: description page has no described Organization node.');
+}
+if (homeOrganization.description !== expectedDefaultDescription) {
+  throw new Error('Verification failed: Organization description omits or alters the approved authority sequence.');
 }
 if (JSON.stringify(homeOrganization).includes('Worldwide')) {
   throw new Error('Verification failed: structured data contains an unsupported worldwide claim.');

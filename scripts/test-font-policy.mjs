@@ -28,8 +28,8 @@ const missingWeight = [
 assert.ok(inspectFontPolicy(missingWeight).issues.includes('Söhne does not cover weight 500'));
 
 const noFaces = inspectFontPolicy('').issues;
-assert.ok(noFaces.includes('licensed Söhne webfonts have not been declared'));
-assert.ok(noFaces.includes('licensed Alliance No. 2 webfonts have not been declared'));
-assert.ok(noFaces.includes('no licensed WOFF2 assets are declared'));
+assert.ok(noFaces.includes('required Söhne webfont faces have not been declared'));
+assert.ok(noFaces.includes('required Alliance No. 2 webfont faces have not been declared'));
+assert.ok(noFaces.includes('no self-hosted WOFF2 assets are declared'));
 
 console.log('Verified Shiftora webfont policy regression cases.');

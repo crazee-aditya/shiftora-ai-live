@@ -28,7 +28,7 @@ const outputs = [
 for (const path of sources) {
   const source = readFileSync(path, 'utf8');
   if (/<text\b/i.test(source)) {
-    throw new Error(`${path} still contains live text; convert the licensed lettering to outlines first.`);
+    throw new Error(`${path} still contains live text; convert the lettering to the required outlines first.`);
   }
 }
 

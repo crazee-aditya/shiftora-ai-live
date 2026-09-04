@@ -24,7 +24,7 @@ export function inspectFontPolicy(css, requirements = requiredFontWeights) {
     const familyPattern = new RegExp(`font-family\\s*:\\s*['"]${escapedFamily}['"]`);
     const familyBlocks = faceBlocks.filter((block) => familyPattern.test(block));
     if (familyBlocks.length === 0) {
-      issues.push(`licensed ${family} webfonts have not been declared`);
+      issues.push(`required ${family} webfont faces have not been declared`);
       continue;
     }
 
@@ -46,7 +46,7 @@ export function inspectFontPolicy(css, requirements = requiredFontWeights) {
   const woff2Urls = faceBlocks.flatMap((block) =>
     [...block.matchAll(/url\(['"]?([^'")]+\.woff2)['"]?\)/g)].map((match) => match[1]),
   );
-  if (woff2Urls.length === 0) issues.push('no licensed WOFF2 assets are declared');
+  if (woff2Urls.length === 0) issues.push('no self-hosted WOFF2 assets are declared');
 
   return { faceBlocks, issues, woff2Urls };
 }

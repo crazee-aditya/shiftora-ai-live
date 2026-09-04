@@ -427,7 +427,7 @@ try {
       const roleDetail = metrics.fontRoleFailures.length > 0
         ? `; invalid roles: ${metrics.fontRoleFailures.join('; ')}`
         : '';
-      failures.push(`${label} failed licensed typography verification (${fontDetail}${roleDetail}).`);
+      failures.push(`${label} failed required typography verification (${fontDetail}${roleDetail}).`);
     }
 
     if (testCase.screenshot) {
