@@ -6,7 +6,7 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Category:** Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.
 
-**Worldview:** Institutions cannot reliably create from within the distance required to see themselves whole and change themselves accordingly.
+**Worldview:** Consequential institutional work requires both a vantage across the whole and the means to change it.
 
 **Domain:** Across world governments and enterprises, strategy, organization, capital, operations, data, and technology are ordered through one institutional architecture.
 
