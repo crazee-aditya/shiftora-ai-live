@@ -68,7 +68,7 @@ function organizationGraph(): object[] {
       logo: { '@id': `${SITE.origin}/#logo` },
       image: { '@id': `${SITE.origin}/#og-image` },
       description: SITE.defaultDescription,
-      slogan: 'Every institution is governed twice.',
+      slogan: 'Institutions equal to their ambition set the terms of what comes next.',
       email: SITE.email,
       founder: { '@id': `${SITE.origin}/#shreshth-daga` },
       address: [

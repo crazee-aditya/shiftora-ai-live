@@ -7,7 +7,7 @@ technical services. Preserve that distinction in every change.
 
 - The category is **integrated strategy and systems firm**; its public scale statement is **operating across
   world governments and enterprises**.
-- The governing thesis is **An institution is sovereign when its decisions command the means of action.**
+- The governing thesis is **Institutions equal to their ambition set the terms of what comes next.**
 - Shiftora's domain spans world governments and enterprises without treating government as a separate
   practice or prospective audience.
 - Strategy, organization, capital, operations, data, and technology are expressed as one institutional

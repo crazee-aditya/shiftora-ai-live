@@ -10,7 +10,7 @@
 
 > Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
 >
-> An institution is sovereign when its decisions command the means of action.
+> Institutions equal to their ambition set the terms of what comes next.
 
 ## Reference lock
 
@@ -34,3 +34,5 @@
 ## Decision
 
 Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation until the intended result is in force. This expresses the user's “stay until the ROI comes” intent without reducing the firm to support work or making an unsupported guarantee of financial return. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
+
+The closing line combines E76's outcome-based authority with Palantir's declarative scale. It replaces an abstract definition of sovereignty with a leadership proposition: institutional ambition matters only when the institution is made equal to it.
