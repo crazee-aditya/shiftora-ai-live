@@ -36,6 +36,9 @@ technical services. Preserve that distinction in every change.
 
 - Use American English in public copy, except for official names and quotations.
 - Begin from institutional stakes and governing ideas, not from a list of currently known services.
+- Treat the current capability set as proof, never premise or ceiling. A Page-one revision must remain
+  coherent after every named method and desired client is removed, after a present capability is
+  subtracted, and after an unknown future instrument is introduced under the same mandate doctrine.
 - Governments and enterprises are institutional arenas, never an audience suffix such as “a firm
   for governments and companies.”
 - Do not imply completed client work, government access, quantified outcomes, scale, or trust
