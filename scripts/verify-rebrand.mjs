@@ -85,6 +85,8 @@ const checks = [
   [mandates, 'A Shiftora mandate carries a consequential direction or responsibility', 'mandate close'],
   [mandates, 'Discuss a mandate.', 'contact action'],
   [notFound, '<title>Page not found — Shiftora</title>', '404 title'],
+  [notFound, '<meta name="robots" content="noindex, follow" />', '404 indexing policy'],
+  [notFound, 'href="/">The firm', '404 route back to the firm'],
 ];
 
 for (const [document, phrase, label] of checks) {
@@ -117,6 +119,10 @@ for (const retiredPhrase of [
 
 if (/"knowsAbout"/.test(`${home}\n${mandates}`)) {
   throw new Error('Verification failed: structured data must not reduce the firm to a service inventory.');
+}
+
+if (notFound.includes('aria-current="page"')) {
+  throw new Error('Verification failed: the 404 must not identify itself as either public page.');
 }
 
 for (const [label, pattern] of [
