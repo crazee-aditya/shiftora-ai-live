@@ -25,7 +25,8 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 5. Convert social-card, organization-logo, and favicon lettering to licensed vector outlines and regenerate the PNG assets.
 6. Run `npm run verify:release`, `npm run verify:visual`, and `npm run audit:prod`.
 7. Inspect the licensed-font screenshots at phone, tablet, and desktop widths.
-8. Push the rebrand branch, review the remote diff and deployment preview, then merge deliberately.
+8. Confirm the public meaning of the Dubai and Mumbai locations and send a real test message through `info@shiftora.ai`.
+9. Push the rebrand branch, review the remote diff and deployment preview, then merge deliberately.
 
 ## Verification already passing
 
