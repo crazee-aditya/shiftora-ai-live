@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
-    "verify": "npm run build && node scripts/verify-rebrand.mjs",
+    "verify": "npm run build && node scripts/verify-rebrand.mjs && node scripts/verify-production-server.mjs",
     "verify:visual": "npm run build && node scripts/visual-check.mjs",
     "verify:release": "npm run verify && node scripts/verify-fonts.mjs",
     "audit:prod": "npm audit --omit=dev --audit-level=high",

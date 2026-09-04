@@ -26,7 +26,9 @@ npm run verify
 ```
 
 This builds the site and verifies the public copy, route metadata, structured data, sitemap, heading
-structure, retired-positioning exclusions, and image dimensions.
+structure, retired-positioning exclusions, and image dimensions. It then launches the production
+server on an isolated local port and checks route status, the branded 404, cache behavior, and the
+configured security headers.
 
 ```sh
 npm run verify:visual
