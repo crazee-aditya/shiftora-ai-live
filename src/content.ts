@@ -1,5 +1,5 @@
 export const FIRM_DESCRIPTION_BODY =
-  'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation.';
+  'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.';
 
 export const FIRM_DESCRIPTION_CLOSE =
   'The result is an institution capable of acting at the full scale of its ambition.';

@@ -39,9 +39,9 @@ technical services. Preserve that distinction in every change.
 
 - Use American English in public copy, except for official names and quotations.
 - Begin from institutional stakes and governing ideas, not from a list of currently known services.
-- Express staying power as remaining through operation; the resulting client institution must be capable of
-  acting at the full scale of its ambition. Never reduce this to hand-holding, delivery support, or an
-  unsupported guarantee of financial return.
+- Express staying power as remaining through operation until the intended result is in force; the resulting
+  client institution must be capable of acting at the full scale of its ambition. Never reduce this to
+  hand-holding, delivery support, or an unsupported guarantee of financial return.
 - Treat the current capability set as proof, never premise or ceiling. A Page-one revision must remain
   coherent after every named method and desired client is removed, after a present capability is
   subtracted, and after an unknown future instrument is introduced under the same mandate doctrine.

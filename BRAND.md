@@ -10,7 +10,7 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Domain:** Across world governments and enterprises, strategy, organization, capital, operations, data, and technology are ordered through one institutional architecture.
 
-**Responsibility:** Advise the course, build the capacity to carry it, and remain through operation while every reserved decision right remains with the relevant client authority.
+**Responsibility:** Advise the course, build the capacity to carry it, and remain through operation until the intended result is in force, while every reserved decision right remains with the relevant client authority.
 
 **Completion condition:** The institution is capable of acting at the full scale of its ambition.
 

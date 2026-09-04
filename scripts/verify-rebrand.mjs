@@ -64,7 +64,7 @@ const checks = [
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
   [home, 'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.', 'positioning and institutional scale'],
   [home, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
-  [home, 'We advise the course, build the capacity to carry it, and remain through operation.', 'operating responsibility'],
+  [home, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
   [home, 'The result is an institution capable of acting at the full scale of its ambition.', 'institutional outcome'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
@@ -130,7 +130,7 @@ for (const retiredPhrase of [
   'An institution is sovereign when its decisions command the means of action.',
   'Institutions equal to their ambition set the terms of what comes next.',
   'The final measure of leadership is an institution&#x27;s capacity to act.',
-  'remain through operation until the intended result is in force.',
+  'We advise the course, build the capacity to carry it, and remain through operation.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -165,7 +165,7 @@ assertInOrder(
   [
     'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.',
     'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',
-    'We advise the course, build the capacity to carry it, and remain through operation.',
+    'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.',
     'The result is an institution capable of acting at the full scale of its ambition.',
   ],
   'description argument',
