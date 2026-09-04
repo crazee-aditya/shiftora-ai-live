@@ -32,12 +32,12 @@ export const ENGAGEMENT_CHAPTERS: EngagementChapter[] = [
       {
         title: 'Command across a sovereign logistics network',
         description:
-          'Built for a government logistics institution, the intelligence layer through which ports, freight, customs, suppliers, and public authority act against one operating picture.',
+          'The sovereign command infrastructure through which a government logistics institution coordinates ports, freight, customs, suppliers, and public authorities across the systems governing national movement.',
       },
       {
         title: 'Govern passage across borders',
         description:
-          'Built the infrastructure for visa discovery, eligibility, documentation, pricing, payment, and fulfillment across jurisdictions.',
+          'An institution’s entire visa IP—policy, eligibility, documentation, pricing, payment, and fulfillment—transformed into agentic systems operating across jurisdictions.',
       },
     ],
   },
@@ -48,12 +48,12 @@ export const ENGAGEMENT_CHAPTERS: EngagementChapter[] = [
       {
         title: "Place a legal institution's memory beside every decision",
         description:
-          'Built a governed intelligence system joining matters, precedent, clients, communications, and commercial knowledge into a common field of action for counsel.',
+          'A sovereign intelligence estate spanning matters, precedent, clients, communications, and commercial knowledge—placing the firm’s institutional memory beside counsel within the bounds of privilege and professional duty.',
       },
       {
         title: 'Keep frontier intelligence inside the institution',
         description:
-          'Built private models and data infrastructure that reason across sensitive institutional knowledge without surrendering custody, authority, or control.',
+          'Frontier models, retrieval architectures, and governed data infrastructure deployed within the institution—reasoning across sensitive knowledge without transferring custody, authority, or control.',
       },
     ],
   },
@@ -64,7 +64,7 @@ export const ENGAGEMENT_CHAPTERS: EngagementChapter[] = [
       {
         title: 'Govern the making of a city',
         description:
-          'Built the operating system through which a major developer governs land, construction, inventory, agents, commercial assets, and sales as one urban estate.',
+          'The operating fabric of a major developer—from land and construction through inventory, agents, commercial assets, and sales—rendered legible and governable as an urban estate takes form.',
       },
     ],
   },
@@ -75,12 +75,12 @@ export const ENGAGEMENT_CHAPTERS: EngagementChapter[] = [
       {
         title: 'Make capital answer to strategy',
         description:
-          'Built a decision system joining forecasts, obligations, operating plans, and resource allocation so the next quarter can be governed without losing sight of the next decade.',
+          'The financial and operating architecture through which forecasts, obligations, capital allocation, and executive judgment are reconciled—making the next quarter answerable to the next decade.',
       },
       {
         title: 'Put live judgment inside every commercial conversation',
         description:
-          'Built a real-time commercial system that reads the market, recalls the account, interprets the conversation, and places the next decision beside the representative as it happens.',
+          'A live commercial intelligence layer interpreting market conditions, account history, institutional policy, and the conversation itself—placing judgment beside the representative while the decision is still forming.',
       },
     ],
   },
