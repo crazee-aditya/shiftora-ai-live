@@ -231,28 +231,36 @@ try {
   );
 
   const cases = [
-    { route: '/', width: 320, height: 844 },
-    { route: '/engagements', width: 320, height: 844 },
+    { route: '/', width: 320, height: 844, screenshot: 'home-320.png' },
+    { route: '/engagements', width: 320, height: 844, screenshot: 'engagements-320.png' },
     { route: '/404', width: 390, height: 844, expectNoIndex: true, screenshot: '404-390.png' },
     { route: '/', width: 390, height: 844, screenshot: 'home-390.png' },
     { route: '/engagements', width: 390, height: 844, screenshot: 'engagements-390.png' },
-    { route: '/', width: 600, height: 900 },
-    { route: '/engagements', width: 600, height: 900 },
+    { route: '/', width: 600, height: 900, screenshot: 'home-600.png' },
+    { route: '/engagements', width: 600, height: 900, screenshot: 'engagements-600.png' },
     { route: '/', width: 601, height: 900 },
     { route: '/engagements', width: 601, height: 900 },
-    { route: '/', width: 768, height: 1024 },
-    { route: '/engagements', width: 768, height: 1024 },
-    { route: '/', width: 1100, height: 1000 },
-    { route: '/engagements', width: 1100, height: 1000 },
+    { route: '/', width: 768, height: 1024, screenshot: 'home-768.png' },
+    { route: '/engagements', width: 768, height: 1024, screenshot: 'engagements-768.png' },
+    { route: '/', width: 1100, height: 1000, screenshot: 'home-1100.png' },
+    { route: '/engagements', width: 1100, height: 1000, screenshot: 'engagements-1100.png' },
     { route: '/', width: 1101, height: 1000 },
     { route: '/engagements', width: 1101, height: 1000 },
     { route: '/', width: 1279, height: 1000 },
     { route: '/engagements', width: 1279, height: 1000 },
-    { route: '/', width: 1280, height: 1000 },
-    { route: '/engagements', width: 1280, height: 1000 },
+    { route: '/', width: 1280, height: 1000, screenshot: 'home-1280.png' },
+    { route: '/engagements', width: 1280, height: 1000, screenshot: 'engagements-1280.png' },
+    { route: '/', width: 1304, height: 768, screenshot: 'home-1304x768.png' },
+    { route: '/engagements', width: 1304, height: 768, screenshot: 'engagements-1304x768.png' },
+    { route: '/', width: 1439, height: 1000 },
+    { route: '/engagements', width: 1439, height: 1000 },
     { route: '/', width: 1440, height: 1000, screenshot: 'home-1440.png' },
     { route: '/engagements', width: 1440, height: 1000, screenshot: 'engagements-1440.png' },
     { route: '/404', width: 1440, height: 1000, expectNoIndex: true, screenshot: '404-1440.png' },
+    { route: '/', width: 1920, height: 1080, screenshot: 'home-1920.png' },
+    { route: '/engagements', width: 1920, height: 1080, screenshot: 'engagements-1920.png' },
+    { route: '/', width: 2560, height: 1440, screenshot: 'home-2560.png' },
+    { route: '/engagements', width: 2560, height: 1440, screenshot: 'engagements-2560.png' },
   ];
 
   for (const testCase of cases) {
@@ -464,18 +472,19 @@ try {
   assertMonotonic('/engagements', 600, 601, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
   assertMonotonic('/engagements', 1100, 1101, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
   assertMonotonic('/engagements', 1279, 1280, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
+  assertMonotonic('/engagements', 1439, 1440, ['mandatesHeroFontSize', 'mandateTitleFontSize']);
 
-  const beforeDesktop = measuredCases.get('/engagements:1279');
-  const afterDesktop = measuredCases.get('/engagements:1280');
+  const beforeDesktop = measuredCases.get('/engagements:1439');
+  const afterDesktop = measuredCases.get('/engagements:1440');
   if (beforeDesktop && afterDesktop) {
     const widthRatio = afterDesktop.firstMandateTitleWidth / beforeDesktop.firstMandateTitleWidth;
     const heightRatio = afterDesktop.firstMandateTitleHeight / beforeDesktop.firstMandateTitleHeight;
     console.log(
-      `Desktop transition 1279/1280px: first title width ${beforeDesktop.firstMandateTitleWidth.toFixed(2)}px → ${afterDesktop.firstMandateTitleWidth.toFixed(2)}px; height ${beforeDesktop.firstMandateTitleHeight.toFixed(2)}px → ${afterDesktop.firstMandateTitleHeight.toFixed(2)}px.`,
+      `Desktop transition 1439/1440px: first title width ${beforeDesktop.firstMandateTitleWidth.toFixed(2)}px → ${afterDesktop.firstMandateTitleWidth.toFixed(2)}px; height ${beforeDesktop.firstMandateTitleHeight.toFixed(2)}px → ${afterDesktop.firstMandateTitleHeight.toFixed(2)}px.`,
     );
     if (widthRatio < 0.7 || heightRatio > 1.5) {
       failures.push(
-        `/engagements has an unstable 1279/1280px desktop transition (width ratio ${widthRatio.toFixed(2)}, height ratio ${heightRatio.toFixed(2)}).`,
+        `/engagements has an unstable 1439/1440px desktop transition (width ratio ${widthRatio.toFixed(2)}, height ratio ${heightRatio.toFixed(2)}).`,
       );
     }
   }
