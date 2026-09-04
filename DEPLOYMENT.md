@@ -44,7 +44,7 @@ Do not deploy the branch until both founder voice and licensed typography are cl
 - Structured data keeps physical locations separate from service territory; no `areaServed` claim is inferred from Dubai or Mumbai.
 - Sitemap modification dates are omitted until true per-route revision dates can be supplied.
 - Browser structure, overflow, hydration, error logging, minimum target size, type-scale continuity, and breakpoint stability across 22 route-and-viewport combinations from 320–1440px.
-- Dependency audits fail the release closed when the advisory registry is unavailable. The most recent completed full audit on 4 September 2026 reports zero vulnerabilities; the final release run must obtain its own current result before deployment.
+- Dependency audits fail the release closed when the advisory registry is unavailable. The latest `npm run verify:release` on 4 September 2026 completed the ordinary verification and current full audit with zero vulnerabilities, then stopped at exactly the seven declared font, outline, and provenance conditions. The complete gate must run again after those assets are installed and immediately before deployment.
 - The previous `/careers`, `/blog`, and six article routes have an explicit `410 Gone` policy; they are not redirected to an unrelated successor.
 - Railway runs `npm run verify:release`, so fallback typography or stale/unrecorded brand assets cannot reach a deployable build through the repository configuration.
 
