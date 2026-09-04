@@ -34,7 +34,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Reposition an enterprise for its next phase',
         description:
-          'Form a view of where the next period of growth and advantage may come from, then reshape the institution around the course it adopts.',
+          'Form a view of the position the enterprise should seek in its next phase, then reshape the institution around the course it adopts.',
       },
       {
         title: 'Reallocate capital around a chosen course',
@@ -92,7 +92,7 @@ export const MANDATE_CHAPTERS: MandateChapter[] = [
       {
         title: 'Set the boundary of acceptable dependence',
         description:
-          "With the institution's accountable authorities, determine which dependencies can be accepted and which cannot. Where continuity or lawful responsibility demands an alternative, establish it.",
+          "Advise the institution's accountable authorities on which dependencies can be accepted and which cannot. Where those authorities determine that continuity or lawful responsibility demands an alternative, establish it under the terms they set.",
       },
       {
         title: 'Set the terms under which models may act',
