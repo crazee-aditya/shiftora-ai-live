@@ -7,7 +7,7 @@ technical services. Preserve that distinction in every change.
 
 - The category is **integrated strategy and systems firm**; its public scale statement is **operating across
   world governments and enterprises**.
-- The governing thesis is **Institutions equal to their ambition set the terms of what comes next.**
+- The governing outcome is **The result is an institution capable of acting at the full scale of its ambition.**
 - Shiftora's domain spans world governments and enterprises without treating government as a separate
   practice or prospective audience.
 - Strategy, organization, capital, operations, data, and technology are expressed as one institutional
@@ -39,8 +39,9 @@ technical services. Preserve that distinction in every change.
 
 - Use American English in public copy, except for official names and quotations.
 - Begin from institutional stakes and governing ideas, not from a list of currently known services.
-- Express staying power as remaining through operation until the intended result is in force; never reduce
-  this to hand-holding, delivery support, or an unsupported guarantee of financial return.
+- Express staying power as remaining through operation; the resulting client institution must be capable of
+  acting at the full scale of its ambition. Never reduce this to hand-holding, delivery support, or an
+  unsupported guarantee of financial return.
 - Treat the current capability set as proof, never premise or ceiling. A Page-one revision must remain
   coherent after every named method and desired client is removed, after a present capability is
   subtracted, and after an unknown future instrument is introduced under the same mandate doctrine.

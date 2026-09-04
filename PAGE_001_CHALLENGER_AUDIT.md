@@ -8,9 +8,9 @@
 
 ## Challenger copy
 
-> Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.
+> Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation.
 >
-> Institutions equal to their ambition set the terms of what comes next.
+> The result is an institution capable of acting at the full scale of its ambition.
 
 ## Reference lock
 
@@ -33,6 +33,6 @@
 
 ## Decision
 
-Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation until the intended result is in force. This expresses the user's “stay until the ROI comes” intent without reducing the firm to support work or making an unsupported guarantee of financial return. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
+Challenger III returns to the weight and proportions of Version 1 while adding one essential commercial promise: Shiftora remains through operation. The close now states the consequence of the engagement directly—the client institution becomes capable of acting at the full scale of its ambition—without reducing the firm to support work or making an unsupported guarantee of financial return. Version 1 remains permanently recoverable from its tag and archive; the short challenger remains recoverable from commit `0219854`.
 
-The closing line combines E76's outcome-based authority with Palantir's declarative scale. It replaces an abstract definition of sovereignty with a leadership proposition: institutional ambition matters only when the institution is made equal to it.
+The closing line combines E76's outcome-based authority with Palantir's declarative scale. It states what working with Shiftora produces rather than offering an abstract maxim about leadership.

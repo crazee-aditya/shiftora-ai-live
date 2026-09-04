@@ -1,8 +1,8 @@
 export const FIRM_DESCRIPTION_BODY =
-  'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.';
+  'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises. Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture. We advise the course, build the capacity to carry it, and remain through operation.';
 
 export const FIRM_DESCRIPTION_CLOSE =
-  'Institutions equal to their ambition set the terms of what comes next.';
+  'The result is an institution capable of acting at the full scale of its ambition.';
 
 export const ENGAGEMENTS_INTRO =
   'Selected systems built for public authority and enterprise. Only the architecture may be described here. The principals, jurisdictions, and operating particulars remain protected by obligations that survive the engagement.';

@@ -68,7 +68,7 @@ function organizationGraph(): object[] {
       logo: { '@id': `${SITE.origin}/#logo` },
       image: { '@id': `${SITE.origin}/#og-image` },
       description: SITE.defaultDescription,
-      slogan: 'Institutions equal to their ambition set the terms of what comes next.',
+      slogan: 'The result is an institution capable of acting at the full scale of its ambition.',
       email: SITE.email,
       founder: { '@id': `${SITE.origin}/#shreshth-daga` },
       address: [

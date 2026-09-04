@@ -6,13 +6,13 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Category:** Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.
 
-**Worldview:** Institutions equal to their ambition set the terms of what comes next.
+**Worldview:** Institutional ambition becomes consequential only when the institution has the capacity to act on it.
 
 **Domain:** Across world governments and enterprises, strategy, organization, capital, operations, data, and technology are ordered through one institutional architecture.
 
-**Responsibility:** Carry a consequential mandate through the forms of work it requires while every reserved decision right remains with the relevant client authority.
+**Responsibility:** Advise the course, build the capacity to carry it, and remain through operation while every reserved decision right remains with the relevant client authority.
 
-**Completion condition:** The intended result is in force and the institution's decisions command the capacity required to carry them into effect.
+**Completion condition:** The institution is capable of acting at the full scale of its ambition.
 
 **Sovereign capacity:** The institution's systems are answerable to its lawful authority and equal to its responsibilities. This is not a claim to public authority by Shiftora, national status, total technical independence, ownership of every component, or a Palantir-like digital decision system.
 
