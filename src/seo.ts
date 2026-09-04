@@ -5,7 +5,7 @@ export const SITE = {
   origin: 'https://www.shiftora.ai',
   defaultTitle: 'Shiftora — Integrated Strategy and Systems Firm',
   defaultDescription:
-    'Shiftora is an integrated strategy and systems firm. It advises the course, builds the capacity, and carries both into operation.',
+    'Shiftora is an integrated strategy and systems firm. We advise governments and enterprises and build the systems that carry decisions into effect.',
   ogImage: 'https://www.shiftora.ai/og-image.png',
   logo: 'https://www.shiftora.ai/logo-512.png',
   email: 'info@shiftora.ai',

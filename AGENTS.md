@@ -6,9 +6,9 @@ technical services. Preserve that distinction in every change.
 ## Public identity
 
 - The category is **integrated strategy and systems firm**.
-- The governing thesis is **An institution is sovereign when it can act at the scale of its responsibility.**
-- Shiftora's domain is the architecture of government and enterprise: strategy, organization, capital,
-  operations, data, and technology.
+- The governing thesis is **An institution is sovereign when its decisions command the means of action.**
+- Shiftora's domain is the decisions that determine the course of governments and enterprises, and the
+  systems that carry those decisions into effect.
 - AI, software, data, models, organization, capital, and operations are possible forms of a
   mandate. None is the umbrella identity.
 - A client institution or authorized coalition remains the principal in a Shiftora mandate. A

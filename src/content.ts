@@ -1,8 +1,8 @@
 export const FIRM_DESCRIPTION_BODY =
-  'Shiftora is an integrated strategy and systems firm. Its domain is the architecture of government and enterprise: strategy, organization, capital, operations, data, and technology. Shiftora advises the course, builds the capacity, and carries both into operation.';
+  'Shiftora is an integrated strategy and systems firm. We advise governments and enterprises on the decisions that determine their course. We build the systems that carry those decisions into effect.';
 
 export const FIRM_DESCRIPTION_CLOSE =
-  'An institution is sovereign when it can act at the scale of its responsibility.';
+  'An institution is sovereign when its decisions command the means of action.';
 
 export const ENGAGEMENTS_INTRO =
   'Selected systems built for public authority and enterprise. Only the architecture may be described here. The principals, jurisdictions, and operating particulars remain protected by obligations that survive the engagement.';

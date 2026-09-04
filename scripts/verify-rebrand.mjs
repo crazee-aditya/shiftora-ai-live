@@ -53,7 +53,7 @@ function assertJsonLd(document, label) {
 }
 
 const expectedDefaultDescription =
-  'Shiftora is an integrated strategy and systems firm. It advises the course, builds the capacity, and carries both into operation.';
+  'Shiftora is an integrated strategy and systems firm. We advise governments and enterprises and build the systems that carry decisions into effect.';
 
 const checks = [
   [home, '<title>Shiftora — Integrated Strategy and Systems Firm</title>', 'home title'],
@@ -62,10 +62,9 @@ const checks = [
   [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
   [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
   [home, 'Shiftora is an integrated strategy and systems firm.', 'positioning'],
-  [home, 'Its domain is the architecture of government and enterprise:', 'institutional domain'],
-  [home, 'strategy, organization, capital, operations, data, and technology', 'integrated field'],
-  [home, 'Shiftora advises the course, builds the capacity, and carries both into operation.', 'responsibility'],
-  [home, 'An institution is sovereign when it can act at the scale of its responsibility.', 'sovereignty definition'],
+  [home, 'We advise governments and enterprises on the decisions that determine their course.', 'strategic authority'],
+  [home, 'We build the systems that carry those decisions into effect.', 'operating responsibility'],
+  [home, 'An institution is sovereign when its decisions command the means of action.', 'sovereignty definition'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
@@ -118,6 +117,10 @@ for (const retiredPhrase of [
   'Shiftora forms its own view and advises those who hold the relevant authority.',
   'We remain with the mandate through the work it requires.',
   'When the necessary capacity does not exist, we build it.',
+  'Its domain is the architecture of government and enterprise:',
+  'strategy, organization, capital, operations, data, and technology.',
+  'Shiftora advises the course, builds the capacity, and carries both into operation.',
+  'An institution is sovereign when it can act at the scale of its responsibility.',
 ]) {
   if (home.includes(retiredPhrase) || engagements.includes(retiredPhrase) || source.includes(retiredPhrase)) {
     throw new Error(`Verification failed: retired positioning remains (${retiredPhrase})`);
@@ -151,10 +154,9 @@ assertInOrder(
   home,
   [
     'Shiftora is an integrated strategy and systems firm.',
-    'Its domain is the architecture of government and enterprise:',
-    'strategy, organization, capital, operations, data, and technology.',
-    'Shiftora advises the course, builds the capacity, and carries both into operation.',
-    'An institution is sovereign when it can act at the scale of its responsibility.',
+    'We advise governments and enterprises on the decisions that determine their course.',
+    'We build the systems that carry those decisions into effect.',
+    'An institution is sovereign when its decisions command the means of action.',
   ],
   'description argument',
 );

@@ -6,13 +6,13 @@ This file is the upstream control for public copy on this branch. It defines the
 
 **Category:** Shiftora is an integrated strategy and systems firm.
 
-**Worldview:** An institution is sovereign when it can act at the scale of its responsibility.
+**Worldview:** An institution is sovereign when its decisions command the means of action.
 
-**Domain:** The architecture of government and enterprise: strategy, organization, capital, operations, data, and technology.
+**Domain:** The decisions that determine the course of governments and enterprises, and the systems that carry those decisions into effect.
 
 **Responsibility:** Carry a consequential mandate through the forms of work it requires while every reserved decision right remains with the relevant client authority.
 
-**Completion condition:** The institution can act at the scale of its responsibility.
+**Completion condition:** The institution's decisions command the means required to carry them into effect.
 
 **Sovereign capacity:** The institution's systems are answerable to its lawful authority and equal to its responsibilities. This is not a claim to public authority by Shiftora, national status, total technical independence, ownership of every component, or a Palantir-like digital decision system.
 
