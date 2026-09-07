@@ -1,4 +1,5 @@
 import { ENGAGEMENT_NAMES } from './content';
+import { CONCEPT_RECORDS } from './concepts/conceptData';
 
 export const SITE = {
   name: 'Shiftora',
@@ -92,6 +93,8 @@ function organizationGraph(): object[] {
 
 export function getRouteMeta(route: string): RouteMeta {
   const path = route.length > 1 ? route.replace(/\/+$/, '') : route;
+  const engagementSlug = path.startsWith('/engagements/') ? path.slice('/engagements/'.length) : null;
+  const engagement = engagementSlug ? CONCEPT_RECORDS.find(record => record.slug === engagementSlug) : null;
 
   if (path === '/404') {
     return {
@@ -173,6 +176,37 @@ export function getRouteMeta(route: string): RouteMeta {
     };
   }
 
+  if (engagement) {
+    const canonical = `${SITE.origin}/engagements/${engagement.slug}`;
+    return {
+      title: `${engagement.title} — Shiftora`,
+      description: engagement.description,
+      canonical,
+      ogType: 'article',
+      themeColor: '#eeece5',
+      jsonLd: [
+        ...organizationGraph(),
+        {
+          '@type': 'WebPage',
+          '@id': `${canonical}#page`,
+          name: engagement.title,
+          description: engagement.description,
+          url: canonical,
+          isPartOf: { '@id': `${SITE.origin}/#website` },
+          about: { '@id': `${SITE.origin}/#organization` },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'The firm', item: `${SITE.origin}/` },
+            { '@type': 'ListItem', position: 2, name: 'Engagements', item: `${SITE.origin}/engagements` },
+            { '@type': 'ListItem', position: 3, name: engagement.title, item: canonical },
+          ],
+        },
+      ],
+    };
+  }
+
   return {
     title: SITE.defaultTitle,
     description: SITE.defaultDescription,
@@ -227,7 +261,7 @@ export function renderHead(meta: RouteMeta): string {
 }
 
 export function allRoutes(): string[] {
-  return ['/', '/engagements', '/careers'];
+  return ['/', '/engagements', '/careers', ...CONCEPT_RECORDS.map(record => `/engagements/${record.slug}`)];
 }
 
 export function sitemapEntries(): Array<{ loc: string; priority: string }> {
@@ -235,5 +269,6 @@ export function sitemapEntries(): Array<{ loc: string; priority: string }> {
     { loc: `${SITE.origin}/`, priority: '1.0' },
     { loc: `${SITE.origin}/engagements`, priority: '0.9' },
     { loc: `${SITE.origin}/careers`, priority: '0.7' },
+    ...CONCEPT_RECORDS.map(record => ({ loc: `${SITE.origin}/engagements/${record.slug}`, priority: '0.6' })),
   ];
 }

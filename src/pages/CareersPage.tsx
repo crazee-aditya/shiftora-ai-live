@@ -1,10 +1,11 @@
 import { BrandFooter, BrandHeader } from '../components/BrandFrame';
 import { DirectionalArrow } from '../components/DirectionalArrow';
+import type { ConceptId } from '../concepts/conceptData';
 
-export default function CareersPage() {
+export default function CareersPage({ concept, basePath }: { concept?: ConceptId; basePath?: string } = {}) {
   return (
-    <div className="careers-page">
-      <BrandHeader active="careers" />
+    <div className="careers-page" data-concept={concept}>
+      <BrandHeader active="careers" concept={concept} basePath={basePath} />
       <main className="careers-page__main" id="main-content" tabIndex={-1}>
         <p className="page-kicker">The firm</p>
         <div className="careers-page__composition">
@@ -24,7 +25,7 @@ export default function CareersPage() {
           </div>
         </div>
       </main>
-      <BrandFooter active="careers" />
+      <BrandFooter active="careers" concept={concept} basePath={basePath} />
     </div>
   );
 }

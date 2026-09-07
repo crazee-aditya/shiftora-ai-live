@@ -1,0 +1,76 @@
+.institution-passage { position: relative; height: 340svh; border-top: 1px solid var(--estate-line); --passage-muted: #73736b; }
+.estate-page .institution-passage[id] { scroll-margin-top: 0; }
+.passage-start { position: absolute; top: 0; left: 0; }
+.passage-scene { position: sticky; top: 0; height: 100svh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: 30px var(--estate-gutter) 26px; }
+.passage-top, .passage-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 10px; line-height: 1.3; letter-spacing: .055em; }
+.passage-top { min-height: 44px; }
+.passage-top__index { color: var(--passage-muted); font-variant-numeric: tabular-nums; letter-spacing: .09em; }
+.passage-bottom { color: var(--passage-muted); }
+.passage-bottom > span:last-child { display: flex; align-items: center; gap: 24px; }
+.passage-bottom > span:last-child > span { font-size: 19px; }
+.passage-composition { display: grid; grid-template-columns: minmax(0, .76fr) minmax(0, 1.24fr); gap: 5.5vw; align-items: end; padding-block: 24px; }
+.passage-thesis { min-width: 0; padding-bottom: 178px; }
+.passage-copy { margin: 0; max-width: 37ch; font-size: clamp(24px, 1.9vw, 31px); line-height: 1.23; letter-spacing: -.028em; font-weight: 400; }
+.passage-sentence { display: inline; appearance: none; border: 0; border-radius: 0; padding: 0; background: none; color: inherit; font: inherit; line-height: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; touch-action: manipulation; }
+.passage-word { --word-enter: clamp(0, calc(var(--sentence-enter, 0)*1.65 - var(--word-order)*.65), 1); --word-focus: calc(var(--word-enter)*(1 - var(--sentence-exit, 0))); display: inline-block; opacity: calc(.27 + var(--word-focus)*.73); filter: blur(calc((1 - var(--word-focus))*1.3px)); transform: translateY(calc((1 - var(--word-enter))*3px)); }
+.passage-sentence:focus-visible .passage-word { opacity: 1; filter: none; transform: none; }
+.passage-word[data-emphasis=true] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+.passage-visual { min-width: 0; --case-art-height: clamp(280px, min(59svh, calc(100svh - 360px)), 680px); }
+.passage-case-stage { display: grid; isolation: isolate; }
+.passage-case-layer { grid-area: 1/1; min-width: 0; --case-softness: max(calc(1 - var(--case-enter)), var(--case-exit)); }
+.passage-case-layer .case-study__image { position: relative; overflow: hidden; isolation: isolate; background: #dfddd4; clip-path: inset(calc((1 - var(--case-enter))*100%) 0 0 0); }
+.passage-case-layer .case-study__painting { object-fit: cover; object-position: 50% 48%; transform: translateY(calc((1 - var(--case-enter))*9% - var(--case-exit)*5%)) scale(calc(1.065 + (1 - var(--case-enter))*.06)); filter: grayscale(1) contrast(1.12) brightness(calc(1 - var(--case-exit)*.16)); will-change: transform; }
+.passage-case-layer[data-field=capital] .case-study__painting { object-position: 50% 12%; }
+.passage-case-layer[data-field=knowledge] .case-study__painting { object-position: 50% 65%; }
+.passage-case-layer :is(.case-study__domain, .case-study__body, .case-study__controls, .case-study__title, .case-study__title-outline) { opacity: max(0, calc(1 - var(--case-softness)*2.3)); transform: translateY(calc((1 - var(--case-enter))*18px - var(--case-exit)*10px)); filter: blur(calc(var(--case-softness)*3px)); }
+.passage-case-layer .case-study__body { min-height: 68px; grid-template-rows: 1fr auto; }
+.passage-case-layer .case-study__summary { max-width: 48ch; }
+.passage-case-layer .case-study__controls { border-top: 1px solid var(--estate-line); margin-top: 15px; }
+.passage-case-layer .case-study__controls[aria-hidden=true] { border-color: transparent; }
+.institution-passage[data-static=true] { height: auto; }
+.passage-static { padding: 40px var(--estate-gutter); }
+.passage-static > .passage-top { margin-bottom: 35px; }
+.passage-static > article { max-width: 1100px; margin: 0 auto; padding-block: 35px 75px; scroll-margin-top: 25px; }
+.passage-static > article + article { border-top: 1px solid var(--estate-line); }
+.passage-static > article > p:first-child { font-size: clamp(24px, 3vw, 38px); line-height: 1.2; letter-spacing: -.025em; max-width: 37ch; margin: 0 0 35px; }
+.passage-static .case-study { --case-art-height: clamp(340px, 58svh, 650px); }
+.passage-static .case-study[data-field=capital] .case-study__painting { object-position: 70% 15%; }
+.passage-static .case-study__body { max-width: 620px; }
+.passage-static .case-study__controls { max-width: 620px; border-top: 1px solid var(--estate-line); margin-top: 20px; }
+.passage-static .case-study__controls[aria-hidden=true] { display: none; }
+@media (min-width: 1500px) {
+  .passage-composition { gap: 6vw; }
+}
+@media (max-width: 1000px) and (min-width: 701px) {
+  .passage-composition { gap: 4vw; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .passage-copy { font-size: 23px; }
+  .passage-thesis { padding-bottom: 180px; }
+  .passage-case-layer :is(.case-study__title, .case-study__title-outline) { font-size: clamp(36px, 4.6vw, 46px); left: 24px; right: 24px; bottom: 25px; }
+  .passage-case-layer .case-study__body { min-height: 78px; }
+}
+@media (max-width: 700px) {
+  .passage-scene { padding: 15px var(--estate-gutter) 18px; }
+  .passage-top, .passage-bottom { font-size: 9px; }
+  .passage-top .estate-label { font-size: 10px; }
+  .passage-composition { display: flex; flex-direction: column; justify-content: center; align-items: stretch; gap: 24px; padding-block: 16px; }
+  .passage-thesis { padding-bottom: 0; }
+  .passage-copy { max-width: none; font-size: clamp(18px, 4.65vw, 24px); line-height: 1.23; letter-spacing: -.02em; }
+  .passage-word { filter: blur(calc((1 - var(--word-focus))*1px)); }
+  .passage-visual { --case-art-height: clamp(240px, 32svh, 330px); }
+  .passage-case-layer .case-study__body { min-height: 64px; }
+  .passage-case-layer .case-study__controls { margin-top: 8px; }
+  .passage-bottom { gap: 18px; }
+  .passage-bottom > span:last-child { gap: 12px; }
+  .passage-static > article { padding-bottom: 55px; }
+  .passage-static .case-study { --case-art-height: clamp(310px, 52svh, 480px); }
+}
+@media (max-width: 380px) {
+  .passage-composition { gap: 22px; padding-block: 18px; }
+  .passage-copy { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .institution-passage { height: auto; }
+  .passage-scene { position: relative; height: auto; min-height: 100svh; }
+  .passage-word { filter: none; opacity: 1; transform: none; }
+  .passage-case-layer .case-study__painting { will-change: auto; }
+}

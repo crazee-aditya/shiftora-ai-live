@@ -16,9 +16,10 @@ const requireApprovedTypography = process.env.SHIFTORA_REQUIRE_APPROVED_TYPOGRAP
 const requiredFonts = [];
 const fontRolesByRoute = {
   '/': [
-    { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
-    { selector: '.description-copy', family: 'Helvetica Neue', weight: 400 },
-    { selector: '.page-kicker', family: 'Helvetica Neue', weight: 500 },
+    { selector: '.estate-wordmark', family: 'Helvetica Neue', weight: 700 },
+    { selector: '.opening-mandate__title', family: 'Helvetica Neue', weight: 500 },
+    { selector: '.passage-static > article > p:first-child', family: 'Helvetica Neue', weight: 400 },
+    { selector: '.estate-label', family: 'Helvetica Neue', weight: 500 },
   ],
   '/engagements': [
     { selector: '.brand-wordmark', family: 'Helvetica Neue', weight: 700 },
@@ -323,7 +324,7 @@ try {
             return visible && (rect.width < 44 || rect.height < 44);
           }).map((link) => link.textContent?.trim() || link.getAttribute('aria-label') || 'unlabeled');
           const headingSkip = headings.some((level, index) => index > 0 && level > headings[index - 1] + 1);
-          const skipLink = document.querySelector('.skip-link');
+          const skipLink = document.querySelector('.skip-link, .estate-skip, .record-detail__skip');
           const normalizedFamily = (value) => value.replace(/^['"]|['"]$/g, '');
           const faceCoversWeight = (face, weight) => {
             const bounds = String(face.weight).match(/\d+/g)?.map(Number) ?? [];
@@ -373,7 +374,7 @@ try {
           const mandatesHeroHeadroom = mandatesHeroHeading
             ? mandatesHeroWidth - mandatesHeroRange.getBoundingClientRect().width
             : 0;
-          const arrowAlignmentOffsets = [...document.querySelectorAll('.directional-arrow')].map((arrow) => {
+          const arrowAlignmentOffsets = [...document.querySelectorAll('.brand-header__next .directional-arrow, .brand-footer .directional-arrow, .estate-header nav .directional-arrow, .estate-footer .directional-arrow, .mandates-close .directional-arrow, .not-found-page__main .directional-arrow')].map((arrow) => {
             const link = arrow.closest('a');
             if (!link) return Number.POSITIVE_INFINITY;
             const arrowRect = arrow.getBoundingClientRect();
@@ -410,7 +411,7 @@ try {
             unlabeledLinks,
             undersizedLinks,
             skipTarget: skipLink?.getAttribute('href') ?? '',
-            mainTargetExists: Boolean(document.querySelector('main#main-content')),
+            mainTargetExists: Boolean(skipLink?.getAttribute('href') && document.querySelector(skipLink.getAttribute('href'))),
             innerWidth: window.innerWidth,
             scrollWidth: document.documentElement.scrollWidth,
             bodyScrollWidth: document.body.scrollWidth,
@@ -454,7 +455,7 @@ try {
     );
     const validIndexing = !testCase.expectNoIndex || metrics.robots === 'noindex, follow';
     const validNavigation = Boolean(
-      metrics.skipTarget === '#main-content' &&
+      metrics.skipTarget.startsWith('#') &&
       metrics.mainTargetExists &&
       metrics.unlabeledLinks === 0 &&
       (testCase.width >= 768 || metrics.undersizedLinks.length === 0)

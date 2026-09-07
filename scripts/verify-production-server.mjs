@@ -80,6 +80,8 @@ try {
   const engagementsText = await engagements.text();
   const careers = await fetch(`${baseUrl}/careers`);
   const careersText = await careers.text();
+  const engagementDetail = await fetch(`${baseUrl}/engagements/govern-the-making-of-a-city`);
+  const engagementDetailText = await engagementDetail.text();
   const notFound = await fetch(`${baseUrl}/not-a-page`);
   const notFoundText = await notFound.text();
   const retiredResponses = await Promise.all(
@@ -87,9 +89,10 @@ try {
   );
 
   for (const [label, response, expectedStatus, text, marker] of [
-    ['home', home, 200, homeText, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.'],
+    ['home', home, 200, homeText, 'opening-mandate__title'],
     ['engagements', engagements, 200, engagementsText, 'Command across a sovereign logistics network'],
     ['careers', careers, 200, careersText, 'Email to apply'],
+    ['engagement detail', engagementDetail, 200, engagementDetailText, 'Govern the making of a city'],
     ['404', notFound, 404, notFoundText, 'This page does not exist.'],
   ]) {
     if (response.status !== expectedStatus) {

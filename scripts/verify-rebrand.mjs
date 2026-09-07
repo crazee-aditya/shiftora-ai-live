@@ -64,18 +64,18 @@ const checks = [
   [home, '<title>Shiftora — Integrated Strategy and Systems Firm</title>', 'home title'],
   [home, `<meta name="description" content="${expectedDefaultDescription}" />`, 'home description'],
   [home, '<meta name="theme-color" content="#eeece5" />', 'home browser color'],
-  [home, '<p class="page-kicker">The firm</p>', 'institutional page label'],
-  [home, 'href="#main-content">Skip to content</a>', 'skip navigation'],
+  [home, '<h2 class="estate-label">The firm</h2>', 'institutional page label'],
+  [home, 'href="#estate-main">Skip to content</a>', 'skip navigation'],
   [visibleHomeText, 'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.', 'positioning and institutional scale'],
-  [visibleHomeText, 'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.', 'integrated field'],
-  [visibleHomeText, 'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.', 'operating responsibility'],
-  [visibleHomeText, 'Shiftora brings the vantage to see the whole—and the means to make ambition executable.', 'institutional outcome'],
+  [visibleHomeText, 'We order knowledge, operations, and technology as one institutional architecture.', 'integrated field'],
+  [visibleHomeText, 'We advise the course and build the capacity to carry it.', 'operating capacity'],
+  [visibleHomeText, 'We remain through operation—until the intended result is in force.', 'operating responsibility'],
   [home, 'href="/careers">Careers', 'careers navigation'],
   [home, 'href="https://cal.com/shiftora.ai/30min" target="_blank" rel="noopener noreferrer">Request appointment', 'booking action'],
   [engagements, '<title>Engagements — Shiftora</title>', 'engagements title'],
   [engagements, '<meta name="theme-color" content="#090a0a" />', 'engagements browser color'],
   [engagements, '<h1 class="engagements-title">Engagements</h1>', 'engagements heading'],
-  [engagements, '>Integrated strategy and systems firm</p>', 'direct-entry category'],
+  [engagements, '>Selected engagements</p>', 'direct-entry category'],
   [engagements, '<span class="mandates-hero__legal-notice">The following disclosure remains subject to continuing legal duties of confidence.</span>', 'legal confidentiality lead'],
   [engagements, 'Selected systems for public authority and enterprise.', 'engagements opening'],
   [engagements, 'Architecture alone is disclosed.', 'confidentiality boundary'],
@@ -119,8 +119,8 @@ for (const [document, phrase, label] of checks) {
   }
 }
 
-if (count(home, /class="description-copy__emphasis"/g) !== 6) {
-  throw new Error('Verification failed: the Firm page must contain exactly six underlined phrases.');
+if (count(home, /data-passage-field=/g) !== 4) {
+  throw new Error('Verification failed: the Firm page must contain exactly four institutional fields.');
 }
 
 if (visibleHome.includes('View engagements')) {
@@ -207,9 +207,9 @@ assertInOrder(
   visibleHomeText,
   [
     'Shiftora is an integrated strategy and systems firm operating across world governments and enterprises.',
-    'Strategy, organization, capital, operations, data, and technology are ordered as one institutional architecture.',
-    'We advise the course, build the capacity to carry it, and remain through operation until the intended result is in force.',
-    'Shiftora brings the vantage to see the whole—and the means to make ambition executable.',
+    'We order knowledge, operations, and technology as one institutional architecture.',
+    'We advise the course and build the capacity to carry it.',
+    'We remain through operation—until the intended result is in force.',
   ],
   'description argument',
 );
@@ -234,7 +234,7 @@ if (count(home, /<h1\b/g) !== 1 || count(engagements, /<h1\b/g) !== 1 || count(c
 if (count(engagements, /<section class="mandate-chapter">/g) !== 4) {
   throw new Error('Verification failed: Engagements must contain exactly four institutional conditions.');
 }
-if (count(engagements, /<article class="mandate-item">/g) !== 7) {
+if (count(engagements, /<article class="mandate-item"/g) !== 7) {
   throw new Error('Verification failed: Engagements must contain exactly seven selected records.');
 }
 
@@ -272,8 +272,8 @@ if (!careersPage || careersPage.url !== 'https://www.shiftora.ai/careers') {
 }
 
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 3 || !sitemap.includes('/engagements</loc>') || !sitemap.includes('/careers</loc>') || sitemap.includes('/mandates</loc>') || sitemap.includes('/work</loc>')) {
-  throw new Error('Verification failed: sitemap must contain exactly the three current public pages.');
+if (sitemapUrls !== 10 || !sitemap.includes('/engagements</loc>') || !sitemap.includes('/careers</loc>') || sitemap.includes('/mandates</loc>') || sitemap.includes('/work</loc>')) {
+  throw new Error('Verification failed: sitemap must contain the three principal pages and seven engagement records.');
 }
 if (sitemap.includes('<lastmod>')) {
   throw new Error('Verification failed: sitemap lastmod must be omitted until true per-route revision dates are available.');
@@ -291,4 +291,4 @@ if (logoSize.width !== 512 || logoSize.height !== 512) {
   throw new Error('Verification failed: organization logo must be 512×512.');
 }
 
-console.log('Verified the three-page Shiftora rebrand output.');
+console.log('Verified the Shiftora public site and seven engagement records.');

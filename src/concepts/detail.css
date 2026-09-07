@@ -1,0 +1,48 @@
+.record-detail { min-height:100svh; color:#eeece5; background:#101210; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; --record-gutter:clamp(22px,4.5vw,88px); }
+.record-detail__skip { position:absolute; left:var(--record-gutter); top:12px; transform:translateY(-200%); z-index:10; background:#eeece5; color:#101210; padding:14px; }
+.record-detail__skip:focus { transform:none; }
+.record-detail__header { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:100px; padding:20px var(--record-gutter); border-bottom:1px solid #444840; }
+.record-detail__brand { font-weight:700; font-size:42px; letter-spacing:-.06em; }
+.record-detail__back { display:flex; align-items:center; gap:20px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; min-height:44px; }
+.record-detail__index { display:flex; justify-content:space-between; gap:24px; margin:48px var(--record-gutter) 80px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#b4b6a9; }
+.record-detail__opening { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr); align-items:end; gap:8vw; padding:0 var(--record-gutter) 90px; }
+.record-detail h1 { margin:0; font-size:clamp(46px,6.6vw,112px); font-weight:400; line-height:.99; letter-spacing:-.055em; max-width:15ch; }
+.record-detail__description > span { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#a5aa9b; }
+.record-detail__description p { font-size:clamp(18px,1.65vw,26px); line-height:1.35; letter-spacing:-.02em; margin:22px 0 0; }
+.record-detail__art { margin:0; }
+.record-detail__art img { display:block; width:100%; height:clamp(350px,58vw,800px); object-fit:cover; object-position:center; }
+.record-detail__art--wide img { height:auto; min-height:280px; max-height:700px; }
+.record-detail__art--portrait img { object-position:center 42%; }
+.record-detail__art figcaption { margin:16px var(--record-gutter); color:#a4aa9c; font-size:12px; }
+.record-detail__disclosure { display:flex; justify-content:space-between; gap:30px; padding:40px var(--record-gutter) 70px; font-size:13px; line-height:1.5; color:#a5aa9b; }
+.record-detail__disclosure p { margin:0; max-width:54ch; }
+.record-detail__next { display:grid; grid-template-columns:1fr 1fr; gap:8vw; border-top:1px solid #444840; padding:42px var(--record-gutter) 75px; }
+.record-detail__next a { display:flex; align-items:start; gap:24px; min-height:44px; font-size:clamp(20px,2.4vw,36px); line-height:1.2; letter-spacing:-.025em; }
+.record-detail__next a:last-child { display:grid; grid-template-columns:1fr 30px; }
+.record-detail__next a:last-child span { grid-column:1/-1; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#b4b6a9; }
+.record-detail__next .directional-arrow { width:24px; margin-top:6px; }
+.record-detail__footer { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:28px var(--record-gutter); border-top:1px solid #444840; }
+.record-detail__footer > span { font-size:30px; font-weight:700; letter-spacing:-.06em; }
+.record-detail__footer a { display:flex; align-items:center; gap:24px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; min-height:44px; }
+.record-detail a:focus-visible { outline:2px solid #eeece5; outline-offset:5px; }
+@media(max-width:800px) { .record-detail__opening { grid-template-columns:1fr; gap:48px; padding-bottom:48px; } .record-detail__description { max-width:42ch; } .record-detail__index { margin-block:28px 54px; flex-direction:column; gap:10px; } .record-detail__disclosure { flex-direction:column; padding-block:30px 44px; gap:12px; } .record-detail__next { grid-template-columns:1fr; gap:44px; } }
+@media(max-width:480px) { .record-detail__header { min-height:80px; } .record-detail__brand { font-size:34px; } .record-detail__back { font-size:10px; gap:10px; } .record-detail h1 { font-size:clamp(40px,12vw,58px); } .record-detail__art img { height:420px; } .record-detail__art--wide img { height:280px; } .record-detail__footer a { font-size:10px; gap:12px; } }
+.record-detail--estate{color:#11110f;background:#eeece5;--record-gutter:clamp(22px,3vw,58px);color-scheme:light}
+.record-detail--estate :is(.record-detail__header,.record-detail__next,.record-detail__footer){border-color:rgba(17,17,15,.26)}
+.record-detail--estate :is(.record-detail__index,.record-detail__description>span,.record-detail__art figcaption,.record-detail__disclosure,.record-detail__next a:last-child span){color:#69685f}
+.record-detail--estate h1{font-size:clamp(42px,5.6vw,90px);letter-spacing:-.045em;line-height:1.04;max-width:17ch;text-wrap:balance}
+.record-detail--estate .record-detail__art{padding-inline:var(--record-gutter)}
+.record-detail--estate .record-detail__art img{width:auto;max-width:100%;height:auto;min-height:0;max-height:700px;object-fit:contain;margin-inline:auto;filter:grayscale(1) contrast(1.08)}
+.record-detail--estate .record-detail__art figcaption{margin-inline:0}
+.record-detail--estate a:focus-visible{outline-color:#11110f}
+/* The record belongs to the same institution as the opening. */
+.record-detail--estate .record-detail__header{min-height:108px}
+.record-detail--estate .record-detail__brand{font-size:45px;line-height:1;letter-spacing:-.065em}
+.record-detail--estate .record-detail__back{font-size:11px;line-height:1.4;letter-spacing:.08em;gap:10px;border-bottom:1px solid currentColor}
+.record-detail--estate .record-detail__index{font-size:11px;line-height:1.4;letter-spacing:.035em}
+.record-detail--estate .record-detail__description p{max-width:45ch;font-size:clamp(18px,1.65vw,24px);line-height:1.42;text-wrap:pretty}
+.record-detail--estate .record-detail__footer{min-height:90px;padding-block:20px}
+.record-detail--estate .record-detail__footer a{gap:12px;font-size:11px;letter-spacing:.07em;border-bottom:1px solid currentColor}
+.record-detail--estate .record-detail__next a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em}
+@media(max-width:800px){.record-detail--estate .record-detail__header{min-height:90px}}
+@media(max-width:480px){.record-detail--estate{--record-gutter:20px}.record-detail--estate .record-detail__header{min-height:84px}.record-detail--estate .record-detail__brand{font-size:36px}.record-detail--estate .record-detail__back{font-size:10px}.record-detail--estate h1{font-size:clamp(36px,10vw,42px)}.record-detail--estate .record-detail__art img{max-height:500px}.record-detail--estate .record-detail__footer a{font-size:10px}}

@@ -4,6 +4,8 @@ export const FIRM_DESCRIPTION_BODY =
 export const FIRM_DESCRIPTION_CLOSE =
   'Shiftora brings the vantage to see the whole—and the means to make ambition executable.';
 
+export const ESTATE_OPENING_HEADLINE = ['Institutional', 'intelligence.'] as const;
+
 export const FIRM_DESCRIPTION_HIGHLIGHTS = [
   'strategy',
   'systems',

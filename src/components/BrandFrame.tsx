@@ -1,12 +1,25 @@
 import { DirectionalArrow } from './DirectionalArrow';
+import type { ConceptId } from '../concepts/conceptData';
 
 interface BrandFrameProps {
   active: 'description' | 'engagements' | 'careers' | 'none';
   tone?: 'paper' | 'ink';
+  concept?: ConceptId;
+  basePath?: string;
 }
 
-export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
-  const nextHref = active === 'description' ? '/engagements' : '/';
+function framePaths(concept?: ConceptId, basePath?: string) {
+  const base = basePath ?? (concept === 'estate' ? '/concepts/estate' : '');
+  return {
+    home: base || '/',
+    engagements: `${base}/engagements`,
+    careers: `${base}/careers`,
+  };
+}
+
+export function BrandHeader({ active, tone = 'paper', concept, basePath }: BrandFrameProps) {
+  const { home: homeHref, engagements: engagementsHref } = framePaths(concept, basePath);
+  const nextHref = active === 'description' ? engagementsHref : homeHref;
   const nextLabel = active === 'description' ? 'Engagements' : 'The firm';
 
   return (
@@ -16,7 +29,7 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
       </a>
       <a
         className="brand-wordmark"
-        href="/"
+        href={homeHref}
         aria-label="Shiftora home"
         aria-current={active === 'description' ? 'page' : undefined}
       >
@@ -35,11 +48,12 @@ export function BrandHeader({ active, tone = 'paper' }: BrandFrameProps) {
   );
 }
 
-export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
+export function BrandFooter({ active, tone = 'paper', concept, basePath }: BrandFrameProps) {
+  const { home: homeHref, engagements: engagementsHref, careers: careersHref } = framePaths(concept, basePath);
   if (active === 'description') {
     return (
       <footer className={`brand-footer brand-footer--${tone} brand-footer--description`}>
-        <a href="/careers">
+        <a href={careersHref}>
           Careers
           <DirectionalArrow />
         </a>
@@ -58,7 +72,7 @@ export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
   if (active === 'careers') {
     return (
       <footer className={`brand-footer brand-footer--${tone} brand-footer--careers`}>
-        <a href="/engagements">
+        <a href={engagementsHref}>
           View engagements
           <DirectionalArrow />
         </a>
@@ -69,7 +83,7 @@ export function BrandFooter({ active, tone = 'paper' }: BrandFrameProps) {
   return (
     <footer className={`brand-footer brand-footer--${tone}`}>
       <a href="mailto:info@shiftora.ai">info@shiftora.ai</a>
-      <a href="/">
+      <a href={homeHref}>
         Read about the firm
         <DirectionalArrow />
       </a>
