@@ -33,6 +33,7 @@ export default function EstateConcept({ basePath = '/concepts/estate' }: { baseP
       </main>
       <footer className="estate-footer">
         <a href={careersHref}>Careers<DirectionalArrow /></a>
+        <a className="estate-footer__email" href="mailto:info@shiftora.ai">info@shiftora.ai</a>
         <a href="https://cal.com/shiftora.ai/30min" target="_blank" rel="noopener noreferrer">Request appointment<DirectionalArrow /></a>
       </footer>
     </div>

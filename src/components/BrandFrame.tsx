@@ -82,11 +82,12 @@ export function BrandFooter({ active, tone = 'paper', concept, basePath }: Brand
 
   if (active === 'engagements') {
     return (
-      <footer className={`brand-footer brand-footer--${tone}`}>
+      <footer className={`brand-footer brand-footer--${tone} brand-footer--engagements`}>
         <a href={careersHref}>
           Careers
           <DirectionalArrow />
         </a>
+        <a className="brand-footer__email" href="mailto:info@shiftora.ai">info@shiftora.ai</a>
         <a href={homeHref}>
           Read about the firm
           <DirectionalArrow />

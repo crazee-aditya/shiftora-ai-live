@@ -486,8 +486,8 @@ try {
     if (testCase.route === '/engagements' && testCase.width === 320 && metrics.mandatesHeroHeadroom < 16) {
       failures.push(`${label} leaves only ${metrics.mandatesHeroHeadroom.toFixed(2)}px of heading headroom.`);
     }
-    if (testCase.route === '/engagements' && testCase.width <= 600 && metrics.visibleFooterLinkCount !== 2) {
-      failures.push(`${label} exposes ${metrics.visibleFooterLinkCount} footer actions; expected 2.`);
+    if (testCase.route === '/engagements' && testCase.width <= 600 && metrics.visibleFooterLinkCount !== 3) {
+      failures.push(`${label} exposes ${metrics.visibleFooterLinkCount} footer actions; expected 3.`);
     }
     if (testCase.route === '/careers' && metrics.careersTitleBodyOverlap) {
       failures.push(`${label} allows the Careers title to overlap the application content.`);

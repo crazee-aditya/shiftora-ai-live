@@ -36,8 +36,10 @@
 .estate-closing__note{max-width:32ch;font-size:12px;line-height:1.5}
 .estate-closing__note>span{font-size:10px;letter-spacing:.07em;text-transform:uppercase}
 .estate-closing__note>p{margin:15px 0 0;color:#68685f}
-.estate-footer{min-height:90px;padding:20px var(--estate-gutter);border-top:1px solid var(--estate-line);display:flex;align-items:center;justify-content:space-between;gap:30px}
+.estate-footer{min-height:90px;padding:20px var(--estate-gutter);border-top:1px solid var(--estate-line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:30px}
 .estate-footer a{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid currentColor;min-height:44px}
+.estate-footer a:nth-child(2){justify-self:center}
+.estate-footer a:last-child{justify-self:end}
 .estate-confidentiality{padding:44px var(--estate-gutter) 56px;font-size:13px;font-weight:500;line-height:1.5;color:#55554d}
 .estate-confidentiality p{margin:0;max-width:46ch}
 .estate-page :is(a,button,summary):focus-visible{outline:2px solid currentColor;outline-offset:5px}
@@ -54,8 +56,12 @@
 [data-concept=estate] .brand-header__meta{gap:40px;font-size:11px;line-height:1.4;letter-spacing:.08em}
 [data-concept=estate] .brand-header__next{gap:10px}
 [data-concept=estate] .brand-footer{min-height:90px;font-size:11px;letter-spacing:.07em}
+.mandates-page[data-concept=estate] .brand-footer--engagements{display:grid;grid-template-columns:1fr auto 1fr;gap:30px}
+.mandates-page[data-concept=estate] .brand-footer--engagements .brand-footer__email{justify-self:center}
+.mandates-page[data-concept=estate] .brand-footer--engagements a:last-child{justify-self:end}
 [data-concept=estate] .mandates-hero__legal-notice{text-decoration:none}
 [data-concept=estate] .mandate-item h3 a{text-decoration:none}
 [data-concept=estate] .mandate-item[id]{scroll-margin-top:32px}
 @media(max-width:800px){[data-concept=estate] .brand-header{min-height:90px}[data-concept=estate] .brand-header__meta{gap:22px}}
+@media(max-width:600px){.estate-footer,.mandates-page[data-concept=estate] .brand-footer--engagements{grid-template-columns:1fr 1fr;gap:0 18px;padding-block:14px}.estate-footer a:nth-child(2),.mandates-page[data-concept=estate] .brand-footer--engagements .brand-footer__email{grid-column:1/-1;grid-row:2;justify-self:center}.estate-footer a:last-child,.mandates-page[data-concept=estate] .brand-footer--engagements a:last-child{grid-column:2;grid-row:1;justify-self:end}}
 @media(max-width:480px){:is(.mandates-page,.careers-page)[data-concept=estate]{--gutter:20px}[data-concept=estate] .brand-header{min-height:84px}[data-concept=estate] .brand-wordmark{font-size:36px}[data-concept=estate] .brand-header__meta{gap:14px;font-size:10px}[data-concept=estate] .brand-footer{font-size:10px}}
