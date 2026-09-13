@@ -161,7 +161,7 @@ a:focus-visible {
   bottom: 3px;
   left: 0;
   height: 1px;
-  background: currentColor;
+  border-bottom: 1px solid currentColor;
   content: '';
   pointer-events: none;
 }
@@ -350,7 +350,7 @@ a:focus-visible {
   bottom: 3px;
   left: 0;
   height: 1px;
-  background: currentColor;
+  border-bottom: 1px solid currentColor;
   content: '';
   pointer-events: none;
 }
