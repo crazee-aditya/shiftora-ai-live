@@ -8,6 +8,8 @@
 .passage-bottom { color: var(--passage-muted); }
 .passage-bottom > span:last-child { display: flex; align-items: center; gap: 24px; }
 .passage-bottom > span:last-child > span { font-size: 19px; }
+.passage-bottom > .passage-bottom__destination { flex-direction: column; align-items: flex-end; gap: 3px; text-align: right; }
+.passage-bottom > .passage-bottom__destination > span { font-size: inherit; }
 .passage-composition { display: grid; grid-template-columns: minmax(0, .76fr) minmax(0, 1.24fr); gap: 5.5vw; align-items: end; padding-block: 24px; }
 .passage-thesis { min-width: 0; padding-bottom: 178px; }
 .passage-copy { margin: 0; max-width: 37ch; font-size: clamp(24px, 1.9vw, 31px); line-height: 1.23; letter-spacing: -.028em; font-weight: 400; }
