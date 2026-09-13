@@ -329,7 +329,7 @@ export default function InstitutionPassage({ basePath = '/concepts/estate' }: { 
       <div className="passage-bottom">
         <span>One institutional architecture.</span>
         {active === 3
-          ? <span className="passage-bottom__destination"><span>Next</span><span>The means to act</span></span>
+          ? <span>The means to act</span>
           : <span>Scroll to continue <span aria-hidden="true">↓</span></span>}
       </div>
     </div>}
