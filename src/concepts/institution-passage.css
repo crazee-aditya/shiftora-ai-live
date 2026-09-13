@@ -49,6 +49,7 @@
   .passage-case-layer .case-study__body { min-height: 78px; }
 }
 @media (max-width: 700px) {
+  .institution-passage { border-top: 0; }
   .passage-scene { padding: 15px var(--estate-gutter) 18px; }
   .passage-top, .passage-bottom { font-size: 9px; }
   .passage-top .estate-label { font-size: 10px; }
