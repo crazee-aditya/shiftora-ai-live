@@ -144,12 +144,26 @@ a:focus-visible {
 .brand-footer a,
 .not-found-page__main a,
 .mandates-close a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.55em;
   min-height: 2.75rem;
-  border-bottom: 1px solid currentColor;
   padding-block: 0.6rem;
+}
+
+.brand-header__next::after,
+.brand-footer a::after,
+.not-found-page__main a::after,
+.mandates-close a::after {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: '';
+  pointer-events: none;
 }
 
 .directional-arrow {
@@ -321,13 +335,24 @@ a:focus-visible {
 }
 
 .careers-page__apply a {
+  position: relative;
   display: inline-flex;
   width: max-content;
   align-items: center;
   gap: 0.55em;
   min-height: 2.75rem;
-  border-bottom: 1px solid currentColor;
   font-size: clamp(1rem, 1.4vw, 1.45rem);
+}
+
+.careers-page__apply a::after {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: '';
+  pointer-events: none;
 }
 
 .brand-footer--careers {
