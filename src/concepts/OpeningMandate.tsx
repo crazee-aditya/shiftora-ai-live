@@ -39,6 +39,41 @@ export default function OpeningMandate() {
     };
   }, []);
 
+  useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 700px)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!mobile.matches || reduced.matches || window.scrollY > 2 || window.location.hash) return;
+
+    let animation = 0;
+    let cancelled = false;
+    const cancel = () => {
+      cancelled = true;
+      cancelAnimationFrame(animation);
+    };
+    const start = window.setTimeout(() => {
+      const origin = window.scrollY;
+      const destination = Math.min(20, document.documentElement.scrollHeight - window.innerHeight);
+      const duration = 820;
+      const startedAt = performance.now();
+      const advance = (now: number) => {
+        if (cancelled) return;
+        const elapsed = Math.min(1, (now - startedAt) / duration);
+        const eased = 1 - Math.pow(1 - elapsed, 3);
+        window.scrollTo(0, origin + (destination - origin) * eased);
+        if (elapsed < 1) animation = requestAnimationFrame(advance);
+      };
+      animation = requestAnimationFrame(advance);
+    }, 420);
+
+    const cancellationEvents: (keyof WindowEventMap)[] = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+    cancellationEvents.forEach(event => window.addEventListener(event, cancel, { passive: true, once: true }));
+    return () => {
+      window.clearTimeout(start);
+      cancel();
+      cancellationEvents.forEach(event => window.removeEventListener(event, cancel));
+    };
+  }, []);
+
   return (
     <section ref={section} className="opening-mandate" aria-labelledby="opening-mandate-title">
       <h1 ref={heading} className="opening-mandate__title" id="opening-mandate-title">
