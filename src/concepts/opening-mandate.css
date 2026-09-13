@@ -49,7 +49,7 @@
   }
   .opening-mandate__title {
     position: absolute;
-    inset: auto auto 14% var(--opening-mandate-gutter);
+    inset: auto auto 17% var(--opening-mandate-gutter);
     top: auto;
     width: auto;
     display: block;
